@@ -13,7 +13,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	* @var boolean
 	*/
 	static $use_bw_effect = false;
-	
+
 	/**
 	* specify icons to be included, if left empty, this variable will be ignored
 	* We have this variable so that you can setup a bunch of default icons
@@ -98,7 +98,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	protected function makeShareIcons($bookmarks) {
 		$icons = array();
 		if($bookmarks) {
-			Requirements::themedCSS('SocialNetworking'); // ALSO  added in template
+			Requirements::themedCSS('SocialNetworking', "sharethis"); // ALSO  added in template
 			Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/shareThis.js');
 			if(self::$use_bw_effect) {
 				Requirements::customScript('sharethis.set_use_BW(true);', 'ShareThisBWEffect');

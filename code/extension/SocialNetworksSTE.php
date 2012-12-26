@@ -30,7 +30,7 @@ class SocialNetworksSTE extends SiteTreeExtension {
 	}
 
 	function SocialNetworks() {
-		Requirements::themedCSS('SocialNetworking');
+		Requirements::themedCSS('SocialNetworking', "sharethis");
 		return SocialNetworkingLinksDataObject::get();
 	}
 
