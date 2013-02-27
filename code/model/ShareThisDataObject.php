@@ -13,7 +13,7 @@ class ShareThisDataObject extends DataObject {
 		'IncludeThisIconInExtendedList' => 'Boolean',
 		'Sort' => 'Int'
 	);
-	
+
 	static $has_one = array(
 		'AlternativeIcon' => 'Image'
 	);
@@ -31,7 +31,7 @@ class ShareThisDataObject extends DataObject {
 	);
 
 	static $summary_fields = array(
-		'Icon' => 'Icon',	
+		'Icon' => 'Icon',
 		'Title' => 'Name',
 		'IncludeThisIcon' => 'IncludeThisIcon',
 		'IncludeThisIconInExtendedList' => 'IncludeThisIconInExtendedList'
@@ -54,7 +54,7 @@ class ShareThisDataObject extends DataObject {
 	function canEdit($member = null) {
 		return $this->canView($member);
 	}
-	
+
 	function getIcon() {
 		$icon = $this->AlternativeIcon();
 		if($icon->exists())  {

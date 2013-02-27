@@ -1,4 +1,4 @@
-<% require themedCSS(SocialNetworking) %>
+<% require themedCSS(SocialNetworking, sharethis) %>
 
 <% if ShowShareIcons %><% if ShareIcons %>
 	<div class="ShareThisHolder socialNetworkingHolder">

@@ -24,14 +24,14 @@ class SocialNetworkingLinksDataObject extends DataObject {
 		'Icon' => 'Image',
 		'InternalLink' => 'Page'
 	);
-	
+
 	static $searchable_fields = array(
 		'Title' => 'PartialMatchFilter'
 	);
 
 	static $field_labels = array(
 		'URL' => 'Link (e.g. http://twitter.com/myname/)- will override internal link',
-		'InternalLink' => 'Internal Link',		
+		'InternalLink' => 'Internal Link',
 		'Title' => 'Title',
 		'Sort' => 'Sort Index (lower numbers shown first)',
 		'IconID' => 'Icon (preferably something like 32pixels by 32pixels)'
@@ -55,13 +55,13 @@ class SocialNetworkingLinksDataObject extends DataObject {
 		return strtolower(preg_replace("/[^a-zA-Z0-9]/", '', $this->Title));
 	}
 
-	function IconHTML() {
+	function getIconHTML() {
 		$icon = $this->Icon();
 		if($icon->exists()) {
 			return $icon->SetHeight(32);
 		}
 		return '<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>";
-	}	
+	}
 
 	function Link() {
 		if($this->URL) {
@@ -82,8 +82,8 @@ class SocialNetworkingLinksDataObject extends DataObject {
 			$fields->addFieldToTab('Root.Main', new LiteralField('Link', "<p>Link: <a href=\"{$this->Link()}\">{$this->Link()}</a></p>"));
 			$fields->addFieldToTab('Root.Main', new LiteralField('Link', "<p>{$this->IconHTML()}</p>"));
 		}
-		$fields->removeFieldFromTab('Root.Main', 'InternalLinkID');		
-		$fields->addFieldToTab('Root.Main', new TreeDropdownField('InternalLinkID', 'Internal Link', 'SiteTree'), 'URL');		
+		$fields->removeFieldFromTab('Root.Main', 'InternalLinkID');
+		$fields->addFieldToTab('Root.Main', new TreeDropdownField('InternalLinkID', 'Internal Link', 'SiteTree'), 'URL');
 		return $fields;
 	}
 }
