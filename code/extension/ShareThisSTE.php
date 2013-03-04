@@ -151,7 +151,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	}
 
 	function populateDefaults() {
-		$config = $this->owner->getSiteConfig();
-		$this->owner->HasSocialNetworkingLinks = $config->IncludeByDefaultShareThisLinks;
+		//$config = $this->owner->getSiteConfig();
+		//$this->owner->HasSocialNetworkingLinks = $config->IncludeByDefaultShareThisLinks;
 	}
 }

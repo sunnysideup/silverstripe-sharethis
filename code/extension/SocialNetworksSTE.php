@@ -35,7 +35,7 @@ class SocialNetworksSTE extends SiteTreeExtension {
 	}
 
 	function populateDefaults() {
-		$config = $this->owner->getSiteConfig();
-		$this->owner->HasSocialNetworkingLinks = $config->IncludeByDefaultSocialNetworkingLinks;
+		//$config = $this->owner->getSiteConfig();
+		//$this->owner->HasSocialNetworkingLinks = $config->IncludeByDefaultSocialNetworkingLinks;
 	}
 }
