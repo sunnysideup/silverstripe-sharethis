@@ -48,7 +48,7 @@ class ShareThisDataObject extends DataObject {
 	}
 
 	function canDelete($member = null) {
-		return $this->canView($member);
+		return false;
 	}
 
 	function canEdit($member = null) {
@@ -60,12 +60,13 @@ class ShareThisDataObject extends DataObject {
 		if($icon->exists())  {
 			return $icon->SetHeight(16);
 		}
-		return '<img src="' . SS_SHARETHIS_DIR . '/images/icons/' . strtolower($this->Title) . ".png\" alt=\"{$this->Title}\"/>";
+		$html = '<img src="' . SS_SHARETHIS_DIR . '/images/icons/' . strtolower($this->Title) . ".png\" alt=\"{$this->Title}\"/>";
+		return DBField::create_field("HTMLText", $html);
 	}
 
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$fields->replaceField('Title', new LiteralField('Title', "<p>{$this->Icon}<span>{$this->Title}</span></p>"));
+		//$fields->replaceField('Title', new LiteralField('Title', "<p>{$this->Icon}<span>{$this->Title}</span></p>"));
 		return $fields;
 	}
 
