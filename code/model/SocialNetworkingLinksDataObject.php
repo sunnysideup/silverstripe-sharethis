@@ -57,7 +57,7 @@ class SocialNetworkingLinksDataObject extends DataObject {
 
 	function getIconHTML() {
 		$icon = $this->Icon();
-		if($icon->exists()) {
+		if($icon && $icon->exists()) {
 			return $icon->SetHeight(32);
 		}
 		return '<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>";
