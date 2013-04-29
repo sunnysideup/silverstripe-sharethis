@@ -55,6 +55,7 @@ class SocialNetworkingLinksDataObject extends DataObject {
 		return strtolower(preg_replace("/[^a-zA-Z0-9]/", '', $this->Title));
 	}
 
+	function IconHTML() {return $this->getIconHTML();}
 	function getIconHTML() {
 		$icon = $this->Icon();
 		if($icon && $icon->exists()) {
