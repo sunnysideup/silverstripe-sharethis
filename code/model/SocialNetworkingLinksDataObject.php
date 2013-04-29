@@ -39,7 +39,7 @@ class SocialNetworkingLinksDataObject extends DataObject {
 
 	static $summary_fields = array(
 		'Title' => 'Title',
-		'IconHTML' => 'Icon'
+		'IconHTML' => 'HTMLText'
 	);
 
 	static $default_sort = 'Sort ASC, Title ASC';
@@ -59,9 +59,12 @@ class SocialNetworkingLinksDataObject extends DataObject {
 	function getIconHTML() {
 		$icon = $this->Icon();
 		if($icon && $icon->exists()) {
-			return $icon->SetHeight(32);
+			$html = $icon->SetHeight(32);
 		}
-		return '<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>";
+		else {
+			$html =  DBField::create_field("HTMLText",'<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>");
+		}
+		return  $html;
 	}
 
 	function Link() {
