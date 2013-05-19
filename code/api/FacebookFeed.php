@@ -21,90 +21,117 @@
  *
  **/
 
+require_once('simple_html_dom.php');
 
-class TheFaceBook_communicator extends RestfulServer {
+class FacebookFeed_Item extends DataObject {
+
+	static $db = array(
+		"KeepOnTop" => "Boolean",
+		"Hide" => "Boolean",
+		"UID" => "varchar(32)",
+		"Title" => "varchar(255)",
+		"Author" => "Varchar(244)",
+		"Description" => "HTMLText",
+		"Link" => "Varchar(244)",
+		"Date" => "Date"
+	);
+
+	static $has_one = array(
+		'Page' => 'Page'
+	);
+
+	static $indexes = array(
+		"UID" => true
+	);
+
+	static $casting = array(
+		'DescriptionWithShortLinks' => 'HTMLText'
+	);
+
+	static $default_sort = "\"KeepOnTop\" DESC, \"Date\" DESC";
+
+	function DescriptionWithShortLinks() {
+		$html = str_get_html($this->Description);
+		foreach($html->find('text') as $element) {
+		    if(! in_array($element->parent()->tag, array('a', 'img'))) {
+		    	$element->innertext = preg_replace("#(www(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'http://$1$4'", $element->innertext);
+		        $element->innertext = preg_replace("#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">click here</a>$4'", $element->innertext);
+			}
+		}
+		return $html;
+	}
+
+	function requireDefaultRecords() {
+		$items = DataObject::get('FacebookFeed_Item', 'PageID = 0');
+		if($items) {
+			$page = DataObject::get_one('HomePage');
+			DB::query("UPDATE FacebookFeed_Item SET PageID = $page->ID WHERE PageID = 0");
+			DB::alteration_message('Facebook feeds updated and linked to the home page.', 'changed');
+		}
+	}
+}
+
+
+class FacebookFeed_Item_Communicator extends RestfulServer {
 
 	/**
-  	 *@returns DataObjectSet
-  	 **/
+	 * cd 
+	 **/
 
-	function fetchFBFeed($url, $maxnumber = 1, $timeFormat = 'F jS Y, H:i') {
+	function fetchFBFeed($url, $maxnumber = 1, $pageID = 0, $timeFormat = 'Y-m-d') {
 	/* The following line is absolutely necessary to read Facebook feeds. Facebook will not recognize PHP as a browser and therefore won't fetch anything. So we define a browser here */
 		ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3');
 		$updates = simplexml_load_file($url);  //Load feed with simplexml
-		$dos = new DataObjectSet();  //Initialize empty array to store statuses
 		foreach ( $updates->channel->item as $fbUpdate ) {
 			if ($maxnumber == 0) {
 				break;
 			}
 			else {
-				$desc = $fbUpdate->description;
-				//Add www.facebook.com to hyperlinks
-				$desc = str_replace('href="', 'href="http://www.facebook.com', $desc);
-				//Converts UTF-8 into ISO-8859-1 to solve special symbols issues
-				$desc = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $desc);
-				//Get status update time
-				$pubdate = strtotime($fbUpdate->pubDate);
-				$propertime = gmdate($timeFormat, $pubdate);  //Customize this to your liking
-				//Get link to update
-				$linkback = $fbUpdate->link;
-				//Store values in array
-				$fbItem = array(
-					'Description' => $desc,
-					'Date' => $propertime,
-					'Link' => $linkback
-				);
-				$dos->push(new ArrayData($fbItem));
-				$maxnumber--;
+				$guid = $fbUpdate->guid;
+				$uid = substr($guid, -32);
+				if(DB::query("SELECT COUNT(\"ID\") FROM \"FacebookFeed_Item\" WHERE \"UID\" = '$uid';")->value() == 0) {
+					$desc = $fbUpdate->description;
+					//Add www.facebook.com to hyperlinks
+					//$desc = urldecode(urldecode(str_replace('href="http://www.facebook.com/l.php?u=', 'href="', $desc)));
+					//Converts UTF-8 into ISO-8859-1 to solve special symbols issues
+					$desc = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $desc);
+					$desc = $this->stripUnsafe($desc);
+					//Get status update time
+					$pubDate = strtotime($fbUpdate->pubDate);
+					$convertedDate = gmdate($timeFormat, $pubDate);  //Customize this to your liking
+					//Get link to update
+					//Store values in array
+					$FacebookFeed_Item = new FacebookFeed_Item();
+					$FacebookFeed_Item->UID = (string) $uid;
+					$FacebookFeed_Item->Title = (string) $fbUpdate->title;
+					$FacebookFeed_Item->Date = $convertedDate;
+					$FacebookFeed_Item->Author = (string) $fbUpdate->author;
+					$FacebookFeed_Item->Link = (string) $fbUpdate->link;
+					$FacebookFeed_Item->Description = $this->stripUnsafe((string) $desc);
+					$FacebookFeed_Item->PageID = $pageID;
+					$FacebookFeed_Item->write();
+					$maxnumber--;
+				}
 			}
 		}
-		return $dos;
-	}
-}
-
-
-class TheFaceBook_IFrame extends ViewableData {
-	/**
-	 *@link  http://developers.facebook.com/docs/reference/plugins/activity/
-	 *@see: http://developers.facebook.com/docs/reference/plugins/activity/
-	 *
-	 **/
-
-	protected static $get_variables = array(
-		"site" => "www.mysite.com",
-		"width" => "300",
-		"height" => "300",
-		"header" => "true",
-		"colorscheme" => "light",
-		"font" => "arial",
-		"border_color" => "red",
-		"recommendations" => "true"
-	);
-		static function set_get_variables($a) {self::$get_variables = $a;}
-		static function get_get_variables() {return self::$get_variables;}
-		static function add_get_variable($key, $value) {self::$get_variables[$key] = $value;}
-		static function replace_get_variable($key, $value) {self::$get_variables[$key] = $value;}
-		static function remove_get_variable($key) {unset(self::$get_variables[$key]);}
-
-	protected $facebook_url = 'http://www.facebook.com/plugins/activity.php';
-		static function set_facebook_url($s) {self::$facebook_url = $s;}
-
-	protected $iframe_settings = array(
-		 "scrolling" => "no",
-		 "frameborder" => "0",
-		 "style" => "border:none; overflow:hidden; width:300px; height:300px;",
-		 "allowTransparency" => "true"
-	);
-		static function set_iframe_settings($a) {self::$iframe_settings = $a;
-
-	function TheFaceBookFrame() {
-		$url = self::$facebook_url.'?'.implode("&amp;",self::get_get_variables());
-		self::$iframe_settings["src"] = $url;
-		$str = '';
-		foreach(self::$iframe_settings as $key => $value) {
-			$str .= "$key=\"$value\" ";
-		}
-		return '<iframe '.$str.'></iframe>';
 	}
 
+	function stripUnsafe($string) {
+    // Unsafe HTML tags that members may abuse
+		$unsafe=array(
+			'/onmouseover="(.*?)"/is',
+			'/onclick="(.*?)"/is',
+			'/style="(.*?)"/is',
+			'/target="(.*?)"/is',
+			'/onunload="(.*?)"/is',
+			'/rel="(.*?)"/is',
+			'/<a(.*?)>/is',
+			'/<\/a>/is'
+		);
+		$string= preg_replace($unsafe, " ", $string);
+		return $string;
+	}
+
+
 }
+

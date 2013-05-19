@@ -15,8 +15,15 @@ http://sunny.svnrepository.com/svn/sunny-side-up-general/dataobjectsorter
 
 Documentation
 -----------------------------------------------
-
-
+The facebook RSS link format is like this https://www.facebook.com/feeds/page.php?format=rss20&id=
+To find the id value, you can follow those steps :
+1. Go to facebook
+2. Find your page (e.g. https://www.facebook.com/EOSAsia)
+3. Note the name (e.g. EOSAsia)
+4. Go to http://findmyfacebookid.com
+5. Enter http://www.facebook.com/EOSAsia
+6. You'll get the answer (e.g. 357864420974239)
+7. The result link is https://www.facebook.com/feeds/page.php?format=rss20&id=357864420974239
 
 Installation Instructions
 -----------------------------------------------
