@@ -25,6 +25,34 @@ To find the id value, you can follow those steps :
 6. You'll get the answer (e.g. 357864420974239)
 7. The result link is https://www.facebook.com/feeds/page.php?format=rss20&id=357864420974239
 
+
+EXAMPLE OF HOW TO ADD FB FEED TO Page_Controller
+
+	public function FacebookNews() {
+		return FacebookFeed_Page::all_for_one_page($this->ID, 5);
+	}
+
+	protected function downloadFaceBookNews() {
+		$facebookPages = DataObject::get("FacebookFeed_Page");
+		if($facebookPages && $facebookPages->count()) {
+			foreach($facebookPages as $facebookPage) {
+				$facebookPage->Fetch();
+			}
+		}
+	}
+
+	function updatefb() {
+		if(Permission::check('ADMIN')) {
+			$this->downloadFaceBookNews();
+			Director::redirect($this->Link());
+			return array();
+		}
+		else {
+			return Security::permissionFailure($this, _t('Security.PERMFAILURE',' This page is secured and you need administrator rights to access it. Enter your credentials below and we will send you right along.'));
+		}
+	}
+
+
 Installation Instructions
 -----------------------------------------------
 1. Find out how to add modules to SS and add module as per usual.
