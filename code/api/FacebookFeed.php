@@ -184,7 +184,7 @@ class FacebookFeed_Item extends DataObject {
 }
 
 
-class FacebookFeed_Item_Communicator extends RestfulServer {
+class FacebookFeed_Item_Communicator extends Object {
 
 	/**
 	 * cd
