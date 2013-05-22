@@ -38,7 +38,7 @@ class ShareThisOptions extends Object {
 				 "title" => "Share on Ask"),
 			"bebo" => array(
 				 "url" => "http://www.bebo.com/c/share?".htmlentities("Url=".self::$encoded_page_url."&Title=".self::$encoded_page_title),
-				 "title" => "Stumble It"),
+				 "title" => "Bebo It"),
 			"blinklist" => array(
 				 "url" => "http://blinklist.com/blink?".htmlentities("u=".self::$encoded_page_url."&t=".self::$encoded_page_title."&d=".self::$encoded_description),
 				 "title" => "Share on BlinkList"),
@@ -46,7 +46,7 @@ class ShareThisOptions extends Object {
 				 "url" => "http://blogmarks.net/my/new.php?".htmlentities("mini=1&simple=1&url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 				 "title" => "BlogMark It"),
 			"delicious" => array(
-				 "url" => "http://delicious.com/save?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+				 "url" => "http://del.icio.us/post?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 				 "title" => "Add to Delicious"),
 			"digg" => array(
 				 "url" => "http://digg.com/submit?".htmlentities("url=".self::$non_encoded_page_url."&title=".self::$encoded_page_title),
@@ -54,9 +54,15 @@ class ShareThisOptions extends Object {
 			"dzone" => array(
 				 "url" => "http://www.dzone.com/links/add.html?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 				 "title" => "Add to DZone"),
+			"evernote" => array(
+				 "url" => "http://www.evernote.com/clip.action?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+				 "title" => "Evernote"),
 			"facebook" => array(
-				 "url" => "http://www.facebook.com/sharer.php?".htmlentities("u=".self::$encoded_page_url."&t=".self::$encoded_page_title),
+				 "url" => "http://www.friendfeed.com/share?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 				 "title" => "Share on Facebook"),
+			"friendfeed" => array(
+				 "url" => "http://www.facebook.com/share.php?".htmlentities("u=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+				 "title" => "Feed to Friends"),
 			"fark" => array(
 				 "url" => "http://cgi.fark.com/cgi/fark/submit.pl?".htmlentities("new_url=".self::$encoded_page_url),
 				 "title" => "Fark It"),
@@ -67,8 +73,11 @@ class ShareThisOptions extends Object {
 				 "url" => "http://www.furl.net/storeIt.jsp?".htmlentities("u=".self::$encoded_page_url."&t=".self::$encoded_page_title),
 				 "title" => "Furl this"),
 			"google" => array(
-				 "url" =>  "http://www.google.com/bookmarks/mark?".htmlentities("op=edit&output=popup&bkmk=".self::$encoded_page_url."&title=".self::$encoded_page_title."&annotation=".self::$encoded_description),
-				 "title" => "Googlize this post"),
+				 "url" =>  "http://www.google.com/bookmarks/mark?".htmlentities("op=edit&bkmk=".self::$encoded_page_url."&title=".self::$encoded_page_title."&annotation=".self::$encoded_description),
+				 "title" => "Google Bookmark this post"),				 
+			"googleplus" => array(
+				 "url" =>  "https://plus.google.com/share?url=".self::$encoded_page_url,
+				 "title" => "Google Plus One"),
 			"kaboodle" => array(
 				 "url" =>  "http://www.kaboodle.com/za/additem?".htmlentities("get=1&url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 				 "title" => "Share on Kadooble"),
@@ -93,6 +102,15 @@ class ShareThisOptions extends Object {
 			"newsvine" => array(
 				 "url" => "http://www.newsvine.com/_tools/seed".htmlentities("&save?u=".self::$encoded_page_url."&h=".self::$encoded_page_title),
 				 "title" => "Seed Newsvine"),
+			"pingfm" => array(
+				 "url" => "http://ping.fm/ref/?".htmlentities("link=".self::$encoded_page_url."&title=".self::$encoded_page_title."&body=".self::$encoded_page_title),
+				 "title" => "Ping FM"),
+			"pinterest" => array(
+				 "url" => "http://pinterest.com/pin/create/bookmarklet/?".htmlentities("media=html&url=".self::$encoded_page_url."&is_video=false&description=".self::$encoded_page_title),
+				 "title" => "Pinterest it"),
+			"posterous" => array(
+				 "url" => "http://pinterest.com/pin/create/bookmarklet/?".htmlentities("linkto=".self::$encoded_page_url),
+				 "title" => "Posterous it"),
 			"reddit" => array(
 				 "url" => "http://reddit.com/submit?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 				 "title" => "Reddit"),
@@ -115,11 +133,17 @@ class ShareThisOptions extends Object {
 				 "url" => "http://www.stylehive.com/savebookmark/index.htm?".htmlentities("url=".self::$encoded_page_url),
 				 "title" => "Add to Stylehive"),
 			"technorati" => array(
-				 "url" => "http://technorati.com/faves?".htmlentities("add=".self::$encoded_page_url),
+				 "url" => "http://technorati.com/faves?".htmlentities("add=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 				 "title" => "Add to Technorati"),
 			"twitter" => array(
 					"url" => "http://twitter.com/home?status=".htmlentities(urlencode("currently reading: ").self::$encoded_page_url),
 					"title" => "Tweet It"),
+			//tapiture" => array(
+					//"url" => "http://tapiture.com/bookmarklet/image?img_src=[IMAGE]&page_url=[URL]&page_title=[TITLE]&img_title=[TITLE]&img_width=[IMG WIDTH]img_height=[IMG HEIGHT]";
+					//"title" => "Thumblr"),
+			"thumbler" => array(
+					"url" => "http://www.tumblr.com/share/link?url=".htmlentities(self::$encoded_page_url."&name=".self::$encoded_page_title);
+					"title" => "Thumblr"),
 			"yahoo" => array(
 				 "url" =>  "http://bookmarks.yahoo.com/toolbar/savebm?u=".htmlentities("u=".self::$encoded_page_url."&t=".self::$encoded_page_title),
 				 "title" => "Bookmark it on Yahoo"),
