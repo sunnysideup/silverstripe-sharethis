@@ -19,13 +19,17 @@ class ShareThisDataObject extends DataObject {
 	);
 
 	static $casting = array(
-		'Icon' => 'HTMLText'
+		'Icon' => 'HTMLText',
+		'IncludeThisIconNice' => 'IncludeThisIcon',
+		'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList'
 	);
 
 	static $field_labels = array(
 		'Title' => 'Name',
 		'IncludeThisIcon' => 'Include in main list',
+		'IncludeThisIconNice' => 'Include in primary list',
 		'IncludeThisIconInExtendedList' => 'Include in secondary list',
+		'IncludeThisIconInExtendedListNice' => 'Include in secondary list',
 		'Sort' => 'Sort Index (lower numbers shown first)',
 		'AlternativeIcon' => 'Optional Alternative Icon (16 x 16 px)'
 	);
@@ -33,8 +37,8 @@ class ShareThisDataObject extends DataObject {
 	static $summary_fields = array(
 		'Icon' => 'Icon',
 		'Title' => 'Name',
-		'IncludeThisIcon' => 'IncludeThisIcon',
-		'IncludeThisIconInExtendedList' => 'IncludeThisIconInExtendedList'
+		'IncludeThisIconNice' => 'IncludeThisIcon'
+		//'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList'
 	);
 
 	static $singular_name = 'Icon to share this page';
@@ -55,6 +59,17 @@ class ShareThisDataObject extends DataObject {
 		return $this->canView($member);
 	}
 
+	function IncludeThisIconNice() { return $this->getIncludeThisIconNice();}
+	function getIncludeThisIconNice() {
+		return $this->IncludeThisIcon ? "YES" : "NO" ;
+	}
+
+	function IncludeThisIconInExtendedListNice() { return $this->getIncludeThisIconInExtendedListNice();}
+	function getIncludeThisIconInExtendedListNice() {
+		return $this->IncludeThisIconInExtendedList ? "YES" : "NO" ;
+	}
+
+	function Icon() { return $this->getIcon();}
 	function getIcon() {
 		$icon = $this->AlternativeIcon();
 		if($icon->exists())  {

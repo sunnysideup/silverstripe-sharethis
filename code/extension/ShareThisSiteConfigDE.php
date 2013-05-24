@@ -24,13 +24,14 @@ class ShareThisSiteConfigDE extends DataExtension {
 			$addedLinksShort['sort'] = $obj->dataObjectSorterPopupLink('IncludeThisIcon', 1);
 			$addedLinksLong['sort'] = $obj->dataObjectSorterPopupLink('IncludeThisIconInExtendedList', 1);
 			if(count($addedLinksShort)) {
-				$shareThisExtra .= '<p>short list: ' . implode(', ', $addedLinksShort) . '.</p>';
+				$shareThisExtra .= '<p>main list: ' . implode(', ', $addedLinksShort) . '.</p>';
 			}
 			if(count($addedLinksLong)) {
 				$shareThisExtra .= '<p>long list: ' . implode(', ', $addedLinksLong) . '.</p>';
 			}
 		}
-*/		$shareThisTableField = new GridField('ShareThisDataObject', null, ShareThisDataObject::get(), GridFieldConfig_RecordEditor::create());
+*/
+		$shareThisTableField = new GridField('Share this options', null, ShareThisDataObject::get(), GridFieldConfig_RecordEditor::create());
 		//$shareThisTableField->setPermissions(array("edit", "add"));
 		$socialNetworkExtra = '<h3 style="margin-top: 50px">Add / Edit / Delete Your Social Networking Home Pages (e.g. www.facebook.com/our-company-page)</h3>';
 		$socialNetworkTableField = new GridField('SocialNetworkingLinksDataObject', null, SocialNetworkingLinksDataObject::get(), GridFieldConfig_RecordEditor::create());
