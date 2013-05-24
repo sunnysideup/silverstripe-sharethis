@@ -15,6 +15,8 @@ class ShareThisSiteConfigDE extends DataExtension {
 	);
 
 	function updateCMSFields(FieldList $fields) {
+		$individualPageNoteWith = _t("ShareThis.INDIVIDUAL_PAGE_NOTE_WITH", " (with the ability to turn them off/on on individual pages) ");
+		$individualPageNoteWithout  = _t("ShareThis.INDIVIDUAL_PAGE_NOTE_WITHOUT", " (without the ability to turn them off/on on individual pages) ");
 		$shareThisExtra = '<h3 style="margin-top: 50px">Select Icons</h3>';
 /*		if($this->CanEditShareIcons()) {
 			$addedLinks = array();
@@ -34,33 +36,33 @@ class ShareThisSiteConfigDE extends DataExtension {
 		$shareThisTableField = new GridField('Share this options', null, ShareThisDataObject::get(), GridFieldConfig_RecordEditor::create());
 		//$shareThisTableField->setPermissions(array("edit", "add"));
 		$socialNetworkExtra = '<h3 style="margin-top: 50px">Add / Edit / Delete Your Social Networking Home Pages (e.g. www.facebook.com/our-company-page)</h3>';
-		$socialNetworkTableField = new GridField('SocialNetworkingLinksDataObject', null, SocialNetworkingLinksDataObject::get(), GridFieldConfig_RecordEditor::create());
+		$socialNetworkTableField = new GridField('Join Us', null, SocialNetworkingLinksDataObject::get(), GridFieldConfig_RecordEditor::create());
 		//$socialNetworkTableField->setPermissions(array("edit", "add", "delete", "view"));
 		if($this->owner->AlwaysIncludeShareThisLinks) {
 			$defaultShareThisCheckbox = new HiddenField('IncludeByDefaultShareThisLinks', true);
 		}
 		else {
-			$defaultShareThisCheckbox = new CheckboxField('IncludeByDefaultShareThisLinks', 'Show links on every page by default (with the ability to turn them off on invididual pages)');
+			$defaultShareThisCheckbox = new CheckboxField('IncludeByDefaultShareThisLinks', 'Show links on every page by default '.$individualPageNoteWith);
 		}
 		if($this->owner->AlwaysIncludeSocialNetworkingLinks) {
 			$defaultSocialNetworkingCheckbox = new HiddenField('IncludeByDefaultSocialNetworkingLinks', true);
 		}
 		else {
-			$defaultSocialNetworkingCheckbox = new CheckboxField('IncludeByDefaultSocialNetworkingLinks', 'Include on every page by default (with the ability to turn them off on individual pages)');
+			$defaultSocialNetworkingCheckbox = new CheckboxField('IncludeByDefaultSocialNetworkingLinks', 'Include on every page by default '.$individualPageNoteWith);
 		}
 		$fields->addFieldToTab('Root.SocialMedia',
 			new TabSet('SocialNetworkingOptions',
 				new Tab(
 					'ShareThis',
-					new CheckboxField('AlwaysIncludeShareThisLinks', 'Show links on every page (without the ability to turn them off on individual pages)'),
+					new CheckboxField('AlwaysIncludeShareThisLinks', 'Show links on every page '.$individualPageNoteWithout),
 					$defaultShareThisCheckbox,
 					new CheckboxField('ShareThisAllInOne', 'Add a \'share\' all-in-one button'),
 					new LiteralField('shareThisExtra', $shareThisExtra),
 					$shareThisTableField
 				),
 				new Tab(
-					'SocialNetworkingLink',
-					new CheckboxField('AlwaysIncludeSocialNetworkingLinks', 'Show links on every page (without the ability to turn them off on individual pages)'),
+					'JoinUs',
+					new CheckboxField('AlwaysIncludeSocialNetworkingLinks', 'Show links on every page '.$individualPageNoteWithout),
 					$defaultSocialNetworkingCheckbox,
 					new LiteralField('socialNetworkExtra', $socialNetworkExtra),
 					$socialNetworkTableField

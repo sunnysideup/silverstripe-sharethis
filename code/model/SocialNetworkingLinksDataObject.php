@@ -44,9 +44,9 @@ class SocialNetworkingLinksDataObject extends DataObject {
 
 	static $default_sort = 'Sort ASC, Title ASC';
 
-	static $singular_name = 'Social networking link';
+	static $singular_name = 'Join Us link';
 
-	static $plural_name = 'Social networking links';
+	static $plural_name = 'Join Us links';
 
 	/**
 	 * @return String - returns the title with all non-alphanumeric + spaces removed.
