@@ -24,8 +24,8 @@ class ShareThisDataObject extends DataObject {
 
 	static $field_labels = array(
 		'Title' => 'Name',
-		'IncludeThisIcon' => 'Include in short list',
-		'IncludeThisIconInExtendedList' => 'Include in long list',
+		'IncludeThisIcon' => 'Include in main list',
+		'IncludeThisIconInExtendedList' => 'Include in secondary list',
 		'Sort' => 'Sort Index (lower numbers shown first)',
 		'AlternativeIcon' => 'Optional Alternative Icon (16 x 16 px)'
 	);
