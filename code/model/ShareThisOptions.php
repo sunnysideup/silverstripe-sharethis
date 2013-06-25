@@ -57,10 +57,10 @@ class ShareThisOptions extends Object {
 "evernote" => array(
 	"url" => "http://www.evernote.com/clip.action?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 	"title" => "Evernote"),
-"facebook" => array(
+"friendfeed" => array(
 	"url" => "http://www.friendfeed.com/share?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 	"title" => "Share on Facebook"),
-"friendfeed" => array(
+"facebook" => array(
 	"url" => "http://www.facebook.com/share.php?".htmlentities("u=".self::$encoded_page_url."&title=".self::$encoded_page_title),
 	"title" => "Feed to Friends"),
 "fark" => array(
