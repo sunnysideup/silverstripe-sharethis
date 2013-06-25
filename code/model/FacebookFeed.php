@@ -32,7 +32,7 @@ class TheFaceBook_communicator extends RestfulServer {
 	/* The following line is absolutely necessary to read Facebook feeds. Facebook will not recognize PHP as a browser and therefore won't fetch anything. So we define a browser here */
 		ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3');
 		$updates = simplexml_load_file($url);  //Load feed with simplexml
-		$dos = new DataObjectSet();  //Initialize empty array to store statuses
+		$arrayList = new ArrayList();  //Initialize empty array to store statuses
 		foreach ( $updates->channel->item as $fbUpdate ) {
 			if ($maxnumber == 0) {
 				break;
@@ -54,11 +54,11 @@ class TheFaceBook_communicator extends RestfulServer {
 					'Date' => $propertime,
 					'Link' => $linkback
 				);
-				$dos->push(new ArrayData($fbItem));
+				$arrayList->push(new ArrayData($fbItem));
 				$maxnumber--;
 			}
 		}
-		return $dos;
+		return $arrayList;
 	}
 }
 
