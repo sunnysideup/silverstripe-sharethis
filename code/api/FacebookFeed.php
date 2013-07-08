@@ -105,13 +105,10 @@ class FacebookFeed_Page extends DataObject {
 			}
 		}
 		if(count($feedIDs)) {
-			return DataObject::get(
-				"FacebookFeed_Item",
-				"\"FacebookFeed_PageID\" IN (".implode(",", $feedIDs).") AND \"Hide\" = 0",
-				null,
-				"",
-				$limit
-			);
+			return FacebookFeed_Item::get()->filter(array(
+				"FacebookFeed_PageID" => $feedIDs,
+				"Hide" => 0
+			))->limit($limit);
 		}
 	}
 
