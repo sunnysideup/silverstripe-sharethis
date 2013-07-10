@@ -20,7 +20,7 @@ class ShareThisDataObject extends DataObject {
 
 	static $casting = array(
 		'Icon' => 'HTMLText',
-		'IncludeThisIconNice' => 'IncludeThisIcon',
+		'IncludeThisIconNice' => 'Varchar',
 		'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList'
 	);
 
