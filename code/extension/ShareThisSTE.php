@@ -20,7 +20,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	* @var array
 	*/
 
-	protected static $included_icons = array();
+	private static $included_icons = array();
 		static function set_included_icons(array $array) {self::$included_icons = $array;}
 		static function get_included_icons() {return self::$included_icons;}
 
@@ -30,7 +30,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	* @var array
 	*/
 
-	protected static $excluded_icons = array();
+	private static $excluded_icons = array();
 		static function set_excluded_icons(array $array) {self::$excluded_icons = $array;}
 		static function get_excluded_icons() {return self::$excluded_icons;}
 

@@ -1719,4 +1719,4 @@ class simple_html_dom
 	function loadFile() {$args = func_get_args();$this->load_file($args);}
 }
 
-?>
+

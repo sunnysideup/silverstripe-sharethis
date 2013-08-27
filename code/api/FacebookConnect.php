@@ -26,15 +26,15 @@
 
 class FacebookConnect extends Object {
 
-	protected static $application_id = "";
+	private static $application_id = "";
 		public static function set_application_id($s) {self::$application_id = $s;}
 		public static function get_application_id() {return self::$application_id;}
 
-	protected static $application_secret = "";
+	private static $application_secret = "";
 		public static function set_application_secret($s) {self::$application_secret = $s;}
 		public static function get_application_secret() {return self::$application_secret;}
 
-	protected static $my_facebook_api = null;
+	private static $my_facebook_api = null;
 
 	protected $facebook_connect_singleton = null;
 

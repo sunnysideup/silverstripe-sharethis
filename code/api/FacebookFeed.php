@@ -105,10 +105,13 @@ class FacebookFeed_Page extends DataObject {
 			}
 		}
 		if(count($feedIDs)) {
-			return FacebookFeed_Item::get()->filter(array(
-				"FacebookFeed_PageID" => $feedIDs,
-				"Hide" => 0
-			))->limit($limit);
+			return FacebookFeed_Item::get()->filter(
+				array(
+					"FacebookFeed_PageID" => $feedIDs,
+					"Hide" => 0
+				)
+			)
+			->limit($limit);
 		}
 	}
 

@@ -70,7 +70,7 @@ class TheFaceBook_IFrame extends ViewableData {
 	 *
 	 **/
 
-	protected static $get_variables = array(
+	private static $get_variables = array(
 		"site" => "www.mysite.com",
 		"width" => "300",
 		"height" => "300",

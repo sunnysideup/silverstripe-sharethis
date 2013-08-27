@@ -6,18 +6,18 @@
  */
 class ShareThisOptions extends Object {
 
-	protected static $page_specific_data;
+	private static $page_specific_data;
 
 	static $general_data;
 
-	protected static $share_all_data;
+	private static $share_all_data;
 
-	protected static $non_encoded_page_url;
-	protected static $encoded_page_url;
-	protected static $encoded_page_title;
-	protected static $encoded_page_title_space_encoded;
-	protected static $encoded_description;
-	protected static $icon;
+	private static $non_encoded_page_url;
+	private static $encoded_page_url;
+	private static $encoded_page_title;
+	private static $encoded_page_title_space_encoded;
+	private static $encoded_description;
+	private static $icon;
 
 	static function get_all_options($title, $link, $description) {
 		self::set_variables($title, $link, $description);
