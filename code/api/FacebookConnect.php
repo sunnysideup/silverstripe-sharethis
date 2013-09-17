@@ -27,12 +27,8 @@
 class FacebookConnect extends Object {
 
 	private static $application_id = "";
-		public static function set_application_id($s) {self::$application_id = $s;}
-		public static function get_application_id() {return self::$application_id;}
 
 	private static $application_secret = "";
-		public static function set_application_secret($s) {self::$application_secret = $s;}
-		public static function get_application_secret() {return self::$application_secret;}
 
 	private static $my_facebook_api = null;
 
@@ -42,7 +38,10 @@ class FacebookConnect extends Object {
 		include(SS_SHARETHIS_DIR."/third_party/facebook.php");
 		if(!self::$my_facebook_api) {
 			self::$facebook_connect_singleton = new FacebookConnect();
-			$facebook = self::$facebook_connect_singleton->connectToFacebook(self::get_application_id(), self::get_application_secret());
+			$facebook = self::$facebook_connect_singleton->connectToFacebook(
+				$this->Config()->get("application_id"),
+				$this->Config()->get("application_secret")
+			);
 			$facebook_session = self::$facebook_connect_singleton->getSession($facebook);
 			$self::my_facebook_api = null;
 			if ($facebook_session) {

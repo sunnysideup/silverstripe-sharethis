@@ -80,25 +80,18 @@ class TheFaceBook_IFrame extends ViewableData {
 		"border_color" => "red",
 		"recommendations" => "true"
 	);
-		static function set_get_variables($a) {self::$get_variables = $a;}
-		static function get_get_variables() {return self::$get_variables;}
-		static function add_get_variable($key, $value) {self::$get_variables[$key] = $value;}
-		static function replace_get_variable($key, $value) {self::$get_variables[$key] = $value;}
-		static function remove_get_variable($key) {unset(self::$get_variables[$key]);}
 
-	protected $facebook_url = 'http://www.facebook.com/plugins/activity.php';
-		static function set_facebook_url($s) {self::$facebook_url = $s;}
+	private static $facebook_url = 'http://www.facebook.com/plugins/activity.php';
 
-	protected $iframe_settings = array(
+	private static $iframe_settings = array(
 		 "scrolling" => "no",
 		 "frameborder" => "0",
 		 "style" => "border:none; overflow:hidden; width:300px; height:300px;",
 		 "allowTransparency" => "true"
 	);
-		static function set_iframe_settings($a) {self::$iframe_settings = $a;
 
 	function TheFaceBookFrame() {
-		$url = self::$facebook_url.'?'.implode("&amp;",self::get_get_variables());
+		$url = self::$facebook_url.'?'.implode("&amp;",self::$variables());
 		self::$iframe_settings["src"] = $url;
 		$str = '';
 		foreach(self::$iframe_settings as $key => $value) {

@@ -157,8 +157,8 @@ class ShareThisOptions extends Object {
 	static function get_page_specific_data($title, $link, $description = '') {
 		$originalArray = self::$page_specific_data ? self::$page_specific_data : self::get_all_options($title, $link, $description);
 		$finalArray = array();
-		$inc = ShareThisSTE::get_included_icons();
-		$exc = ShareThisSTE::get_excluded_icons();
+		$inc = Config::init()->get("ShareThisSTE", "included_icons");
+		$exc = Config::init()->get("ShareThisSTE", "excluded_icons");
 		if(count($inc)) {
 			$new_array_of_icons_to_include = array();
 			foreach($inc as $key => $value) {

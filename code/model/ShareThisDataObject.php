@@ -113,7 +113,7 @@ class ShareThisDataObject extends DataObject {
 				DB::alteration_message("Added Bookmark Icon for $key ($style)", 'created');
 			}
 		}
-		$inc = ShareThisSTE::get_included_icons();
+		$inc = Config::init()->get("ShareThisSTE", "included_icons");
 		foreach($inc as $key) {
 			$object = ShareThisDataObject::get()->filter(array('Title' => $key, 'IncludeThisIcon' => 0));
 			if($object->exists()) {
@@ -123,7 +123,7 @@ class ShareThisDataObject extends DataObject {
 				DB::alteration_message("Updated inclusion for $key", 'created');
 			}
 		}
-		$exc = ShareThisSTE::get_excluded_icons();
+		$exc = Config::init()->get("ShareThisSTE", "excluded_icons");
 		foreach($exc as $key) {
 			$object = ShareThisDataObject::get()->filter(array('Title' => $key, 'IncludeThisIcon' => 1));
 			if($object->exists()) {

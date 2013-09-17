@@ -21,8 +21,6 @@ class ShareThisSTE extends SiteTreeExtension {
 	*/
 
 	private static $included_icons = array();
-		static function set_included_icons(array $array) {self::$included_icons = $array;}
-		static function get_included_icons() {return self::$included_icons;}
 
 	/**
 	* specify icons to be excluded, if left empty, this variable will be ignored
@@ -31,8 +29,6 @@ class ShareThisSTE extends SiteTreeExtension {
 	*/
 
 	private static $excluded_icons = array();
-		static function set_excluded_icons(array $array) {self::$excluded_icons = $array;}
-		static function get_excluded_icons() {return self::$excluded_icons;}
 
 	/**
 	 * standard SS method
