@@ -94,8 +94,8 @@ class ShareThisDataObject extends DataObject {
 	function requireDefaultRecords() {
 		parent::requireDefaultRecords();
 		$actualArray = ShareThisOptions::get_general_data();
-		ShareThisSTE::set_included_icons(array());
-		ShareThisSTE::set_excluded_icons(array());
+		Config::inst()->update("ShareThisSTE", "included_icons", array());
+		Config::inst()->update("ShareThisSTE", "excluded_icons", array());
 		ShareThisOptions::$general_data = null;
 		$fullArray = ShareThisOptions::get_general_data();
 		foreach($fullArray as $key) {
@@ -113,7 +113,7 @@ class ShareThisDataObject extends DataObject {
 				DB::alteration_message("Added Bookmark Icon for $key ($style)", 'created');
 			}
 		}
-		$inc = Config::init()->get("ShareThisSTE", "included_icons");
+		$inc = Config::inst()->get("ShareThisSTE", "included_icons");
 		foreach($inc as $key) {
 			$object = ShareThisDataObject::get()->filter(array('Title' => $key, 'IncludeThisIcon' => 0));
 			if($object->exists()) {
@@ -123,7 +123,7 @@ class ShareThisDataObject extends DataObject {
 				DB::alteration_message("Updated inclusion for $key", 'created');
 			}
 		}
-		$exc = Config::init()->get("ShareThisSTE", "excluded_icons");
+		$exc = Config::inst()->get("ShareThisSTE", "excluded_icons");
 		foreach($exc as $key) {
 			$object = ShareThisDataObject::get()->filter(array('Title' => $key, 'IncludeThisIcon' => 1));
 			if($object->exists()) {
