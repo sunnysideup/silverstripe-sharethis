@@ -8,28 +8,28 @@
  */
 class SocialNetworkingLinksDataObject extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		'URL' => 'Varchar(255)',
 		'Title' => 'Varchar(255)',
 		'Sort' => 'Int'
 	);
 
-	static $casting = array(
+	private static $casting = array(
 		'Code' => 'Varchar(255)',
 		'Link' => 'Varchar(255)',
 		'IconHTML' => 'HTMLText'
 	);
 
-	static $has_one = array(
+	private static $has_one = array(
 		'Icon' => 'Image',
 		'InternalLink' => 'Page'
 	);
 
-	static $searchable_fields = array(
+	private static $searchable_fields = array(
 		'Title' => 'PartialMatchFilter'
 	);
 
-	static $field_labels = array(
+	private static $field_labels = array(
 		'URL' => 'Link (e.g. http://twitter.com/myname/)- will override internal link',
 		'InternalLink' => 'Internal Link',
 		'Title' => 'Title',
@@ -37,16 +37,16 @@ class SocialNetworkingLinksDataObject extends DataObject {
 		'IconID' => 'Icon (preferably something like 32pixels by 32pixels)'
 	);
 
-	static $summary_fields = array(
+	private static $summary_fields = array(
 		'Title' => 'Title',
 		'IconHTML' => 'HTMLText'
 	);
 
-	static $default_sort = 'Sort ASC, Title ASC';
+	private static $default_sort = 'Sort ASC, Title ASC';
 
-	static $singular_name = 'Join Us link';
+	private static $singular_name = 'Join Us link';
 
-	static $plural_name = 'Join Us links';
+	private static $plural_name = 'Join Us links';
 
 	/**
 	 * @return String - returns the title with all non-alphanumeric + spaces removed.

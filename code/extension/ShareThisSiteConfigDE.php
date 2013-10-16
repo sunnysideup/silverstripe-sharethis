@@ -6,7 +6,7 @@
  */
 class ShareThisSiteConfigDE extends DataExtension {
 
-	static $db = array(
+	private static $db = array(
 		'AlwaysIncludeShareThisLinks' => 'Boolean',
 		'AlwaysIncludeSocialNetworkingLinks' => 'Boolean',
 		'IncludeByDefaultShareThisLinks' => 'Boolean',

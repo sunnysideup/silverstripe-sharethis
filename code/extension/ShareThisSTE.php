@@ -12,7 +12,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	* use BW icons
 	* @var boolean
 	*/
-	static $use_bw_effect = false;
+	private static $use_bw_effect = false;
 
 	/**
 	* specify icons to be included, if left empty, this variable will be ignored
@@ -34,7 +34,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	 * standard SS method
 	 * @var Array
 	 **/
-	static $db = array(
+	private static $db = array(
 		'ShareIcons' => 'Boolean'
 	);
 

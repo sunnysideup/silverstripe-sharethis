@@ -7,24 +7,24 @@
  */
 class ShareThisDataObject extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar(20)',
 		'IncludeThisIcon' => 'Boolean',
 		'IncludeThisIconInExtendedList' => 'Boolean',
 		'Sort' => 'Int'
 	);
 
-	static $has_one = array(
+	private static $has_one = array(
 		'AlternativeIcon' => 'Image'
 	);
 
-	static $casting = array(
+	private static $casting = array(
 		'Icon' => 'HTMLText',
 		'IncludeThisIconNice' => 'Varchar',
 		'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList'
 	);
 
-	static $field_labels = array(
+	private static $field_labels = array(
 		'Title' => 'Name',
 		'IncludeThisIcon' => 'Include in main list',
 		'IncludeThisIconNice' => 'Include in primary list',
@@ -34,18 +34,18 @@ class ShareThisDataObject extends DataObject {
 		'AlternativeIcon' => 'Optional Alternative Icon (16 x 16 px)'
 	);
 
-	static $summary_fields = array(
+	private static $summary_fields = array(
 		'Icon' => 'Icon',
 		'Title' => 'Name',
 		'IncludeThisIconNice' => 'IncludeThisIcon'
 		//'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList'
 	);
 
-	static $singular_name = 'Icon to share this page';
+	private static $singular_name = 'Icon to share this page';
 
-	static $plural_name = 'Icons to share this page';
+	private static $plural_name = 'Icons to share this page';
 
-	static $default_sort = 'IncludeThisIcon DESC, IncludeThisIconInExtendedList ASC, Sort ASC, Title ASC';
+	private static $default_sort = 'IncludeThisIcon DESC, IncludeThisIconInExtendedList ASC, Sort ASC, Title ASC';
 
 	function canView($member = null) {
 		return Permission::check('CMS_ACCESS_CMSMain');
@@ -96,7 +96,7 @@ class ShareThisDataObject extends DataObject {
 		$actualArray = ShareThisOptions::get_general_data();
 		Config::inst()->update("ShareThisSTE", "included_icons", array());
 		Config::inst()->update("ShareThisSTE", "excluded_icons", array());
-		ShareThisOptions::$general_data = null;
+		ShareThisOptions::set_general_data(null);
 		$fullArray = ShareThisOptions::get_general_data();
 		foreach($fullArray as $key) {
 			$object = ShareThisDataObject::get()->filter('Title', $key);
@@ -134,4 +134,5 @@ class ShareThisDataObject extends DataObject {
 			}
 		}
 	}
+
 }

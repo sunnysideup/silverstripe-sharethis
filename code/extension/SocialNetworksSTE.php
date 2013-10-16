@@ -8,7 +8,7 @@
  */
 class SocialNetworksSTE extends SiteTreeExtension {
 
-	static $db = array(
+	private static $db = array(
 		'HasSocialNetworkingLinks' => 'Boolean'
 	);
 

@@ -8,7 +8,8 @@
 
 class SocialMediaConnections extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		'Session' => 'Text'
 	);
+
 }

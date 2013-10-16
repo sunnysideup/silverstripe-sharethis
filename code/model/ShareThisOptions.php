@@ -8,7 +8,7 @@ class ShareThisOptions extends Object {
 
 	private static $page_specific_data;
 
-	static $general_data;
+	private static $general_data;
 
 	private static $share_all_data;
 
@@ -19,7 +19,7 @@ class ShareThisOptions extends Object {
 	private static $encoded_description;
 	private static $icon;
 
-	static function get_all_options($title, $link, $description) {
+	public static function get_all_options($title, $link, $description) {
 		self::set_variables($title, $link, $description);
 		self::$page_specific_data = array(
 "email" => array(
@@ -154,7 +154,7 @@ class ShareThisOptions extends Object {
 		return self::$page_specific_data;
 	}
 
-	static function get_page_specific_data($title, $link, $description = '') {
+	public static function get_page_specific_data($title, $link, $description = '') {
 		$originalArray = self::$page_specific_data ? self::$page_specific_data : self::get_all_options($title, $link, $description);
 		$finalArray = array();
 		$inc = Config::inst()->get("ShareThisSTE", "included_icons");
@@ -198,7 +198,7 @@ class ShareThisOptions extends Object {
 		author: currently not implemented
 		category: currently not implemented
 	*/
-	static function get_share_all() {
+	public static function get_share_all() {
 		//self::set_variables($title, $link, $description);
 		self::$share_all_data = '
 <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#&amp;type=website"></script>
@@ -216,7 +216,10 @@ SHARETHIS.addEntry(
 		return self::$share_all_data;
 	}
 
-	static function get_general_data() {
+	public static function set_general_data() {
+		self::$general_data = null;
+	}
+	public static function get_general_data() {
 		if(! self::$general_data) {
 			$array = self::get_page_specific_data('', '', '');
 			$newArray = array();

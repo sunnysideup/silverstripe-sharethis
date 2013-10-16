@@ -25,16 +25,16 @@ require_once('simple_html_dom.php');
 
 class FacebookFeed_Page extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		"Title" => "Varchar(244)",
 		'RSSURL' => 'Varchar(255)'
 	);
 
-	static $has_many = array(
+	private static $has_many = array(
 		'Items' => 'FacebookFeed_Item'
 	);
 
-	static $many_many = array(
+	private static $many_many = array(
 		'Pages' => 'SiteTree'
 	);
 
@@ -130,7 +130,7 @@ class FacebookFeed_Page extends DataObject {
 
 class FacebookFeed_Item extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		"KeepOnTop" => "Boolean",
 		"Hide" => "Boolean",
 		"UID" => "varchar(32)",
@@ -142,22 +142,22 @@ class FacebookFeed_Item extends DataObject {
 	);
 
 
-	static $summary_fields = array(
+	private static $summary_fields = array(
 		"Title" => "Title",
 		"KeepOnTop" => "KeepOnTop",
 		"Hide" => "Hide",
 	);
 
 
-	static $has_one = array(
+	private static $has_one = array(
 		"FacebookFeed_Page" => "FacebookFeed_Page"
 	);
 
-	static $indexes = array(
+	private static $indexes = array(
 		"UID" => true
 	);
 
-	static $casting = array(
+	private static $casting = array(
 		'DescriptionWithShortLinks' => 'HTMLText'
 	);
 
@@ -169,7 +169,7 @@ class FacebookFeed_Item extends DataObject {
 		return false;
 	}
 
-	static $default_sort = "\"Hide\" ASC, \"KeepOnTop\" DESC, \"Date\" DESC";
+	private static $default_sort = "\"Hide\" ASC, \"KeepOnTop\" DESC, \"Date\" DESC";
 
 	function DescriptionWithShortLinks() {
 		$html = str_get_html($this->Description);
