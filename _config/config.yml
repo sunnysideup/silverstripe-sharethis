@@ -1,0 +1,12 @@
+SiteConfig:
+  extensions:
+    - ShareThisSiteConfigDE
+
+SiteTree:
+  extensions:
+    - ShareThisSTE
+    - SocialNetworksSTE
+
+
+
+

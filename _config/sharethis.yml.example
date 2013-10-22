@@ -1,0 +1,26 @@
+---
+Name: sharethis
+Before: 'mysite/*'
+After: 'framework/*','cms/*'
+---
+
+ShareThisSTE:
+  use_bw_effect: 1
+  included_icons:
+    - facebook
+    - google
+    - linkedin
+  excluded_icons:
+    - myspace
+
+---
+Only:
+  classexists: 'DataObjectSorterDOD'
+---
+ShareThisDataObject:
+  extensions:
+    - DataObjectSorterDOD
+
+SocialNetworkingLinksDataObject:
+  extensions:
+    - DataObjectSorterDOD
