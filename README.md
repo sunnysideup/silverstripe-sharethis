@@ -1,7 +1,15 @@
 ###############################################
-ShareThis
-Pre 0.1 proof of concept
+Share This
 ###############################################
+
+Adds a bunch of social media tricks to your
+silverstripe website, such as
+- share this page
+- check us out (the website owner) on FB / TWITTER / etc
+- show my latest tweet on my website
+- share FB update on my website
+etc...
+
 
 Developer
 -----------------------------------------------
@@ -9,12 +17,22 @@ Nicolaas Francken [at] sunnysideup.co.nz
 
 Requirements
 -----------------------------------------------
-SilverStripe 3.0.0 or greater.
-HIGHLY RECOMMENDED:
-http://sunny.svnrepository.com/svn/sunny-side-up-general/dataobjectsorter
+see composer.json
+HIGHLY RECOMMENDED: dataobjectsorter:
+- https://github.com/sunnysideup/silverstripe-dataobjectsorter
+- http://sunny.svnrepository.com/svn/sunny-side-up-general/dataobjectsorter
+
 
 Documentation
 -----------------------------------------------
+Please contact author for more details.
+
+Any bug reports and/or feature requests will be
+looked at in detail
+
+We are also very happy to provide personalised support
+for this module in exchange for a small donation.
+
 The facebook RSS link format is like this https://www.facebook.com/feeds/page.php?format=rss20&id=
 To find the id value, you can follow those steps :
 1. Go to facebook
@@ -56,10 +74,12 @@ EXAMPLE OF HOW TO ADD FB FEED TO Page_Controller
 Installation Instructions
 -----------------------------------------------
 1. Find out how to add modules to SS and add module as per usual.
-2. copy configurations from this module's _config.php file
-into mysite/_config.php file and edit settings as required.
-NB. the idea is not to edit the module at all, but instead customise
-it from your mysite folder, so that you can upgrade the module without redoing the settings.
+
+
+2. Review configs and add entries to mysite/_config/config.yml
+(or similar) as necessary.
+In the _config/ folder of this module
+you should to find some examples of config options (if any).
 
 Add the following to your templates:
 
@@ -71,13 +91,6 @@ Thank you
 -----------------------------------------------
 This module is heavily based on the original
 SS ShareThis module.
-
-TO DO
------------------------------------------------
-* make statics protected
-* deal with legacy issues
-* sharethis "all" adds twice!
-
 
 
 
