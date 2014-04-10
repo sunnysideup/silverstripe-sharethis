@@ -607,7 +607,7 @@ class Facebook
       $ch = curl_init();
     }
 
-    $opts = self::$CURL_OPTS;
+    $opts = $this->config()->get("CURL_OPTS");
     if ($this->useFileUploadSupport()) {
       $opts[CURLOPT_POSTFIELDS] = $params;
     } else {
@@ -881,7 +881,8 @@ class Facebook
    * @return String the URL for the given parameters
    */
   protected function getUrl($name, $path='', $params=array()) {
-    $url = self::$DOMAIN_MAP[$name];
+		$DOMAIN_MAP = $this->config()->get("DOMAIN_MAP");
+		$url = $DOMAIN_MAP[$name];
     if ($path) {
       if ($path[0] === '/') {
         $path = substr($path, 1);
@@ -912,7 +913,7 @@ class Facebook
     if (!empty($parts['query'])) {
       $params = array();
       parse_str($parts['query'], $params);
-      foreach(self::$DROP_QUERY_PARAMS as $key) {
+      foreach($this->config()->get("DROP_QUERY_PARAMS") as $key) {
         unset($params[$key]);
       }
       if (!empty($params)) {
