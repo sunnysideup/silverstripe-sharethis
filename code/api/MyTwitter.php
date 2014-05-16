@@ -105,7 +105,7 @@ class MyTwitter extends Object {
 			foreach($tweets as $tweet){
 				if(Config::inst()->get("MyTwitter", "favourites_only") && $tweet->favorite_count == 0 ) break;
 				if(Config::inst()->get("MyTwitter", "non_replies_only") && $tweet->in_reply_to_status_id) break;
-				if(Config::inst()->get("MyTwitter", "debug"){
+				if(Config::inst()->get("MyTwitter", "debug")){
 					print_r($tweet);
 				}
 				if(++$i > $count) break;
