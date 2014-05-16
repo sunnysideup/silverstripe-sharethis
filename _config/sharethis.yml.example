@@ -9,3 +9,14 @@ ShareThisSTE:
   excluded_icons:
     - myspace
 
+MyTwitter:
+  debug: false
+  favourites_only: false
+  non_replies_only: false
+  twitter_consumer_key: ""
+  twitter_consumer_secret: ""
+  titter_oauth_token: ""
+  titter_oauth_token_secret: ""
+  twitter_config:
+    - include_entities: true
+    - include_rts: true

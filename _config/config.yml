@@ -13,7 +13,6 @@ SiteTree:
     - ShareThisSTE
     - SocialNetworksSTE
 
-
 ---
 Only:
   classexists: 'DataObjectSorterDOD'

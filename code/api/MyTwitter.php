@@ -14,10 +14,21 @@ class MyTwitter extends Object {
 	private static $singletons = array();
 
 	private static $favourites_only = false;
-		public static function set_favourites_only($b){self::$favourites_only = $b;}
 
 	private static $non_replies_only = false;
-		public static function set_non_replies_only($b){self::$non_replies_only = $b;}
+
+	private static $twitter_consumer_key = "";
+
+	private static $twitter_consumer_secret = "";
+
+	private static $titter_oauth_token = "";
+
+	private static $titter_oauth_token_secret = "";
+
+	private static $twitter_config = array(
+		'include_entities' => 'true',
+		'include_rts' => 'true'
+	);
 
 	/**
 	 * returns a DataObjetSet of the last $count tweets.
@@ -32,7 +43,7 @@ class MyTwitter extends Object {
 			user_error("No username provided");
 		}
 		$sessionName = "MyTwitterFeeds$username".date("Ymdh");
-		if(Session::get($sessionName) && $useHourlyCache && !self::$debug){
+		if(Session::get($sessionName) && $useHourlyCache && !Config::inst()->get("MyTwitter", "debug"){
 			//do nothing
 		}
 		else {
@@ -57,18 +68,6 @@ class MyTwitter extends Object {
 		return MyTwitterData::get()->filter(array("Hide" => 0))->limit($count);
 	}
 
-	private static $twitter_consumer_key = "";
-
-	private static $twitter_consumer_secret = "";
-
-	private static $titter_oauth_token = "";
-
-	private static $titter_oauth_token_secret = "";
-
-	private static $twitter_config = array(
-		'include_entities' => 'true',
-		'include_rts' => 'true'
-	);
 
 	/**
 	 * retries latest tweets from Twitter
@@ -85,28 +84,28 @@ class MyTwitter extends Object {
 		//check settings are available
 		$requiredSettings = array("twitter_consumer_key", "twitter_consumer_secret", "titter_oauth_token", "titter_oauth_token");
 		foreach($requiredSettings as $setting) {
-			if(empty(self::$$setting)) {
+			if(empty(Config::inst()->get("MyTwitter", "setting")) {
 				user_error(" you must set MyTwitter::$setting", E_USER_NOTICE);
 				return null;
 			}
 		}
 		require_once(Director::baseFolder().'/'.SS_SHARETHIS_DIR.'/third_party/twitter_oauth/TwitterOAuthConsumer.php');
 		$connection = new TwitterOAuth(
-			self::$twitter_consumer_key,
-			self::$twitter_consumer_secret,
-			self::$titter_oauth_token,
-			self::$titter_oauth_token_secret
+			Config::inst()->get("MyTwitter", "twitter_consumer_key"),
+			Config::inst()->get("MyTwitter", "twitter_consumer_secret"),
+			Config::inst()->get("MyTwitter", "titter_oauth_token"),
+			Config::inst()->get("MyTwitter", "titter_oauth_token_secret")
 		);
-		$config = self::$twitter_config;
+		$config = Config::inst()->get("MyTwitter", "twitter_config");
 		$config['screen_name'] = $username;
 		$tweets = $connection->get('statuses/user_timeline', $config);
 		$tweetList = new ArrayList();
 		if(count($tweets) > 0 && !isset($tweets->error)){
 			$i = 0;
 			foreach($tweets as $tweet){
-				if(self::$favourites_only && $tweet->favorite_count == 0 ) break;
-				if(self::$non_replies_only && $tweet->in_reply_to_status_id) break;
-				if(self::$debug){
+				if(Config::inst()->get("MyTwitter", "favourites_only") && $tweet->favorite_count == 0 ) break;
+				if(Config::inst()->get("MyTwitter", "non_replies_only") && $tweet->in_reply_to_status_id) break;
+				if(Config::inst()->get("MyTwitter", "debug"){
 					print_r($tweet);
 				}
 				if(++$i > $count) break;
@@ -160,7 +159,7 @@ class MyTwitterData extends DataObject {
 	}
 
 	function Link(){
-		return "https://twitter.com/".self::$username."/status/".$this->TwitterID;
+		return "https://twitter.com/".Config::inst()->get("MyTwitterData", "username")."/status/".$this->TwitterID;
 	}
 
 }
