@@ -43,7 +43,7 @@ class MyTwitter extends Object {
 			user_error("No username provided");
 		}
 		$sessionName = "MyTwitterFeeds$username".date("Ymdh");
-		if(Session::get($sessionName) && $useHourlyCache && !Config::inst()->get("MyTwitter", "debug"){
+		if(Session::get($sessionName) && $useHourlyCache && !Config::inst()->get("MyTwitter", "debug")){
 			//do nothing
 		}
 		else {
