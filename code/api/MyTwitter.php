@@ -84,7 +84,7 @@ class MyTwitter extends Object {
 		//check settings are available
 		$requiredSettings = array("twitter_consumer_key", "twitter_consumer_secret", "titter_oauth_token", "titter_oauth_token");
 		foreach($requiredSettings as $setting) {
-			if(empty(Config::inst()->get("MyTwitter", "setting")) {
+			if(!Config::inst()->get("MyTwitter", $setting)) {
 				user_error(" you must set MyTwitter::$setting", E_USER_NOTICE);
 				return null;
 			}
