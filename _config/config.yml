@@ -1,3 +1,9 @@
+---
+Name: sharethis
+Before: 'mysite/*'
+After: 'framework/*','cms/*'
+---
+
 SiteConfig:
   extensions:
     - ShareThisSiteConfigDE
@@ -8,5 +14,16 @@ SiteTree:
     - SocialNetworksSTE
 
 
+---
+Only:
+  classexists: 'DataObjectSorterDOD'
+---
+ShareThisDataObject:
+  extensions:
+    - DataObjectSorterDOD
+
+SocialNetworkingLinksDataObject:
+  extensions:
+    - DataObjectSorterDOD
 
 

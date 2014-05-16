@@ -5,7 +5,12 @@
  *@see: http://blog.theunical.com/facebook-integration/5-steps-to-publish-on-a-facebook-wall-using-php/
  * example usage:
  <code>
- 	$myFacebookAPI = FacebookConnect::get_my_facebook_api();
+ 	$myFacebookAPI = FacebookConnect/*
+### @@@@ UPGRADE REQUIRED @@@@ ###
+FIND: ::get_
+NOTE: consider getting statics using Config system... e.g. Config::inst()->get("MyClass", "MyVar"); - see http://doc.silverstripe.com/framework/en/topics/configuration 
+### @@@@ ########### @@@@ ###
+*/::get_my_facebook_api();
 	$attachment = array('message' => 'this is my message',
 		'name' => 'This is my demo Facebook application!',
 		'caption' => "Caption of the Post",

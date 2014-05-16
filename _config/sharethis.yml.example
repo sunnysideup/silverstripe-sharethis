@@ -1,8 +1,4 @@
----
-Name: sharethis
-Before: 'mysite/*'
-After: 'framework/*','cms/*'
----
+
 
 ShareThisSTE:
   use_bw_effect: 1
@@ -13,14 +9,3 @@ ShareThisSTE:
   excluded_icons:
     - myspace
 
----
-Only:
-  classexists: 'DataObjectSorterDOD'
----
-ShareThisDataObject:
-  extensions:
-    - DataObjectSorterDOD
-
-SocialNetworkingLinksDataObject:
-  extensions:
-    - DataObjectSorterDOD
