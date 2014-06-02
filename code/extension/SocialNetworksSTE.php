@@ -8,25 +8,44 @@
  */
 class SocialNetworksSTE extends SiteTreeExtension {
 
+	/**
+	 * list of sitetree extending classnames where
+	 * the ShareThis functionality should be included
+	 * @var Array
+	 */
+	private static $always_include_in = array();
+
+	/**
+	 * list of sitetree extending classnames where
+	 * the ShareThis functionality should NEVER be included
+	 * @var Array
+	 */
+	private static $never_include_in = array();
+
 	private static $db = array(
 		'HasSocialNetworkingLinks' => 'Boolean'
 	);
 
 	function updateCMSFields(FieldList $fields) {
-		$config = $this->owner->getSiteConfig();
-		if(! $config->AlwaysIncludeSocialNetworkingLinks) {
-			$fields->addFieldToTab('Root.SocialMedia', new CheckboxField('HasSocialNetworkingLinks', 'Show Join Us on our Social Networks Links on this Page (e.g. follow us on Twitter) - make sure to specify social networking links!'));
+		if($this->applyToOwnerClass()) {
+			$config = $this->owner->getSiteConfig();
+			if(! $config->AlwaysIncludeSocialNetworkingLinks) {
+				$fields->addFieldToTab('Root.SocialMedia', new CheckboxField('HasSocialNetworkingLinks', 'Show Join Us on our Social Networks Links on this Page (e.g. follow us on Twitter) - make sure to specify social networking links!'));
+			}
+			$fields->addFieldToTab('Root.SocialMedia', new LiteralField('LinkToSiteConfigSocialMedia', "<p>There  are more social media settings in the <a href=\"{$config->CMSEditLink()}\">Site Config</a>.</p>"));
 		}
-		$fields->addFieldToTab('Root.SocialMedia', new LiteralField('LinkToSiteConfigSocialMedia', "<p>There  are more social media settings in the <a href=\"{$config->CMSEditLink()}\">Site Config</a>.</p>"));
 		return $fields;
 	}
 
 	function ShowSocialNetworks() {
-		$config = $this->owner->getSiteConfig();
-		if($config->AlwaysIncludeSocialNetworkingLinks) {
-			return true;
+		if($this->applyToOwnerClass()) {
+			$config = $this->owner->getSiteConfig();
+			if($config->AlwaysIncludeSocialNetworkingLinks) {
+				return true;
+			}
+			return $this->owner->HasSocialNetworkingLinks;
 		}
-		return $this->owner->HasSocialNetworkingLinks;
+		return false;
 	}
 
 	function SocialNetworks() {
@@ -34,5 +53,35 @@ class SocialNetworksSTE extends SiteTreeExtension {
 		return SocialNetworkingLinksDataObject::get();
 	}
 
+	private function applyToOwnerClass() {
+		$always = Config::inst()->get("ShareThisSTE", "always_include_in");
+		$never = Config::inst()->get("ShareThisSTE", "never_include_in");
+		if(count($always) == 0 && count($never) == 0) {
+			true;
+		}
+		if(count($never) && count($always) == 0) {
+			if(in_array($this->owner->ClassName, $never)) {
+				return false;
+			}
+			return true;
+		}
+		if(count($always) && count($never) == 0) {
+			if(in_array($this->owner->ClassName, $always)) {
+				return true;
+			}
+			return false;
+		}
+		if(count($never) && count($always)) {
+			if(in_array($this->owner->ClassName, $never)) {
+				return false;
+			}
+			if(in_array($this->owner->ClassName, $always)) {
+				return true;
+			}
+			//exception... if dev sets both always and never
+			//then the ones not set will be included by default.
+			return true;
+		}
+	}
 
 }

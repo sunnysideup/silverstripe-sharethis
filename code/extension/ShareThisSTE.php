@@ -10,14 +10,14 @@ class ShareThisSTE extends SiteTreeExtension {
 
 	/**
 	 * list of sitetree extending classnames where
-	 * the ShareThis should be included (depending on the setting)
+	 * the ShareThis functionality should be included
 	 * @var Array
 	 */
 	private static $always_include_in = array();
 
 	/**
 	 * list of sitetree extending classnames where
-	 * the ShareThis should NEVER be included (depending on the setting)
+	 * the ShareThis functionality should NEVER be included
 	 * @var Array
 	 */
 	private static $never_include_in = array();
@@ -73,11 +73,13 @@ class ShareThisSTE extends SiteTreeExtension {
 	}
 
 	function ShowShareIcons() {
-		$config = $this->owner->getSiteConfig();
-		if($config->AlwaysIncludeShareThisLinks) {
-			return true;
+		if($this->applyToOwnerClass()) {
+			$config = $this->owner->getSiteConfig();
+			if($config->AlwaysIncludeShareThisLinks) {
+				return true;
+			}
+			return $this->owner->ShareIcons;
 		}
-		return $this->owner->ShareIcons;
 	}
 
 	function ShareIcons() {
