@@ -8,6 +8,15 @@ ShareThisSTE:
     - linkedin
   excluded_icons:
     - myspace
+  always_include_in:
+    - BlogEntry
+  never_include_in:
+    - HomePage
+SocialNetworksSTE
+  always_include_in:
+    - BlogEntry
+  never_include_in:
+    - HomePage
 
 MyTwitter:
   debug: false

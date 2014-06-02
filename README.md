@@ -27,7 +27,7 @@ Documentation
 Please contact author for more details.
 
 Any bug reports and/or feature requests will be
-looked at in detail
+looked at in detail.
 
 We are also very happy to provide personalised support
 for this module in exchange for a small donation.
@@ -85,11 +85,6 @@ Add the following to your templates:
 <% include ShareThis %>
 <% include ShareAllExpandedList %>
 <% include SocialNetworkingLinks %>
-
-Thank you
------------------------------------------------
-This module is heavily based on the original
-SS ShareThis module.
 
 
 

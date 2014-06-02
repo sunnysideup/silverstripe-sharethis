@@ -945,30 +945,10 @@ class simple_html_dom_node
 	function setAttribute($name, $value) {$this->__set($name, $value);}
 	function hasAttribute($name) {return $this->__isset($name);}
 	function removeAttribute($name) {$this->__set($name, null);}
-	function getElementById($id) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find("#$id", 0);}
-	function getElementsById($id, $idx=null) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find("#$id", $idx);}
-	function getElementByTagName($name) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find($name, 0);}
-	function getElementsByTagName($name, $idx=null) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find($name, $idx);}
+	function getElementById($id) {return $this->find("#$id", 0);}
+	function getElementsById($id, $idx=null) {return $this->find("#$id", $idx);}
+	function getElementByTagName($name) {return $this->find($name, 0);}
+	function getElementsByTagName($name, $idx=null) {return $this->find($name, $idx);}
 	function parentNode() {return $this->parent();}
 	function childNodes($idx=-1) {return $this->children($idx);}
 	function firstChild() {return $this->first_child();}
@@ -1131,12 +1111,7 @@ class simple_html_dom
 	// Paperg - allow us to specify that we want case insensitive testing of the value of the selector.
 	function find($selector, $idx=null, $lowercase=false)
 	{
-		return $this->root/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find($selector, $idx, $lowercase);
+		return $this->root->find($selector, $idx, $lowercase);
 	}
 
 	// clean up memory due to php5 circular references memory leak...
@@ -1230,12 +1205,7 @@ NOTE: DataList find method no longer modifies current list; only returns a new v
 
 		if (empty($charset))
 		{
-			$el = $this->root/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find('meta[http-equiv=Content-Type]',0);
+			$el = $this->root->find('meta[http-equiv=Content-Type]',0);
 			if (!empty($el))
 			{
 				$fullvalue = $el->content;
@@ -1742,30 +1712,10 @@ NOTE: DataList find method no longer modifies current list; only returns a new v
 	function lastChild() {return $this->root->last_child();}
 	function createElement($name, $value=null) {return @str_get_html("<$name>$value</$name>")->first_child();}
 	function createTextNode($value) {return @end(str_get_html($value)->nodes);}
-	function getElementById($id) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find("#$id", 0);}
-	function getElementsById($id, $idx=null) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find("#$id", $idx);}
-	function getElementByTagName($name) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find($name, 0);}
-	function getElementsByTagName($name, $idx=-1) {return $this/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find($name, $idx);}
+	function getElementById($id) {return $this->find("#$id", 0);}
+	function getElementsById($id, $idx=null) {return $this->find("#$id", $idx);}
+	function getElementByTagName($name) {return $this->find($name, 0);}
+	function getElementsByTagName($name, $idx=-1) {return $this->find($name, $idx);}
 	function loadFile() {$args = func_get_args();$this->load_file($args);}
 }
 
