@@ -12,6 +12,7 @@ ShareThisSTE:
     - BlogEntry
   never_include_in:
     - HomePage
+
 SocialNetworksSTE
   always_include_in:
     - BlogEntry
