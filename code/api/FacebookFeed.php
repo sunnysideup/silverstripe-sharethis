@@ -21,7 +21,7 @@
  *
  **/
 
-require_once('simple_html_dom.php');
+
 
 class FacebookFeed_Page extends DataObject {
 
@@ -105,23 +105,13 @@ class FacebookFeed_Page extends DataObject {
 			}
 		}
 		if(count($feedIDs)) {
-			return FacebookFeed_Item::get()/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->filter(
-NOTE: ArrayList filter method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->filter(
+			return FacebookFeed_Item::get()->filter(
 				array(
 					"FacebookFeed_PageID" => $feedIDs,
 					"Hide" => 0
 				)
 			)
-			/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->limit(
-NOTE: DataList limit method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->limit($limit);
+			->limit($limit);
 		}
 	}
 
@@ -182,13 +172,9 @@ class FacebookFeed_Item extends DataObject {
 	private static $default_sort = "\"Hide\" ASC, \"KeepOnTop\" DESC, \"Date\" DESC";
 
 	function DescriptionWithShortLinks() {
+		require_once(SS_SHARETHIS_DIR.'/code/api/thirdparty/simple_html_dom.php');
 		$html = str_get_html($this->Description);
-		foreach($html/*
-### @@@@ UPGRADE REQUIRED @@@@ ###
-FIND: ->find(
-NOTE: DataList find method no longer modifies current list; only returns a new version. 
-### @@@@ ########### @@@@ ###
-*/->find('text') as $element) {
+		foreach($html->find('text') as $element) {
 			if(! in_array($element->parent()->tag, array('a', 'img'))) {
 				$element->innertext = preg_replace("#(www(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'http://$1$4'", $element->innertext);
 				$element->innertext = preg_replace("#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">click here</a>$4'", $element->innertext);
