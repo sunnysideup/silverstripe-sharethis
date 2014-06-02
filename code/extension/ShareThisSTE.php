@@ -168,19 +168,19 @@ class ShareThisSTE extends SiteTreeExtension {
 		if(count($always) == 0 && count($never) == 0) {
 			true;
 		}
-		if(count($never) && count($always) == 0) {
+		elseif(count($never) && count($always) == 0) {
 			if(in_array($this->owner->ClassName, $never)) {
 				return false;
 			}
 			return true;
 		}
-		if(count($always) && count($never) == 0) {
+		elseif(count($always) && count($never) == 0) {
 			if(in_array($this->owner->ClassName, $always)) {
 				return true;
 			}
 			return false;
 		}
-		if(count($never) && count($always)) {
+		elseif(count($never) && count($always)) {
 			if(in_array($this->owner->ClassName, $never)) {
 				return false;
 			}
@@ -190,6 +190,9 @@ class ShareThisSTE extends SiteTreeExtension {
 			//exception... if dev sets both always and never
 			//then the ones not set will be included by default.
 			return true;
+		}
+		else {
+			user_error("Strange condition!", E_USER_NOTICE);
 		}
 	}
 
