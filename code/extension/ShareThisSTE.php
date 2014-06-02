@@ -56,8 +56,8 @@ class ShareThisSTE extends SiteTreeExtension {
 			if(! $config->AlwaysIncludeShareThisLinks) {
 				$fields->addFieldToTab('Root.SocialMedia', new HeaderField('ShareThisHeader', 'Allow users to share this page'));
 				$fields->addFieldToTab('Root.SocialMedia', new CheckboxField('ShareIcons', 'Show Share Icons on this page', $config->IncludeByDefault));
+				$fields->addFieldToTab('Root.SocialMedia', new LiteralField('LinkToSiteConfigSocialMedia', "<p>Note: make sure to review the social media settings in the <a href=\"{$config->CMSEditLink()}\">Site Config</a>.</p>"));
 			}
-			$fields->addFieldToTab('Root.SocialMedia', new LiteralField('LinkToSiteConfigSocialMedia', "<p>Note: make sure to review the social media settings in the <a href=\"{$config->CMSEditLink()}\">Site Config</a>.</p>"));
 			$list = ShareThisOptions::get_all_options($this->owner->Title, $this->owner->Link(), $this->owner->MetaDescription);
 			$fields->addFieldToTab('Root.SocialMedia', new HeaderField('ShareThisNow', 'Share this page on your favourite social media sites...'));
 			$html = "<div><p>Click on any of the icons below to share the '<i>{$this->owner->Title}</i>' page. Any click will open a new tab/window where you will need to enter your login details.</p>";
