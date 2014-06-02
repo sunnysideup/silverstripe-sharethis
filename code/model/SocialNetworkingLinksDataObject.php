@@ -30,8 +30,8 @@ class SocialNetworkingLinksDataObject extends DataObject {
 	);
 
 	private static $field_labels = array(
-		'URL' => 'Link (e.g. http://twitter.com/myname/)- will override internal link',
 		'InternalLink' => 'Internal Link',
+		'URL' => 'OR External Link (e.g. http://twitter.com/myname/) - will override internal link',
 		'Title' => 'Title',
 		'Sort' => 'Sort Index (lower numbers shown first)',
 		'IconID' => 'Icon (preferably something like 32pixels by 32pixels)'

@@ -30,9 +30,10 @@ class SocialNetworksSTE extends SiteTreeExtension {
 		if($this->applyToOwnerClass()) {
 			$config = $this->owner->getSiteConfig();
 			if(! $config->AlwaysIncludeSocialNetworkingLinks) {
+				$fields->addFieldToTab('Root.SocialMedia', new HeaderField('SocialNetworksHeader', 'Ask visitors to JOIN YOU on your social media'));
 				$fields->addFieldToTab('Root.SocialMedia', new CheckboxField('HasSocialNetworkingLinks', 'Show Join Us on our Social Networks Links on this Page (e.g. follow us on Twitter) - make sure to specify social networking links!'));
 			}
-			$fields->addFieldToTab('Root.SocialMedia', new LiteralField('LinkToSiteConfigSocialMedia', "<p>There  are more social media settings in the <a href=\"{$config->CMSEditLink()}\">Site Config</a>.</p>"));
+			$fields->addFieldToTab('Root.SocialMedia', new LiteralField('LinkToSiteConfigSocialMedia', "<p>There are more social media settings in the <a href=\"{$config->CMSEditLink()}\">Site Config</a>.</p>"));
 		}
 		return $fields;
 	}
