@@ -55,8 +55,8 @@ class SocialNetworksSTE extends SiteTreeExtension {
 	}
 
 	private function applyToOwnerClass() {
-		$always = Config::inst()->get("ShareThisSTE", "always_include_in");
-		$never = Config::inst()->get("ShareThisSTE", "never_include_in");
+		$always = Config::inst()->get("SocialNetworksSTE", "always_include_in");
+		$never = Config::inst()->get("SocialNetworksSTE", "never_include_in");
 		if(count($always) == 0 && count($never) == 0) {
 			true;
 		}
