@@ -58,7 +58,7 @@ class SocialNetworksSTE extends SiteTreeExtension {
 		$always = Config::inst()->get("SocialNetworksSTE", "always_include_in");
 		$never = Config::inst()->get("SocialNetworksSTE", "never_include_in");
 		if(count($always) == 0 && count($never) == 0) {
-			true;
+			return true;
 		}
 		if(count($never) && count($always) == 0) {
 			if(in_array($this->owner->ClassName, $never)) {
