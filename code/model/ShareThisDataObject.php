@@ -31,7 +31,7 @@ class ShareThisDataObject extends DataObject {
 		'IncludeThisIconInExtendedList' => 'Include in secondary list',
 		'IncludeThisIconInExtendedListNice' => 'Include in secondary list',
 		'Sort' => 'Sort Index (lower numbers shown first)',
-		'AlternativeIcon' => 'Optional Alternative Icon (16 x 16 px)'
+		'AlternativeIcon' => 'Optional Alternative Icon (can be any size, a 32px by 32px square is recommended)'
 	);
 
 	private static $summary_fields = array(
