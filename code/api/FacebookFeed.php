@@ -172,7 +172,7 @@ class FacebookFeed_Item extends DataObject {
 	private static $default_sort = "\"Hide\" ASC, \"KeepOnTop\" DESC, \"Date\" DESC";
 
 	function DescriptionWithShortLinks() {
-		require_once(SS_SHARETHIS_DIR.'/code/api/thirdparty/simple_html_dom.php');
+		require_once(Director::baseFolder()."/".SS_SHARETHIS_DIR.'/code/api/thirdparty/simple_html_dom.php');
 		$html = str_get_html($this->Description);
 		foreach($html->find('text') as $element) {
 			if(! in_array($element->parent()->tag, array('a', 'img'))) {
