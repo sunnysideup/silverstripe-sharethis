@@ -188,9 +188,12 @@ class FacebookFeed_Item extends DataObject {
 class FacebookFeed_Item_Communicator extends Object {
 
 	/**
-	 * cd
+	 *
+	 * @param String $url
+	 * @param Int $maxnumber
+	 * @param Int $facebookFeed_PageID
+	 * @param String $timeFormat
 	 **/
-
 	function fetchFBFeed($url, $maxnumber = 1, $facebookFeed_PageID = 0, $timeFormat = 'Y-m-d') {
 	/* The following line is absolutely necessary to read Facebook feeds.
 	 * Facebook will not recognize PHP as a browser and therefore won't fetch anything.
