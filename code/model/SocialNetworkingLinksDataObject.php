@@ -48,6 +48,22 @@ class SocialNetworkingLinksDataObject extends DataObject {
 
 	private static $plural_name = 'Join Us links';
 
+	function canView($member = null) {
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
+	}
+
+	function canCreate($member = null) {
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
+	}
+
+	function canEdit($member = null) {
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
+	}
+
+	function canDelete($member = null) {
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
+	}
+
 	/**
 	 * @return String - returns the title with all non-alphanumeric + spaces removed.
 	 */
@@ -62,7 +78,7 @@ class SocialNetworkingLinksDataObject extends DataObject {
 			$html = $icon->SetHeight(32);
 		}
 		else {
-			$html =  DBField::create_field("HTMLText",'<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>");
+			$html = DBField::create_field("HTMLText",'<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>");
 		}
 		return  $html;
 	}

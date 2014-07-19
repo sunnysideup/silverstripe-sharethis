@@ -5,7 +5,16 @@
  * @description: list of Share This Options that can be shown
  * @todo finish onAfterWrite and delete objects
  */
-class ShareThisDataObject extends DataObject {
+class ShareThisDataObject extends DataObject implements PermissionProvider  {
+
+	private static $permission_framework = array(
+		"SOCIAL_MEDIA" => array(
+			'name' => "Social Media Management",
+			'category' => "Social Media",
+			'help' => 'Edit relationships, links and data of various social media platforms.',
+			'sort' => 0
+		)
+	);
 
 	private static $db = array(
 		'Title' => 'Varchar(20)',
@@ -47,18 +56,25 @@ class ShareThisDataObject extends DataObject {
 
 	private static $default_sort = 'IncludeThisIcon DESC, IncludeThisIconInExtendedList ASC, Sort ASC, Title ASC';
 
-	function canView($member = null) {
-		return Permission::check('CMS_ACCESS_CMSMain');
+	public function providePermissions() {
+		return Config::inst()->get("ShareThisDataObject", "permission_framework");
 	}
 
-	function canDelete($member = null) {
-		return false;
+	function canView($member = null) {
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
+	}
+
+	function canCreate($member = null) {
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
 	}
 
 	function canEdit($member = null) {
-		return $this->canView($member);
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
 	}
 
+	function canDelete($member = null) {
+		return Permission::checkMember($member, 'SOCIAL_MEDIA');
+	}
 	function IncludeThisIconNice() { return $this->getIncludeThisIconNice();}
 	function getIncludeThisIconNice() {
 		return $this->IncludeThisIcon ? "YES" : "NO" ;

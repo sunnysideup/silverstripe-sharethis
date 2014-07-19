@@ -9,7 +9,8 @@ class SocialNetworkingModelAdmin extends ModelAdmin {
 	private static $managed_models = array(
 		"SocialNetworkingLinksDataObject",
 		"ShareThisDataObject",
-		"FacebookFeed_Page"
+		"FacebookFeed_Page",
+		"FacebookFeed_Item"
 	);
 
 	private static $url_segment = 'social';

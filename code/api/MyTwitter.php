@@ -133,34 +133,4 @@ class MyTwitter extends Object {
 	}
 }
 
-class MyTwitterData extends DataObject {
-
-	private static $username = "";
-
-	private static $db = array(
-		"Date" => "SS_Datetime",
-		"TwitterID" => "Varchar(64)",
-		"Title" => "HTMLText",
-		"Hide" => "Boolean"
-	);
-
-	private static $indexes = array(
-		"TwitterID" => true
-	);
-
-	private static $casting = array(
-		"Link" => "Varchar"
-	);
-
-	private static $default_sort = "\"Date\" DESC";
-
-	function forTemplate(){
-		return $this->Title;
-	}
-
-	function Link(){
-		return "https://twitter.com/".Config::inst()->get("MyTwitterData", "username")."/status/".$this->TwitterID;
-	}
-
-}
 

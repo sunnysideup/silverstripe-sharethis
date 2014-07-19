@@ -30,3 +30,11 @@ MyTwitter:
   twitter_config:
     - include_entities: true
     - include_rts: true
+
+ShareThisDataObject:
+  permission_framework:
+    SOCIAL_MEDIA:
+      name: "Social Media Management",
+      category: "Social Media"
+      help: "Edit relationships, links and data of various social media platforms"
+      sort: 0
