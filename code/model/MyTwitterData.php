@@ -11,12 +11,19 @@ class MyTwitterData extends DataObject {
 		"Hide" => "Boolean"
 	);
 
+	private static $summary_fields = array(
+		"Date" => "Date",
+		"Title" => "Title",
+		"HideNice" => "Hide"
+	);
+
 	private static $indexes = array(
 		"TwitterID" => true
 	);
 
 	private static $casting = array(
-		"Link" => "Varchar"
+		"Link" => "Varchar",
+		"HideNice" => "Varchar"
 	);
 
 	private static $default_sort = "\"Date\" DESC";
@@ -43,6 +50,11 @@ class MyTwitterData extends DataObject {
 	}
 
 	function canDelete($member = null) {
-		return Permission::checkMember($member, 'SOCIAL_MEDIA');
+		return false;
+	}
+
+	function HideNice(){
+		return $this->dbObject('Hide')->Nice();
+	}
 
 }
