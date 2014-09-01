@@ -89,7 +89,6 @@ class FacebookFeed_Item extends DataObject{
 	private static $plural_name = "Facebook Items";
 		function i18n_plural_name() { return "Facebook Items";}
 
-	private static $default_sort = "\"Hide\" ASC, \"KeepOnTop\" DESC, \"Date\" DESC";
 
 	function DescriptionWithShortLinks() {
 		require_once(Director::baseFolder()."/".SS_SHARETHIS_DIR.'/code/api/thirdparty/simple_html_dom.php');
