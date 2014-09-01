@@ -102,6 +102,12 @@ class FacebookFeed_Page extends DataObject  {
 		return $fields;
 	}
 
+	/**
+	 *
+	 * @param SiteTree | Int $page - page or page id
+	 * @param Int $limit
+	 *
+	 */
 	public static function all_for_one_page($page, $limit = 10){
 		if($page instanceOf SiteTree) {
 			$pageID = $page->ID;
