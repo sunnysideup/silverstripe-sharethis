@@ -65,7 +65,7 @@ class FacebookFeed_Item extends DataObject{
 		'KeepOnTop' => true
 	);
 
-	private static $default_sort = "Hide ASC, KeepOnTop DESC, Created DESC";
+	private static $default_sort = "\"Created\" DESC";
 
 	function canCreate($member = null) {
 		return false;
