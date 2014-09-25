@@ -15,8 +15,9 @@ SiteTree:
 
 ---
 Only:
-  classexists: 'DataObjectSorterDOD'
+  classexists: DataObjectSorterDOD
 ---
+
 ShareThisDataObject:
   extensions:
     - DataObjectSorterDOD
