@@ -88,6 +88,7 @@ class ShareThisSTE extends SiteTreeExtension {
 	}
 
 	function ShareAllExpandedList() {
+		Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery/jquery.js');
 		Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/ShareAllExpandedList.js');
 		$bookmarks = $this->makeBookmarks('IncludeThisIconInExtendedList');
 		return $this->makeShareIcons($bookmarks);
@@ -111,6 +112,7 @@ class ShareThisSTE extends SiteTreeExtension {
 		$icons = array();
 		if($bookmarks) {
 			Requirements::themedCSS('SocialNetworking', "sharethis"); // ALSO  added in template
+			Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery/jquery.js');
 			Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/shareThis.js');
 			if(Config::inst()->get("ShareThisSTE", "use_bw_effect")) {
 				Requirements::customScript('sharethis.set_use_BW(true);', 'ShareThisBWEffect');
