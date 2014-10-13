@@ -97,8 +97,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider  {
 
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
-		die($this->dataObjectSorterPopupLink("IncludeThisIcon", 1, "Sort Main Icons"));
-		$fields->addFieldToTab("Root.Sort", new LiteralField("SortShortList"));
+		$fields->addFieldToTab("Root.Sort", new LiteralField("SortShortList", $this->dataObjectSorterPopupLink("IncludeThisIcon", 1, "<h3>Sort Main Icons</h3>")));
 		//$fields->replaceField('Title', new LiteralField('Title', "<p>{$this->Icon}<span>{$this->Title}</span></p>"));
 		return $fields;
 	}
