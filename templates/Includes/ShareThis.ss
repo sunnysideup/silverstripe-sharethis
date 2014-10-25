@@ -3,7 +3,7 @@
 <% if ShowShareIcons %><% if ShareIcons %>
 	<div class="ShareThisHolder socialNetworkingHolder">
 		<div class="ShareThisHeader socialNetworkingHeader typography"><h5>Share</h5></div>
-		<ul class="ShareThisUL socialNetworkingList">
+		<ul class="ShareThisUL socialNetworkingList fa-ul">
 			<% loop ShareIcons %>
 			<li class="icon-for{$Key} ">
 				<% if FAIcon %><i class="fa-li fa $FAIcon fa-3x"></i><% end_if %>
