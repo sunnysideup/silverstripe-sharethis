@@ -9,6 +9,10 @@ silverstripe website, such as
 - share FB update on my website
 etc...
 
+Optional usages of Font Awesome, as recommended by https://github.com/hp7
+This still needs to be implemented on the "find us on ... "
+part.
+
 
 Developer
 -----------------------------------------------

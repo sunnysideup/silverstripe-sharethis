@@ -24,50 +24,57 @@ class ShareThisOptions extends Object {
 		self::$page_specific_data = array(
 "email" => array(
 	"url" => "mailto:?".htmlentities("Subject=".self::$encoded_page_title."&Body=".self::$encoded_description."%0D%0A".self::$encoded_page_url),
+	"faicon" => "fa-send",
 	"title" => "Email"),
 "print" => array(
 	"url" => "#",
+	"faicon" => "fa-print",
 	"click" => "window.print(); return false;",
 	"title" => "Print"),
 "favourites" => array(
 	"url" => "#",
+	"faicon" => "fa-bookmark",
 	"click" => "sharethis.bookmark('".self::$encoded_page_url."', '".self::$encoded_page_title."'); return false;",
 	"title" => "Add to favourites (Internet Explorer Only)"),
-"blogmarks" => array(
-	"url" => "http://blogmarks.net/my/new.php?".htmlentities("mini=1&simple=1&url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
-	"title" => "BlogMark It"),
+//"foursquare" => array(
+//	"url" => "http://foursquare.com/home?status=".htmlentities(urlencode("currently reading: ").self::$encoded_page_url),
+//	"faicon" => "fa-foursquare-square",
+//	"title" => "FourSquareIt"),
 "delicious" => array(
 	"url" => "http://del.icio.us/post?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+	"faicon" => "fa-delicious",
 	"title" => "Add to Delicious"),
 "facebook" => array(
 	"url" => "http://www.facebook.com/share.php?".htmlentities("u=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+	"faicon" => "fa-facebook-square",
 	"title" => "Share on Facebook"),
 "googleplus" => array(
 	"url" =>  "https://plus.google.com/share?url=".self::$encoded_page_url,
+	"faicon" => "fa-google-plus",
 	"title" => "Google Plus One"),
 "linkedin" => array(
 	"url" =>  "http://www.linkedin.com/shareArticle?".htmlentities("mini=true&url=".self::$encoded_page_url."&title=".self::$encoded_page_title."&source=".Director::absoluteBaseURL()),
+	"faicon" => "fa-linkedin-square",
 	"title" => "Share on LinkedIn"),
-"live" => array(
-	"url" => "https://favorites.live.com/quickadd.aspx?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title_space_encoded),
-	"title" => "Add to Windows Live"),
 "pinterest" => array(
 	"url" => "http://pinterest.com/pin/create/bookmarklet/?".htmlentities("media=html&url=".self::$encoded_page_url."&is_video=false&description=".self::$encoded_page_title),
+	"faicon" => "fa-pinterest",
 	"title" => "Pinterest it"),
 "reddit" => array(
 	"url" => "http://reddit.com/submit?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+	"faicon" => "fa-reddit",
 	"title" => "Reddit"),
-"squidoo" => array(
-	"url" => "http://www.squidoo.com/lensmaster/bookmark?".htmlentities(self::$encoded_page_url),
-	"title" => "Add to Squidoo"),
 "stumbleupon" => array(
 	"url" => "http://www.stumbleupon.com/submit?".htmlentities("url=".self::$non_encoded_page_url."&title=".self::$encoded_page_title),
+	"faicon" => "fa-stumbleupon",
 	"title" => "Stumble It"),
 "twitter" => array(
 	"url" => "http://twitter.com/home?status=".htmlentities(urlencode("currently reading: ").self::$encoded_page_url),
+	"faicon" => "fa-twitter-square",
 	"title" => "Tweet It"),
 "thumblr" => array(
 	"url" => "http://www.tumblr.com/share/link?url=".htmlentities(self::$encoded_page_url."&name=".self::$encoded_page_title),
+	"faicon" => "fa-tumblr-square",
 	"title" => "Thumblr")
 );
 		return self::$page_specific_data;

@@ -1,6 +1,8 @@
 
 
 ShareThisSTE:
+  #true by default
+  use_font_awesome: false
   use_bw_effect: 1
   included_icons:
     - facebook
@@ -14,6 +16,8 @@ ShareThisSTE:
     - HomePage
 
 SocialNetworksSTE
+  #true by default
+  use_font_awesome: false
   always_include_in:
     - BlogEntry
   never_include_in:

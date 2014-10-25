@@ -9,6 +9,12 @@
 class SocialNetworksSTE extends SiteTreeExtension {
 
 	/**
+	 * Use the font-awesome icon collection?
+	 * @var Boolean
+	 */
+	private static $use_font_awesome = true;
+
+	/**
 	 * list of sitetree extending classnames where
 	 * the ShareThis functionality should be included
 	 * @var Array
@@ -51,6 +57,9 @@ class SocialNetworksSTE extends SiteTreeExtension {
 
 	function SocialNetworks() {
 		Requirements::themedCSS('SocialNetworking', "sharethis");
+		if(Config::inst()->get("SocialNetworksSTE", "use_font_awesome")) {
+			Requirements::css("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+		}
 		return SocialNetworkingLinksDataObject::get();
 	}
 

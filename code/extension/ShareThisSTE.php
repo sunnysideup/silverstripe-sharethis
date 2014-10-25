@@ -9,6 +9,12 @@
 class ShareThisSTE extends SiteTreeExtension {
 
 	/**
+	 * Use the font-awesome icon collection?
+	 * @var Boolean
+	 */
+	private static $use_font_awesome = true;
+
+	/**
 	 * list of sitetree extending classnames where
 	 * the ShareThis functionality should be included
 	 * @var Array
@@ -111,7 +117,11 @@ class ShareThisSTE extends SiteTreeExtension {
 	protected function makeShareIcons($bookmarks) {
 		$icons = array();
 		if($bookmarks) {
+			$useFontAwesome = Config::inst()->get("ShareThisSTE", "use_font_awesome");
 			Requirements::themedCSS('SocialNetworking', "sharethis"); // ALSO  added in template
+			if($useFontAwesome) {
+				Requirements::css("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+			}
 			Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery/jquery.js');
 			Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/shareThis.js');
 			if(Config::inst()->get("ShareThisSTE", "use_bw_effect")) {
@@ -120,20 +130,26 @@ class ShareThisSTE extends SiteTreeExtension {
 			foreach($bookmarks as $key => $bookmark) {
 				if(isset($bookmark['title']) && isset($bookmark['url'])) {
 					$icon = array(
-						'Title' => $bookmark['title'],
+						'Title' => Convert::raw2att($bookmark['title']),
 						'URL' => $bookmark['url'],
 						'Key' => $key,
 						'ImageSource' => "sharethis/images/icons/$key.png",
+						'FAIcon' => $bookmark["faicon"],
 						'UseStandardImage' => true
 					);
 					if(isset($bookmark['click'])) {
 						$icon['OnClick'] = $bookmark['click'];
 					}
+					if($useFontAwesome) {
+						$icon['ImageSource'] = null;
+						$icon['UseStandardImage'] = false;
+						$icon['FAIcon'] = $bookmark["faicon"];
+					}
 					if(isset($bookmark['icon'])) {
 						$icon['ImageSource'] = $bookmark['icon'];
 						$icon['UseStandardImage'] = false;
+						$icon['FAIcon'] = null;
 					}
-					$icon['ImageSourceOver'] = str_replace(array('.png', '.gif', '.jpg'), array('_over.png', '_over.gif', '_over.jpg'), $icon['ImageSource']);
 					$icons[] = new ArrayData($icon);
 				}
 				else {
