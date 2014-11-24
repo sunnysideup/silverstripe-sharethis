@@ -123,7 +123,7 @@ class FacebookFeed_Item extends DataObject{
 			return $dom->saveHTML();
 		}
 		else {
-			$this->Hide = false;
+			$this->Hide = true;
 			$this->write();
 		}
 	}
