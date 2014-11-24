@@ -93,34 +93,35 @@ class FacebookFeed_Item extends DataObject{
 	function DescriptionWithShortLinks() {
 		require_once(Director::baseFolder()."/".SS_SHARETHIS_DIR.'/code/api/thirdparty/simple_html_dom.php');
 		$html = str_get_html($this->Description);
-
-		foreach($html->find('text') as $element) {
-			//what exactly does it do?
-			if(! in_array($element->parent()->tag, array('a', 'img'))) {
-				if(phpversion() < 5.4) {
-					//to do - what does this do and how does it need to be written????
-					$element->innertext = preg_replace("#(www(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'http://$1$4'", $element->innertext);
-					$element->innertext = preg_replace("#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">click here</a>$4'", $element->innertext);
-				}
-				else {
-					$element->innertext = $this->replaceLinksWithProperOnes($element->innertext);
+		if($html) {
+			foreach($html->find('text') as $element) {
+				//what exactly does it do?
+				if(! in_array($element->parent()->tag, array('a', 'img'))) {
+					if(phpversion() < 5.4) {
+						//to do - what does this do and how does it need to be written????
+						$element->innertext = preg_replace("#(www(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'http://$1$4'", $element->innertext);
+						$element->innertext = preg_replace("#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">click here</a>$4'", $element->innertext);
+					}
+					else {
+						$element->innertext = $this->replaceLinksWithProperOnes($element->innertext);
+					}
 				}
 			}
-		}
 
-		$dom = new DOMDocument();
-		@$dom->loadHTML($html);
-		if($dom) {
-			$dom->preserveWhiteSpace = false;
-			$images = $dom->getElementsByTagName('img');
-			foreach ($images as $image) {
-				$link = $dom->createElement('a');
-				$link->setAttribute('href', $this->Link);
-				$image->parentNode->replaceChild($link, $image);
-				$link->appendChild($image);
+			$dom = new DOMDocument();
+			@$dom->loadHTML($html);
+			if($dom) {
+				$dom->preserveWhiteSpace = false;
+				$images = $dom->getElementsByTagName('img');
+				foreach ($images as $image) {
+					$link = $dom->createElement('a');
+					$link->setAttribute('href', $this->Link);
+					$image->parentNode->replaceChild($link, $image);
+					$link->appendChild($image);
+				}
 			}
+			return $dom->saveHTML();
 		}
-		return $dom->saveHTML();
 	}
 
 	protected function replaceLinksWithProperOnes($text) {
