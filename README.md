@@ -86,9 +86,13 @@ you can usually find some examples of config options (if any).
 
 Add the following to your templates:
 
-<% include ShareThis %>
-<% include ShareAllExpandedList %>
-<% include SocialNetworkingLinks %>
+    <% include ShareThis %>
+
+    <% include SocialNetworkingLinks %>
+
+You can also opt to have an additional list of expandable Share This links, using this
+line in your *.ss file:
 
 
+    <% include ShareAllExpandedList %>
 

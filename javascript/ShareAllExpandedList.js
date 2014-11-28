@@ -18,44 +18,30 @@ var ShareAllExpandedList = {
 
 	shareAllExpandedListULCloseSelector: ".shareAllExpandedListUL li.shareAllExpandedListULClose a",
 
-	mainLinkSelector: ".shareAllExpandedListHeader h5 a",
-
-	openSpeed: "slow",
-
-	closeSpeed: "slow",
+	mainLinkSelector: ".shareAllExpandedListHeader h5 > a",
 
 	listShownClass: "listShown",
 
 	listClosedClass: "listHidden",
 
 	init: function() {
-		jQuery(ShareAllExpandedList.shareAllExpandedListUL).css("display", "none");
-		jQuery(ShareAllExpandedList.mainLinkSelector).click(
+		jQuery("body").on(
+			"click",
+			ShareAllExpandedList.mainLinkSelector+ ", " + shareAllExpandedListULCloseSelector
 			function() {
-				if(jQuery(this).parent().parent().siblings(ShareAllExpandedList.shareAllExpandedListUL).is(":hidden")) {
-					jQuery(this).addClass(ShareAllExpandedList.listShownClass);
-					jQuery(this).removeClass(ShareAllExpandedList.listClosedClass);
-					jQuery(this).parent().parent().siblings(ShareAllExpandedList.shareAllExpandedListUL).slideDown(ShareAllExpandedList.openSpeed);
-				}
-				else {
-					jQuery(this).addClass(ShareAllExpandedList.listClosedClass);
-					jQuery(this).removeClass(ShareAllExpandedList.listShownClass);
-					jQuery(this).parent().parent().siblings(ShareAllExpandedList.shareAllExpandedListUL).slideUp(ShareAllExpandedList.closeSpeed);
-				}
+				jQuery(ShareAllExpandedList.shareAllExpandedListULSelector)
+					.toggleSlide()
+					.toggleClass(ShareAllExpandedList.listShownClass)
+					.toggleClass(ShareAllExpandedList.listClosedClass);
 				return false;
 			}
-
 		)
-		.addClass(ShareAllExpandedList.listClosedClass);
-		jQuery(ShareAllExpandedList.shareAllExpandedListULCloseSelector).click(
-			function(){
-				jQuery(this).parent().parent().parent().find(ShareAllExpandedList.mainLinkSelector).click();
-				return false;
-			}
-		);
 	}
 
-
-
-
 }
+
+
+//immediately
+jQuery(ShareAllExpandedList.shareAllExpandedListULSelector)
+	.css("display", "none")
+	.addClass(ShareAllExpandedList.listClosedClass);
