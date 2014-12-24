@@ -44,7 +44,11 @@ class FacebookFeed_Item_Communicator extends Object {
 						$facebookFeed_Item->Link = (string) $fbUpdate->link;
 						$facebookFeed_Item->Description = $this->stripUnsafe((string) $desc);
 						$facebookFeed_Item->FacebookFeed_PageID = $facebookFeed_PageID;
+						if(!$facebookFeed_Item->Title || !$facebookFeed_Item->Description) {
+							$facebookFeed_Item->Hide = true;
+						}
 						$facebookFeed_Item->write();
+
 						$maxnumber--;
 					}
 				}
