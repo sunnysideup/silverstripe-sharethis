@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="SocialNetworksSTE" namespace="" name="SocialNetworksSTE" abstract="false" final="false" start="9" end="97">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../code/extension" file="SocialNetworksSTE.php" realpath="/var/www/_modules/sharethis/trunk/code/extension/SocialNetworksSTE.php" size="3252" time="2015-03-14T10:23:28+13:00" unixtime="1426281808" sha1="ccb98114f8923ef4ca3af8504d5879afff332b96" relative="code/extension/SocialNetworksSTE.php"/>
+  <docblock>
+    <description compact="Add a field to each SiteTree object and it's subclasses to enable &quot;follow us on ...&quot;, this can be a blog, twitter, facebook or whatever else.">it uses the SocialNetworkingLinksDataObject to get a list of icons.</description>
+    <author value="nicolaas [at] sunnysideup.co.nz"/>
+    <todo value="fix populateDefaults to make sure SiteConfig table is built first"/>
+  </docblock>
+  <extends full="SiteTreeExtension" namespace="" name="SiteTreeExtension"/>
+  <member name="use_font_awesome" type="{unknown}" default="true" visibility="private" line="15">
+    <docblock>
+      <description compact="Use the font-awesome icon collection?"/>
+      <var type="object">
+        <type full="Boolean" namespace="" name="Boolean"/>
+      </var>
+    </docblock>
+  </member>
+  <member name="always_include_in" type="array" visibility="private" line="22">
+    <docblock>
+      <description compact="list of sitetree extending classnames where the ShareThis functionality should be included"/>
+      <var type="object">
+        <type full="Array" namespace="" name="Array"/>
+      </var>
+    </docblock>
+  </member>
+  <member name="never_include_in" type="array" visibility="private" line="29">
+    <docblock>
+      <description compact="list of sitetree extending classnames where the ShareThis functionality should NEVER be included"/>
+      <var type="object">
+        <type full="Array" namespace="" name="Array"/>
+      </var>
+    </docblock>
+  </member>
+  <member name="db" type="array" visibility="private" line="31"/>
+  <method name="updateCMSFields" start="35" end="45" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="fields" byreference="false" type="object">
+      <type full="\\FieldList" namespace="\" name="FieldList"/>
+    </parameter>
+  </method>
+  <method name="ShowSocialNetworks" start="47" end="56" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="SocialNetworks" start="58" end="64" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="applyToOwnerClass" start="66" end="95" abstract="false" final="false" static="false" visibility="private">
+    <inline>
+      <comment value="exception... if dev sets both always and never" line="91"/>
+      <comment value="then the ones not set will be included by default." line="92"/>
+    </inline>
+  </method>
+</class>

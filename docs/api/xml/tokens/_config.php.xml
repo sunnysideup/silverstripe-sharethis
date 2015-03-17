@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../.." file="_config.php" realpath="/var/www/_modules/sharethis/trunk/_config.php" size="163" time="2015-03-14T10:23:27+13:00" unixtime="1426281807" sha1="89681757ab99b1a89b8871a424d13536b995bb47" relative="_config.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2"/>
+  <line no="3">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * developed by www.sunnysideup.co.nz</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> * author: Nicolaas - modules [at] sunnysideup.co.nz</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> *</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> **/</token>
+  </line>
+  <line no="8"/>
+  <line no="9">
+    <token name="T_STRING">define</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'SS_SHARETHIS_DIR'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'sharethis'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="10"/>
+  <line no="11"/>
+</source>

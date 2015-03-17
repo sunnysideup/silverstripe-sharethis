@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="FacebookFeed_Item_Communicator" namespace="" name="FacebookFeed_Item_Communicator" abstract="false" final="false" start="4" end="76">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../code/api" file="FacebookFeed_Item_Communicator.php" realpath="/var/www/_modules/sharethis/trunk/code/api/FacebookFeed_Item_Communicator.php" size="2682" time="2015-03-14T10:23:28+13:00" unixtime="1426281808" sha1="24b40976f9e15723e745280c8471338333a631e6" relative="code/api/FacebookFeed_Item_Communicator.php"/>
+  <extends full="Object" namespace="" name="Object"/>
+  <method name="fetchFBFeed" start="13" end="57" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <param type="object" variable="$url">
+        <type full="String" namespace="" name="String"/>
+      </param>
+      <param type="object" variable="$maxnumber">
+        <type full="Int" namespace="" name="Int"/>
+      </param>
+      <param type="object" variable="$facebookFeed_PageID">
+        <type full="Int" namespace="" name="Int"/>
+      </param>
+      <param type="object" variable="$timeFormat">
+        <type full="String" namespace="" name="String"/>
+      </param>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <parameter name="maxnumber" byreference="false" type="integer" default="1"/>
+    <parameter name="facebookFeed_PageID" byreference="false" type="integer" default="0"/>
+    <parameter name="timeFormat" byreference="false" type="string" default="'Y-m-d'"/>
+    <inline>
+      <comment value="The following line is absolutely necessary to read Facebook feeds." line="14"/>
+      <comment xmlns="http://xml.phpdox.net/src" value="Facebook will not recognize PHP as a browser and therefore won't fetch anything." line="15"/>
+      <comment xmlns="http://xml.phpdox.net/src" value="* So we define a browser here" line="16"/>
+      <comment value="Load feed with simplexml" line="18"/>
+    </inline>
+  </method>
+  <method name="stripUnsafe" start="59" end="73" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="string" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Unsafe HTML tags that members may abuse" line="60"/>
+    </inline>
+  </method>
+</class>

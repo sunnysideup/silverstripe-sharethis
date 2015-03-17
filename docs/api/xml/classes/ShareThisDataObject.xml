@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="ShareThisDataObject" namespace="" name="ShareThisDataObject" abstract="false" final="false" start="8" end="157">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../code/model" file="ShareThisDataObject.php" realpath="/var/www/_modules/sharethis/trunk/code/model/ShareThisDataObject.php" size="5414" time="2015-03-14T10:23:27+13:00" unixtime="1426281807" sha1="5c670342eec34714bf49bd95aaa910b98dc5295a" relative="code/model/ShareThisDataObject.php"/>
+  <docblock>
+    <description/>
+    <description/>
+    <author value="nicolaas[at]sunnysideup.co.nz"/>
+    <todo value="finish onAfterWrite and delete objects"/>
+  </docblock>
+  <extends full="DataObject" namespace="" name="DataObject"/>
+  <implements full="PermissionProvider" namespace="" name="PermissionProvider"/>
+  <member name="permission_framework" type="array" visibility="private" line="10"/>
+  <member name="db" type="array" visibility="private" line="19"/>
+  <member name="has_one" type="array" visibility="private" line="26"/>
+  <member name="casting" type="array" visibility="private" line="30"/>
+  <member name="field_labels" type="array" visibility="private" line="36"/>
+  <member name="summary_fields" type="array" visibility="private" line="46"/>
+  <member name="singular_name" type="string" default="'Icon to share this page'" visibility="private" line="53"/>
+  <member name="plural_name" type="string" default="'Icons to share this page'" visibility="private" line="55"/>
+  <member name="default_sort" type="string" default="'IncludeThisIcon DESC, IncludeThisIconInExtendedList ASC, Sort ASC, Title ASC'" visibility="private" line="57"/>
+  <method name="providePermissions" start="59" end="61" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="canView" start="63" end="65" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="canCreate" start="67" end="69" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="canEdit" start="71" end="73" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="canDelete" start="75" end="77" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="IncludeThisIconNice" start="78" end="78" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getIncludeThisIconNice" start="79" end="81" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="IncludeThisIconInExtendedListNice" start="83" end="83" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getIncludeThisIconInExtendedListNice" start="84" end="86" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="Icon" start="88" end="88" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getIcon" start="89" end="96" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getCMSFields" start="98" end="105" abstract="false" final="false" static="false" visibility="public">
+    <inline>
+      <comment value="$fields-&gt;replaceField('Title', new LiteralField('Title', &quot;&lt;p&gt;{$this-&gt;Icon}&lt;span&gt;{$this-&gt;Title}&lt;/span&gt;&lt;/p&gt;&quot;));" line="103"/>
+    </inline>
+  </method>
+  <method name="onAfterWrite" start="107" end="111" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="requireDefaultRecords" start="113" end="155" abstract="false" final="false" static="false" visibility="public"/>
+</class>

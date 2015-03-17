@@ -1,0 +1,657 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../third_party" file="example.php" realpath="/var/www/_modules/sharethis/trunk/third_party/example.php" size="4424" time="2015-03-14T10:23:27+13:00" unixtime="1426281807" sha1="421a5be37876fe1d042a21982ed20784d65c284f" relative="third_party/example.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT"> *</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * Copyright 2011 Facebook, Inc.</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> *</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> * Licensed under the Apache License, Version 2.0 (the "License"); you may</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> * not use this file except in compliance with the License. You may obtain</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT"> * a copy of the License at</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT"> *</token>
+  </line>
+  <line no="10">
+    <token name="T_DOC_COMMENT"> *     http://www.apache.org/licenses/LICENSE-2.0</token>
+  </line>
+  <line no="11">
+    <token name="T_DOC_COMMENT"> *</token>
+  </line>
+  <line no="12">
+    <token name="T_DOC_COMMENT"> * Unless required by applicable law or agreed to in writing, software</token>
+  </line>
+  <line no="13">
+    <token name="T_DOC_COMMENT"> * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT</token>
+  </line>
+  <line no="14">
+    <token name="T_DOC_COMMENT"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the</token>
+  </line>
+  <line no="15">
+    <token name="T_DOC_COMMENT"> * License for the specific language governing permissions and limitations</token>
+  </line>
+  <line no="16">
+    <token name="T_DOC_COMMENT"> * under the License.</token>
+  </line>
+  <line no="17">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="18"/>
+  <line no="19"/>
+  <line no="20">
+    <token name="T_REQUIRE">require</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'../src/facebook.php'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="21"/>
+  <line no="22">
+    <token name="T_COMMENT">// Create our Application instance (replace this with your appId and secret).</token>
+  </line>
+  <line no="23">
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Facebook</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="24">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'appId'</token>
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'117743971608120'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="25">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'secret'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'943716006e74d9b9283d4d5d8ab93204'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="26">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'cookie'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">true</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="27">
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="28"/>
+  <line no="29">
+    <token name="T_COMMENT">// We may or may not have this data based on a $_GET or $_COOKIE based session.</token>
+  </line>
+  <line no="30">
+    <token name="T_COMMENT">//</token>
+  </line>
+  <line no="31">
+    <token name="T_COMMENT">// If we get a session here, it means we found a correctly signed session using</token>
+  </line>
+  <line no="32">
+    <token name="T_COMMENT">// the Application Secret only Facebook and the Application know. We dont know</token>
+  </line>
+  <line no="33">
+    <token name="T_COMMENT">// if it is still valid until we make an API call using the session. A session</token>
+  </line>
+  <line no="34">
+    <token name="T_COMMENT">// can become invalid if it has already expired (should not be getting the</token>
+  </line>
+  <line no="35">
+    <token name="T_COMMENT">// session back in this case) or if the user logged out of Facebook.</token>
+  </line>
+  <line no="36">
+    <token name="T_VARIABLE">$session</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getSession</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="37"/>
+  <line no="38">
+    <token name="T_VARIABLE">$me</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">null</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="39">
+    <token name="T_COMMENT">// Session based API call.</token>
+  </line>
+  <line no="40">
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$session</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="41">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_TRY">try</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="42">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_VARIABLE">$uid</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getUser</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="43">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_VARIABLE">$me</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">api</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'/me'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="44">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CATCH">catch</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FacebookApiException</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$e</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="45">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_STRING">error_log</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$e</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="46">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="47">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="48"/>
+  <line no="49">
+    <token name="T_COMMENT">// login or logout url will be needed depending on current user state.</token>
+  </line>
+  <line no="50">
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$me</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="51">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_VARIABLE">$logoutUrl</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getLogoutUrl</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="52">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="53">
+    <token name="T_WHITESPACE">  </token>
+    <token name="T_VARIABLE">$loginUrl</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getLoginUrl</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="54">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="55"/>
+  <line no="56">
+    <token name="T_COMMENT">// This call will always work since we are fetching public data.</token>
+  </line>
+  <line no="57">
+    <token name="T_VARIABLE">$naitik</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">api</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'/naitik'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="58"/>
+  <line no="59">
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="60">
+    <token name="T_INLINE_HTML">&lt;!doctype html&gt;</token>
+  </line>
+  <line no="61">
+    <token name="T_INLINE_HTML">&lt;html xmlns:fb="http://www.facebook.com/2008/fbml"&gt;</token>
+  </line>
+  <line no="62">
+    <token name="T_INLINE_HTML">  &lt;head&gt;</token>
+  </line>
+  <line no="63">
+    <token name="T_INLINE_HTML">    &lt;title&gt;php-sdk&lt;/title&gt;</token>
+  </line>
+  <line no="64">
+    <token name="T_INLINE_HTML">    &lt;style&gt;</token>
+  </line>
+  <line no="65">
+    <token name="T_INLINE_HTML">      body {</token>
+  </line>
+  <line no="66">
+    <token name="T_INLINE_HTML">        font-family: 'Lucida Grande', Verdana, Arial, sans-serif;</token>
+  </line>
+  <line no="67">
+    <token name="T_INLINE_HTML">      }</token>
+  </line>
+  <line no="68">
+    <token name="T_INLINE_HTML">      h1 a {</token>
+  </line>
+  <line no="69">
+    <token name="T_INLINE_HTML">        text-decoration: none;</token>
+  </line>
+  <line no="70">
+    <token name="T_INLINE_HTML">        color: #3b5998;</token>
+  </line>
+  <line no="71">
+    <token name="T_INLINE_HTML">      }</token>
+  </line>
+  <line no="72">
+    <token name="T_INLINE_HTML">      h1 a:hover {</token>
+  </line>
+  <line no="73">
+    <token name="T_INLINE_HTML">        text-decoration: underline;</token>
+  </line>
+  <line no="74">
+    <token name="T_INLINE_HTML">      }</token>
+  </line>
+  <line no="75">
+    <token name="T_INLINE_HTML">    &lt;/style&gt;</token>
+  </line>
+  <line no="76">
+    <token name="T_INLINE_HTML">  &lt;/head&gt;</token>
+  </line>
+  <line no="77">
+    <token name="T_INLINE_HTML">  &lt;body&gt;</token>
+  </line>
+  <line no="78">
+    <token name="T_INLINE_HTML">    &lt;!--</token>
+  </line>
+  <line no="79">
+    <token name="T_INLINE_HTML">      We use the JS SDK to provide a richer user experience. For more info,</token>
+  </line>
+  <line no="80">
+    <token name="T_INLINE_HTML">      look here: http://github.com/facebook/connect-js</token>
+  </line>
+  <line no="81">
+    <token name="T_INLINE_HTML">    --&gt;</token>
+  </line>
+  <line no="82">
+    <token name="T_INLINE_HTML">    &lt;div id="fb-root"&gt;&lt;/div&gt;</token>
+  </line>
+  <line no="83">
+    <token name="T_INLINE_HTML">    &lt;script&gt;</token>
+  </line>
+  <line no="84">
+    <token name="T_INLINE_HTML">      window.fbAsyncInit = function() {</token>
+  </line>
+  <line no="85">
+    <token name="T_INLINE_HTML">        FB.init({</token>
+  </line>
+  <line no="86">
+    <token name="T_INLINE_HTML">          appId   : '</token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$facebook</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getAppId</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+    <token name="T_INLINE_HTML">',</token>
+  </line>
+  <line no="87">
+    <token name="T_INLINE_HTML">          session : </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">json_encode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$session</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+    <token name="T_INLINE_HTML">, // don't refetch the session when PHP already has it</token>
+  </line>
+  <line no="88">
+    <token name="T_INLINE_HTML">          status  : true, // check login status</token>
+  </line>
+  <line no="89">
+    <token name="T_INLINE_HTML">          cookie  : true, // enable cookies to allow the server to access the session</token>
+  </line>
+  <line no="90">
+    <token name="T_INLINE_HTML">          xfbml   : true // parse XFBML</token>
+  </line>
+  <line no="91">
+    <token name="T_INLINE_HTML">        });</token>
+  </line>
+  <line no="92"/>
+  <line no="93">
+    <token name="T_INLINE_HTML">        // whenever the user logs in, we refresh the page</token>
+  </line>
+  <line no="94">
+    <token name="T_INLINE_HTML">        FB.Event.subscribe('auth.login', function() {</token>
+  </line>
+  <line no="95">
+    <token name="T_INLINE_HTML">          window.location.reload();</token>
+  </line>
+  <line no="96">
+    <token name="T_INLINE_HTML">        });</token>
+  </line>
+  <line no="97">
+    <token name="T_INLINE_HTML">      };</token>
+  </line>
+  <line no="98"/>
+  <line no="99">
+    <token name="T_INLINE_HTML">      (function() {</token>
+  </line>
+  <line no="100">
+    <token name="T_INLINE_HTML">        var e = document.createElement('script');</token>
+  </line>
+  <line no="101">
+    <token name="T_INLINE_HTML">        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';</token>
+  </line>
+  <line no="102">
+    <token name="T_INLINE_HTML">        e.async = true;</token>
+  </line>
+  <line no="103">
+    <token name="T_INLINE_HTML">        document.getElementById('fb-root').appendChild(e);</token>
+  </line>
+  <line no="104">
+    <token name="T_INLINE_HTML">      }());</token>
+  </line>
+  <line no="105">
+    <token name="T_INLINE_HTML">    &lt;/script&gt;</token>
+  </line>
+  <line no="106"/>
+  <line no="107"/>
+  <line no="108">
+    <token name="T_INLINE_HTML">    &lt;h1&gt;&lt;a href="example.php"&gt;php-sdk&lt;/a&gt;&lt;/h1&gt;</token>
+  </line>
+  <line no="109"/>
+  <line no="110">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$me</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="111">
+    <token name="T_INLINE_HTML">    &lt;a href="</token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$logoutUrl</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+    <token name="T_INLINE_HTML">"&gt;</token>
+  </line>
+  <line no="112">
+    <token name="T_INLINE_HTML">      &lt;img src="http://static.ak.fbcdn.net/rsrc.php/z2Y31/hash/cxrz4k7j.gif"&gt;</token>
+  </line>
+  <line no="113">
+    <token name="T_INLINE_HTML">    &lt;/a&gt;</token>
+  </line>
+  <line no="114">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="115">
+    <token name="T_INLINE_HTML">    &lt;div&gt;</token>
+  </line>
+  <line no="116">
+    <token name="T_INLINE_HTML">      Using JavaScript &amp;amp; XFBML: &lt;fb:login-button&gt;&lt;/fb:login-button&gt;</token>
+  </line>
+  <line no="117">
+    <token name="T_INLINE_HTML">    &lt;/div&gt;</token>
+  </line>
+  <line no="118">
+    <token name="T_INLINE_HTML">    &lt;div&gt;</token>
+  </line>
+  <line no="119">
+    <token name="T_INLINE_HTML">      Without using JavaScript &amp;amp; XFBML:</token>
+  </line>
+  <line no="120">
+    <token name="T_INLINE_HTML">      &lt;a href="</token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$loginUrl</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+    <token name="T_INLINE_HTML">"&gt;</token>
+  </line>
+  <line no="121">
+    <token name="T_INLINE_HTML">        &lt;img src="http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif"&gt;</token>
+  </line>
+  <line no="122">
+    <token name="T_INLINE_HTML">      &lt;/a&gt;</token>
+  </line>
+  <line no="123">
+    <token name="T_INLINE_HTML">    &lt;/div&gt;</token>
+  </line>
+  <line no="124">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ENDIF">endif</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="125"/>
+  <line no="126">
+    <token name="T_INLINE_HTML">    &lt;h3&gt;Session&lt;/h3&gt;</token>
+  </line>
+  <line no="127">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$me</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="128">
+    <token name="T_INLINE_HTML">    &lt;pre&gt;</token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_STRING">print_r</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$session</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+    <token name="T_INLINE_HTML">&lt;/pre&gt;</token>
+  </line>
+  <line no="129"/>
+  <line no="130">
+    <token name="T_INLINE_HTML">    &lt;h3&gt;You&lt;/h3&gt;</token>
+  </line>
+  <line no="131">
+    <token name="T_INLINE_HTML">    &lt;img src="https://graph.facebook.com/</token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$uid</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+    <token name="T_INLINE_HTML">/picture"&gt;</token>
+  </line>
+  <line no="132">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$me</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'name'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="133"/>
+  <line no="134">
+    <token name="T_INLINE_HTML">    &lt;h3&gt;Your User Object&lt;/h3&gt;</token>
+  </line>
+  <line no="135">
+    <token name="T_INLINE_HTML">    &lt;pre&gt;</token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_STRING">print_r</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$me</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+    <token name="T_INLINE_HTML">&lt;/pre&gt;</token>
+  </line>
+  <line no="136">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="137">
+    <token name="T_INLINE_HTML">    &lt;strong&gt;&lt;em&gt;You are not Connected.&lt;/em&gt;&lt;/strong&gt;</token>
+  </line>
+  <line no="138">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ENDIF">endif</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="139"/>
+  <line no="140">
+    <token name="T_INLINE_HTML">    &lt;h3&gt;Naitik&lt;/h3&gt;</token>
+  </line>
+  <line no="141">
+    <token name="T_INLINE_HTML">    &lt;img src="https://graph.facebook.com/naitik/picture"&gt;</token>
+  </line>
+  <line no="142">
+    <token name="T_INLINE_HTML">    </token>
+    <token name="T_OPEN_TAG">&lt;?php </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$naitik</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'name'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CLOSE_TAG">?&gt;</token>
+  </line>
+  <line no="143">
+    <token name="T_INLINE_HTML">  &lt;/body&gt;</token>
+  </line>
+  <line no="144">
+    <token name="T_INLINE_HTML">&lt;/html&gt;</token>
+  </line>
+  <line no="145"/>
+</source>

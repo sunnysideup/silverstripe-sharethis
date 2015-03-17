@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="FacebookFeed_UpdateTask" namespace="" name="FacebookFeed_UpdateTask" abstract="false" final="false" start="4" end="22">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../code/tasks" file="FacebookFeed_UpdateTask.php" realpath="/var/www/_modules/sharethis/trunk/code/tasks/FacebookFeed_UpdateTask.php" size="530" time="2015-03-14T10:23:28+13:00" unixtime="1426281808" sha1="ae191d46f8442e1bb58ea6b370eac73222bbb61b" relative="code/tasks/FacebookFeed_UpdateTask.php"/>
+  <extends full="BuildTask" namespace="" name="BuildTask"/>
+  <member name="title" type="string" default="&quot;Update Facebook News&quot;" visibility="protected" line="6"/>
+  <member name="description" type="string" default="&quot;Checks for updates on Facebook&quot;" visibility="protected" line="8"/>
+  <method name="run" start="13" end="21" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+    </docblock>
+    <parameter name="request" byreference="false" type="{unknown}"/>
+  </method>
+</class>

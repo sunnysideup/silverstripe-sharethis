@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - simple_html_dom</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">simple_html_dom</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/code/api/thirdparty/simple_html_dom.php.xhtml#line972">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>\</small>simple_html_dom</h1>
+        <h4>simple html dom parser Paperg - in the find routine: allow us to specify that we want case insensitive testing of the value of the selector.</h4>
+        <p>Paperg - change $size from protected to public so we can easily access it<br/>Paperg - added ForceTagsClosed in the constructor which tells us whether we trust the html or not.  Default is to NOT trust it.</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class simple_html_dom
+            {<br/><ul class="none"><li>// members</li><li>public <a href="#members">$root</a>;
+                    </li><li>public array <a href="#members">$nodes</a>;
+                    </li><li>public <a href="#members">$callback</a>;
+                    </li><li>public <a href="#members">$lowercase</a>;
+                    </li><li>public <a href="#members">$original_size</a>;
+                    </li><li>public <a href="#members">$size</a>;
+                    </li><li>protected <a href="#members">$pos</a>;
+                    </li><li>protected <a href="#members">$doc</a>;
+                    </li><li>protected <a href="#members">$char</a>;
+                    </li><li>protected <a href="#members">$cursor</a>;
+                    </li><li>protected <a href="#members">$parent</a>;
+                    </li><li>protected array <a href="#members">$noise</a>;
+                    </li><li>protected string <a href="#members">$token_blank</a>;
+                    </li><li>protected string <a href="#members">$token_equal</a>;
+                    </li><li>protected string <a href="#members">$token_slash</a>;
+                    </li><li>protected string <a href="#members">$token_attr</a>;
+                    </li><li>public string <a href="#members">$_charset</a>;
+                    </li><li>public string <a href="#members">$_target_charset</a>;
+                    </li><li>protected string <a href="#members">$default_br_text</a>;
+                    </li><li>public string <a href="#members">$default_span_text</a>;
+                    </li><li>protected array <a href="#members">$self_closing_tags</a>;
+                    </li><li>protected array <a href="#members">$block_tags</a>;
+                    </li><li>protected array <a href="#members">$optional_closing_tags</a>;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/__construct.xhtml">__construct</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/__destruct.xhtml">__destruct</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/load.xhtml">load</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/load_file.xhtml">load_file</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/set_callback.xhtml">set_callback</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/remove_callback.xhtml">remove_callback</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/save.xhtml">save</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/find.xhtml">find</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/clear.xhtml">clear</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/dump.xhtml">dump</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/prepare.xhtml">prepare</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/parse.xhtml">parse</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/parse_charset.xhtml">parse_charset</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/read_tag.xhtml">read_tag</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/parse_attr.xhtml">parse_attr</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/link_nodes.xhtml">link_nodes</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/as_text_node.xhtml">as_text_node</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/skip.xhtml">skip</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/copy_skip.xhtml">copy_skip</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/copy_until.xhtml">copy_until</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/copy_until_char.xhtml">copy_until_char</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/copy_until_char_escape.xhtml">copy_until_char_escape</a>()
+                    </li><li>protected void <a title="simple_html_dom" href="../classes/simple_html_dom/remove_noise.xhtml">remove_noise</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/restore_noise.xhtml">restore_noise</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/search_noise.xhtml">search_noise</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/__toString.xhtml">__toString</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/__get.xhtml">__get</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/childNodes.xhtml">childNodes</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/firstChild.xhtml">firstChild</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/lastChild.xhtml">lastChild</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/createElement.xhtml">createElement</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/createTextNode.xhtml">createTextNode</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/getElementById.xhtml">getElementById</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/getElementsById.xhtml">getElementsById</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/getElementByTagName.xhtml">getElementByTagName</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/getElementsByTagName.xhtml">getElementsByTagName</a>()
+                    </li><li>public void <a title="simple_html_dom" href="../classes/simple_html_dom/loadFile.xhtml">loadFile</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="block_tags">
+              <strong>$block_tags</strong>
+            </li>
+            <li id="char">
+              <strong>$char</strong>
+            </li>
+            <li id="cursor">
+              <strong>$cursor</strong>
+            </li>
+            <li id="default_br_text">
+              <strong>$default_br_text</strong>
+            </li>
+            <li id="doc">
+              <strong>$doc</strong>
+            </li>
+            <li id="noise">
+              <strong>$noise</strong>
+            </li>
+            <li id="optional_closing_tags">
+              <strong>$optional_closing_tags</strong>
+            </li>
+            <li id="parent">
+              <strong>$parent</strong>
+            </li>
+            <li id="pos">
+              <strong>$pos</strong>
+            </li>
+            <li id="self_closing_tags">
+              <strong>$self_closing_tags</strong>
+            </li>
+            <li id="token_attr">
+              <strong>$token_attr</strong>
+            </li>
+            <li id="token_blank">
+              <strong>$token_blank</strong>
+            </li>
+            <li id="token_equal">
+              <strong>$token_equal</strong>
+            </li>
+            <li id="token_slash">
+              <strong>$token_slash</strong>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="_charset">
+              <strong>$_charset</strong>
+            </li>
+            <li id="_target_charset">
+              <strong>$_target_charset</strong>
+            </li>
+            <li id="callback">
+              <strong>$callback</strong>
+            </li>
+            <li id="default_span_text">
+              <strong>$default_span_text</strong>
+            </li>
+            <li id="lowercase">
+              <strong>$lowercase</strong>
+            </li>
+            <li id="nodes">
+              <strong>$nodes</strong>
+            </li>
+            <li id="original_size">
+              <strong>$original_size</strong>
+            </li>
+            <li id="root">
+              <strong>$root</strong>
+            </li>
+            <li id="size">
+              <strong>$size</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="as_text_node">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/as_text_node.xhtml">as_text_node()</a>
+            </li>
+            <li id="copy_skip">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/copy_skip.xhtml">copy_skip()</a>
+            </li>
+            <li id="copy_until">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/copy_until.xhtml">copy_until()</a>
+            </li>
+            <li id="copy_until_char">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/copy_until_char.xhtml">copy_until_char()</a>
+            </li>
+            <li id="copy_until_char_escape">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/copy_until_char_escape.xhtml">copy_until_char_escape()</a>
+            </li>
+            <li id="link_nodes">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/link_nodes.xhtml">link_nodes()</a>
+            </li>
+            <li id="parse">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/parse.xhtml">parse()</a>
+            </li>
+            <li id="parse_attr">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/parse_attr.xhtml">parse_attr()</a>
+            </li>
+            <li id="parse_charset">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/parse_charset.xhtml">parse_charset()</a>
+            </li>
+            <li id="prepare">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/prepare.xhtml">prepare()</a>
+            </li>
+            <li id="read_tag">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/read_tag.xhtml">read_tag()</a>
+            </li>
+            <li id="remove_noise">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/remove_noise.xhtml">remove_noise()</a>
+            </li>
+            <li id="skip">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/skip.xhtml">skip()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/__construct.xhtml">__construct()</a>
+            </li>
+            <li id="__destruct">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/__destruct.xhtml">__destruct()</a>
+            </li>
+            <li id="__get">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/__get.xhtml">__get()</a>
+            </li>
+            <li id="__toString">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/__toString.xhtml">__toString()</a>
+            </li>
+            <li id="childNodes">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/childNodes.xhtml">childNodes()</a>
+            </li>
+            <li id="clear">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/clear.xhtml">clear()</a>
+            </li>
+            <li id="createElement">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/createElement.xhtml">createElement()</a>
+            </li>
+            <li id="createTextNode">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/createTextNode.xhtml">createTextNode()</a>
+            </li>
+            <li id="dump">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/dump.xhtml">dump()</a>
+            </li>
+            <li id="find">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/find.xhtml">find()</a>
+            </li>
+            <li id="firstChild">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/firstChild.xhtml">firstChild()</a>
+            </li>
+            <li id="getElementById">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/getElementById.xhtml">getElementById()</a>
+            </li>
+            <li id="getElementByTagName">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/getElementByTagName.xhtml">getElementByTagName()</a>
+            </li>
+            <li id="getElementsById">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/getElementsById.xhtml">getElementsById()</a>
+            </li>
+            <li id="getElementsByTagName">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/getElementsByTagName.xhtml">getElementsByTagName()</a>
+            </li>
+            <li id="lastChild">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/lastChild.xhtml">lastChild()</a>
+            </li>
+            <li id="load">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/load.xhtml">load()</a>
+            </li>
+            <li id="loadFile">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/loadFile.xhtml">loadFile()</a>
+            </li>
+            <li id="load_file">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/load_file.xhtml">load_file()</a>
+            </li>
+            <li id="remove_callback">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/remove_callback.xhtml">remove_callback()</a>
+            </li>
+            <li id="restore_noise">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/restore_noise.xhtml">restore_noise()</a>
+            </li>
+            <li id="save">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/save.xhtml">save()</a>
+            </li>
+            <li id="search_noise">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/search_noise.xhtml">search_noise()</a>
+            </li>
+            <li id="set_callback">
+              <a title="simple_html_dom" href="../classes/simple_html_dom/set_callback.xhtml">set_callback()</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span/>
+    </footer>
+  </body>
+</html>

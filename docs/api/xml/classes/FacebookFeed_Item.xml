@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="FacebookFeed_Item" namespace="" name="FacebookFeed_Item" abstract="false" final="false" start="24" end="192">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../code/model" file="FacebookFeed_Item.php" realpath="/var/www/_modules/sharethis/trunk/code/model/FacebookFeed_Item.php" size="7108" time="2015-03-14T10:23:27+13:00" unixtime="1426281807" sha1="bed037ccd29e138d5c0b889931c14c67577bb47a" relative="code/model/FacebookFeed_Item.php"/>
+  <docblock>
+    <description compact="FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/ EXAMPLE: &#9;//Run the function with the url and a number as arguments &#9;$fb = new TheFaceBook_communicator(); &#9;$dos = $fb-&gt;fetchFBFeed('http://facebook.com/feeds/status.php?id=xxxxxx&amp;viewer=xxxxxx&amp;key=xxxxx&amp;format=rss20', 3); &#9;//Print Facebook status updates &#9;echo '&lt;ul class=&quot;fb-updates&quot;&gt;'; &#9;&#9; foreach ($dos as $do) { &#9;&#9;&#9;&#9;echo '&lt;li&gt;'; &#9;&#9;&#9;&#9;echo '&lt;span class=&quot;update&quot;&gt;' .$do-&gt;Description. '&lt;/span&gt;'; &#9;&#9;&#9;&#9;echo '&lt;span class=&quot;date&quot;&gt;' .$do-&gt;Date. '&lt;/span&gt;'; &#9;&#9;&#9;&#9;echo '&lt;span class=&quot;link&quot;&gt;&lt;a href=&quot;' .$do-&gt;Link. '&quot;&gt;more&lt;/a&gt;&lt;/span&gt;'; &#9;&#9;&#9;&#9;echo '&lt;/li&gt;'; &#9;&#9; } &#9;echo '&lt;/ul&gt;';">SEE README on getting facebook URL for RSS Feed.</description>
+  </docblock>
+  <extends full="DataObject" namespace="" name="DataObject"/>
+  <member name="db" type="array" visibility="private" line="26"/>
+  <member name="summary_fields" type="array" visibility="private" line="38"/>
+  <member name="has_one" type="array" visibility="private" line="46"/>
+  <member name="indexes" type="array" visibility="private" line="50"/>
+  <member name="casting" type="array" visibility="private" line="54"/>
+  <member name="searchable_fields" type="array" visibility="private" line="60"/>
+  <member name="default_sort" type="string" default="&quot;\&quot;Created\&quot; DESC&quot;" visibility="private" line="68"/>
+  <method name="canCreate" start="70" end="72" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="canView" start="74" end="76" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="canEdit" start="78" end="80" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="canDelete" start="82" end="84" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="member" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <member name="singular_name" type="string" default="&quot;Facebook Item&quot;" visibility="private" line="86"/>
+  <method name="i18n_singular_name" start="87" end="87" abstract="false" final="false" static="false" visibility="public"/>
+  <member name="plural_name" type="string" default="&quot;Facebook Items&quot;" visibility="private" line="89"/>
+  <method name="i18n_plural_name" start="90" end="90" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="DescriptionWithShortLinks" start="93" end="129" abstract="false" final="false" static="false" visibility="public">
+    <inline>
+      <comment value="what exactly does it do?" line="98"/>
+      <comment value="to do - what does this do and how does it need to be written????" line="101"/>
+    </inline>
+  </method>
+  <method name="replaceLinksWithProperOnes" start="131" end="176" abstract="false" final="false" static="false" visibility="protected">
+    <parameter name="text" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Print the text leading up to the URL." line="146"/>
+      <comment value="Check if the TLD is valid - or that $domain is an IP address." line="153"/>
+      <comment value="Prepend http:// if no protocol specified" line="157"/>
+      <comment value="Print the hyperlink." line="160"/>
+      <comment value="Continue text parsing from after the URL." line="169"/>
+      <comment value="Print the remainder of the text." line="173"/>
+    </inline>
+  </method>
+  <method name="getCMSFields" start="178" end="182" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="KeepOnTopNice" start="184" end="186" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="HideNice" start="188" end="190" abstract="false" final="false" static="false" visibility="public"/>
+</class>

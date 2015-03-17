@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - OAuthSignatureMethod_RSA_SHA1</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">OAuthSignatureMethod_RSA_SHA1</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/third_party/twitter_oauth/OAuth.php.xhtml#line169">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>\</small>OAuthSignatureMethod_RSA_SHA1</h1>
+        <h4>The RSA-SHA1 signature method uses the RSASSA-PKCS1-v1_5 signature algorithm as defined in [RFC3447] section 8.2 (more simply known as PKCS#1), using SHA-1 as the hash function for EMSA-PKCS1-v1_5. It is assumed that the Consumer has provided its RSA public key in a verified way to the Service Provider, in a manner which is beyond the scope of this specification.</h4>
+        <p>- Chapter 9.3 ("RSA-SHA1")</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class OAuthSignatureMethod_RSA_SHA1
+                extends <a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod.xhtml">OAuthSignatureMethod</a>
+            {<br/><ul class="none"><li>// methods</li><li>public void <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/get_name.xhtml">get_name</a>()
+                    </li><li>protected abstract void <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/fetch_public_cert.xhtml">fetch_public_cert</a>()
+                    </li><li>protected abstract void <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/fetch_private_cert.xhtml">fetch_private_cert</a>()
+                    </li><li>public void <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/build_signature.xhtml">build_signature</a>()
+                    </li><li>public void <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/check_signature.xhtml">check_signature</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="OAuthSignatureMethod">OAuthSignatureMethod</span></li><li>public abstract string <a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod/get_name.xhtml">get_name</a>()
+                        </li><li>public abstract string <a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod/build_signature.xhtml">build_signature</a>()
+                        </li><li>public bool <a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod/check_signature.xhtml">check_signature</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a href="../classes/OAuthSignatureMethod.xhtml">OAuthSignatureMethod</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="fetch_private_cert">
+              <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/fetch_private_cert.xhtml">fetch_private_cert()</a>
+            </li>
+            <li id="fetch_public_cert">
+              <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/fetch_public_cert.xhtml">fetch_public_cert()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="build_signature">
+              <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/build_signature.xhtml">build_signature()</a>
+            </li>
+            <li id="check_signature">
+              <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/check_signature.xhtml">check_signature()</a>
+            </li>
+            <li id="get_name">
+              <a title="OAuthSignatureMethod_RSA_SHA1" href="../classes/OAuthSignatureMethod_RSA_SHA1/get_name.xhtml">get_name()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod.xhtml">OAuthSignatureMethod</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="build_signature"><a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod/build_signature.xhtml">build_signature()</a>
+                — Build up the signature NOTE: The output of this function MUST NOT be urlencoded.</li>
+            <li id="check_signature"><a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod/check_signature.xhtml">check_signature()</a>
+                — Verifies that a given signature is correct</li>
+            <li id="get_name"><a title="OAuthSignatureMethod" href="../classes/OAuthSignatureMethod/get_name.xhtml">get_name()</a>
+                — Needs to return the name of the Signature Method (ie HMAC-SHA1)</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span/>
+    </footer>
+  </body>
+</html>

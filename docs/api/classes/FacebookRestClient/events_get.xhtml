@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:pu="http://schema.phpunit.de/coverage/1.0" lang="en">
+  <head>
+    <title>phpDox - Test Method</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../../classes.xhtml#"/>
+          </li>
+          <li class="separator">
+            <a title="FacebookRestClient" href="../../classes/FacebookRestClient.xhtml">FacebookRestClient</a>
+          </li>
+          <li class="separator">events_get</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#parameter">Parameter</a>
+          </li>
+          <li>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="../../source/third_party/facebookapi_php5_restlib.php.xhtml#line467">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1><small>FacebookRestClient::</small>events_get</h1>
+        <h4>Returns events according to the filters specified.</h4>
+        <p/>
+        <ul/>
+        <h2 id="signature">Signature</h2>
+        <div class="styled synopsis">
+          <code>public function events_get([int
+        $uid = null,
+            [<a title="array/string" href="../../classes/array/string.xhtml">array/string</a>
+        $eids = null,
+            [int
+        $start_time = null,
+            [int
+        $end_time = null,
+            [string
+        $rsvp_status = null]]]]] )
+            </code>
+        </div>
+        <h2 id="parameterlist">Parameters</h2>
+        <dl class="styled">
+          <dt><code>$uid</code>
+                —
+                int</dt>
+          <dd>(Optional) User associated with events. A null<br/>parameter will default to the session user.</dd>
+          <dt><code>$eids</code>
+                —
+                object</dt>
+          <dd>(Optional) Filter by these event<br/>ids. A null parameter will get all events for<br/>                           the user. (A csv list will work but is deprecated)</dd>
+          <dt><code>$start_time</code>
+                —
+                int</dt>
+          <dd>(Optional) Filter with this unix time as lower<br/>bound. A null or zero parameter indicates no<br/>                           lower bound.</dd>
+          <dt><code>$end_time</code>
+                —
+                int</dt>
+          <dd>(Optional) Filter with this UTC as upper bound.<br/>A null or zero parameter indicates no upper<br/>                           bound.</dd>
+          <dt><code>$rsvp_status</code>
+                —
+                string</dt>
+          <dd>(Optional) Only show events where the given uid<br/>has this rsvp status. This only works if you<br/>have specified a value for $uid. Values are as<br/>in events.getMembers. Null indicates to ignore<br/>                           rsvp status when filtering.</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>array</dt>
+          <dd>The events matching the query.</dd>
+        </dl>
+      </section>
+    </div>
+    <footer>
+      <span/>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - simple_html_dom_node</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">simple_html_dom_node</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/code/api/thirdparty/simple_html_dom.php.xhtml#line115">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>\</small>simple_html_dom_node</h1>
+        <h4>simple html dom node PaperG - added ability for "find" routine to lowercase the value of the selector.</h4>
+        <p>PaperG - added $tag_start to track the start position of the tag in the total byte index</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class simple_html_dom_node
+            {<br/><ul class="none"><li>// members</li><li>public <a href="#members">$nodetype</a>;
+                    </li><li>public string <a href="#members">$tag</a>;
+                    </li><li>public array <a href="#members">$attr</a>;
+                    </li><li>public array <a href="#members">$children</a>;
+                    </li><li>public array <a href="#members">$nodes</a>;
+                    </li><li>public <a href="#members">$parent</a>;
+                    </li><li>public array <a href="#members">$_</a>;
+                    </li><li>public integer <a href="#members">$tag_start</a>;
+                    </li><li>private <a href="#members">$dom</a>;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__construct.xhtml">__construct</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__destruct.xhtml">__destruct</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__toString.xhtml">__toString</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/clear.xhtml">clear</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/dump.xhtml">dump</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/dump_node.xhtml">dump_node</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/parent.xhtml">parent</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/has_child.xhtml">has_child</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/children.xhtml">children</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/first_child.xhtml">first_child</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/last_child.xhtml">last_child</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/next_sibling.xhtml">next_sibling</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/prev_sibling.xhtml">prev_sibling</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/find_ancestor_tag.xhtml">find_ancestor_tag</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/innertext.xhtml">innertext</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/outertext.xhtml">outertext</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/text.xhtml">text</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/xmltext.xhtml">xmltext</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/makeup.xhtml">makeup</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/find.xhtml">find</a>()
+                    </li><li>protected void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/seek.xhtml">seek</a>()
+                    </li><li>protected void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/match.xhtml">match</a>()
+                    </li><li>protected void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/parse_selector.xhtml">parse_selector</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__get.xhtml">__get</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__set.xhtml">__set</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__isset.xhtml">__isset</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__unset.xhtml">__unset</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/convert_text.xhtml">convert_text</a>()
+                    </li><li>public static boolean <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/is_utf8.xhtml">is_utf8</a>()
+                    </li><li>public array <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/get_display_size.xhtml">get_display_size</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getAllAttributes.xhtml">getAllAttributes</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getAttribute.xhtml">getAttribute</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/setAttribute.xhtml">setAttribute</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/hasAttribute.xhtml">hasAttribute</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/removeAttribute.xhtml">removeAttribute</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementById.xhtml">getElementById</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementsById.xhtml">getElementsById</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementByTagName.xhtml">getElementByTagName</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementsByTagName.xhtml">getElementsByTagName</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/parentNode.xhtml">parentNode</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/childNodes.xhtml">childNodes</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/firstChild.xhtml">firstChild</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/lastChild.xhtml">lastChild</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/nextSibling.xhtml">nextSibling</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/previousSibling.xhtml">previousSibling</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/hasChildNodes.xhtml">hasChildNodes</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/nodeName.xhtml">nodeName</a>()
+                    </li><li>public void <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/appendChild.xhtml">appendChild</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="dom">
+              <strong>$dom</strong>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="_">
+              <strong>$_</strong>
+            </li>
+            <li id="attr">
+              <strong>$attr</strong>
+            </li>
+            <li id="children">
+              <strong>$children</strong>
+            </li>
+            <li id="nodes">
+              <strong>$nodes</strong>
+            </li>
+            <li id="nodetype">
+              <strong>$nodetype</strong>
+            </li>
+            <li id="parent">
+              <strong>$parent</strong>
+            </li>
+            <li id="tag">
+              <strong>$tag</strong>
+            </li>
+            <li id="tag_start">
+              <strong>$tag_start</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="match">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/match.xhtml">match()</a>
+            </li>
+            <li id="parse_selector">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/parse_selector.xhtml">parse_selector()</a>
+            </li>
+            <li id="seek">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/seek.xhtml">seek()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__construct.xhtml">__construct()</a>
+            </li>
+            <li id="__destruct">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__destruct.xhtml">__destruct()</a>
+            </li>
+            <li id="__get">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__get.xhtml">__get()</a>
+            </li>
+            <li id="__isset">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__isset.xhtml">__isset()</a>
+            </li>
+            <li id="__set">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__set.xhtml">__set()</a>
+            </li>
+            <li id="__toString">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__toString.xhtml">__toString()</a>
+            </li>
+            <li id="__unset">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/__unset.xhtml">__unset()</a>
+            </li>
+            <li id="appendChild">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/appendChild.xhtml">appendChild()</a>
+            </li>
+            <li id="childNodes">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/childNodes.xhtml">childNodes()</a>
+            </li>
+            <li id="children">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/children.xhtml">children()</a>
+            </li>
+            <li id="clear">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/clear.xhtml">clear()</a>
+            </li>
+            <li id="convert_text">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/convert_text.xhtml">convert_text()</a>
+            </li>
+            <li id="dump">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/dump.xhtml">dump()</a>
+            </li>
+            <li id="dump_node">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/dump_node.xhtml">dump_node()</a>
+            </li>
+            <li id="find">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/find.xhtml">find()</a>
+            </li>
+            <li id="find_ancestor_tag">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/find_ancestor_tag.xhtml">find_ancestor_tag()</a>
+            </li>
+            <li id="firstChild">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/firstChild.xhtml">firstChild()</a>
+            </li>
+            <li id="first_child">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/first_child.xhtml">first_child()</a>
+            </li>
+            <li id="getAllAttributes">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getAllAttributes.xhtml">getAllAttributes()</a>
+            </li>
+            <li id="getAttribute">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getAttribute.xhtml">getAttribute()</a>
+            </li>
+            <li id="getElementById">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementById.xhtml">getElementById()</a>
+            </li>
+            <li id="getElementByTagName">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementByTagName.xhtml">getElementByTagName()</a>
+            </li>
+            <li id="getElementsById">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementsById.xhtml">getElementsById()</a>
+            </li>
+            <li id="getElementsByTagName">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/getElementsByTagName.xhtml">getElementsByTagName()</a>
+            </li>
+            <li id="get_display_size"><a title="simple_html_dom_node" href="../classes/simple_html_dom_node/get_display_size.xhtml">get_display_size()</a>
+                — Function to try a few tricks to determine the displayed size of an img on the page.</li>
+            <li id="hasAttribute">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/hasAttribute.xhtml">hasAttribute()</a>
+            </li>
+            <li id="hasChildNodes">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/hasChildNodes.xhtml">hasChildNodes()</a>
+            </li>
+            <li id="has_child">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/has_child.xhtml">has_child()</a>
+            </li>
+            <li id="innertext">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/innertext.xhtml">innertext()</a>
+            </li>
+            <li id="is_utf8"><a title="simple_html_dom_node" href="../classes/simple_html_dom_node/is_utf8.xhtml">is_utf8()</a>
+                — Returns true if $string is valid UTF-8 and false otherwise.</li>
+            <li id="lastChild">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/lastChild.xhtml">lastChild()</a>
+            </li>
+            <li id="last_child">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/last_child.xhtml">last_child()</a>
+            </li>
+            <li id="makeup">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/makeup.xhtml">makeup()</a>
+            </li>
+            <li id="nextSibling">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/nextSibling.xhtml">nextSibling()</a>
+            </li>
+            <li id="next_sibling">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/next_sibling.xhtml">next_sibling()</a>
+            </li>
+            <li id="nodeName">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/nodeName.xhtml">nodeName()</a>
+            </li>
+            <li id="outertext">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/outertext.xhtml">outertext()</a>
+            </li>
+            <li id="parent">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/parent.xhtml">parent()</a>
+            </li>
+            <li id="parentNode">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/parentNode.xhtml">parentNode()</a>
+            </li>
+            <li id="prev_sibling">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/prev_sibling.xhtml">prev_sibling()</a>
+            </li>
+            <li id="previousSibling">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/previousSibling.xhtml">previousSibling()</a>
+            </li>
+            <li id="removeAttribute">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/removeAttribute.xhtml">removeAttribute()</a>
+            </li>
+            <li id="setAttribute">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/setAttribute.xhtml">setAttribute()</a>
+            </li>
+            <li id="text">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/text.xhtml">text()</a>
+            </li>
+            <li id="xmltext">
+              <a title="simple_html_dom_node" href="../classes/simple_html_dom_node/xmltext.xhtml">xmltext()</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span/>
+    </footer>
+  </body>
+</html>

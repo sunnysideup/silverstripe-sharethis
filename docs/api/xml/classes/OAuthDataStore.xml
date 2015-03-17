@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="OAuthDataStore" namespace="" name="OAuthDataStore" abstract="false" final="false" start="700" end="724">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../third_party/twitter_oauth" file="OAuth.php" realpath="/var/www/_modules/sharethis/trunk/third_party/twitter_oauth/OAuth.php" size="26556" time="2015-03-14T10:23:27+13:00" unixtime="1426281807" sha1="9dcf674ba9395f89cdc13384736b9c9f7ffcc651" relative="third_party/twitter_oauth/OAuth.php"/>
+  <method name="lookup_consumer" start="701" end="703" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="consumer_key" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="lookup_token" start="705" end="707" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="consumer" byreference="false" type="{unknown}"/>
+    <parameter name="token_type" byreference="false" type="{unknown}"/>
+    <parameter name="token" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="lookup_nonce" start="709" end="711" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="consumer" byreference="false" type="{unknown}"/>
+    <parameter name="token" byreference="false" type="{unknown}"/>
+    <parameter name="nonce" byreference="false" type="{unknown}"/>
+    <parameter name="timestamp" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="new_request_token" start="713" end="715" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="consumer" byreference="false" type="{unknown}"/>
+    <parameter name="callback" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="new_access_token" start="717" end="722" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="token" byreference="false" type="{unknown}"/>
+    <parameter name="consumer" byreference="false" type="{unknown}"/>
+    <parameter name="verifier" byreference="false" type="{unknown}" default="null"/>
+  </method>
+</class>

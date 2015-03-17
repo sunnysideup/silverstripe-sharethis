@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - TheFaceBook_communicator</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">TheFaceBook_communicator</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/code/api/TheFaceBook_communicator.php.xhtml#line25">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>\</small>TheFaceBook_communicator</h1>
+        <h4>STOLEN FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/ EXAMPLE: 	//Run the function with the url and a number as arguments 	$fb = new TheFaceBook_communicator(); 	$dos = $fb-&gt;fetchFBFeed('http://facebook.com/feeds/status.php?id=xxxxxx&amp;viewer=xxxxxx&amp;key=xxxxx&amp;format=rss20', 3); 	//Print Facebook status updates 	echo '&lt;ul class="fb-updates"&gt;'; 		 foreach ($dos as $do) { 				echo '&lt;li&gt;'; 				echo '&lt;span class="update"&gt;' .$do-&gt;Description. '&lt;/span&gt;'; 				echo '&lt;span class="date"&gt;' .$do-&gt;Date. '&lt;/span&gt;'; 				echo '&lt;span class="link"&gt;&lt;a href="' .$do-&gt;Link. '"&gt;more&lt;/a&gt;&lt;/span&gt;'; 				echo '&lt;/li&gt;'; 		 } 	echo '&lt;/ul&gt;';</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class TheFaceBook_communicator
+                extends <a title="RestfulServer" href="../classes/RestfulServer.xhtml">RestfulServer</a>
+            {<br/><ul class="none"><li>// methods</li><li>public void <a title="TheFaceBook_communicator" href="../classes/TheFaceBook_communicator/fetchFBFeed.xhtml">fetchFBFeed</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a href="../classes/RestfulServer.xhtml">RestfulServer</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="fetchFBFeed"><a title="TheFaceBook_communicator" href="../classes/TheFaceBook_communicator/fetchFBFeed.xhtml">fetchFBFeed()</a>
+                — returns DataObjectSet</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span/>
+    </footer>
+  </body>
+</html>

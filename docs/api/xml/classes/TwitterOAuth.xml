@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="TwitterOAuth" namespace="" name="TwitterOAuth" abstract="false" final="false" start="18" end="248">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../third_party/twitter_oauth" file="TwitterOAuthConsumer.php" realpath="/var/www/_modules/sharethis/trunk/third_party/twitter_oauth/TwitterOAuthConsumer.php" size="7825" time="2015-03-14T10:23:27+13:00" unixtime="1426281807" sha1="e4a985e3e036758a916e070dcec9ec5eb1dc57eb" relative="third_party/twitter_oauth/TwitterOAuthConsumer.php"/>
+  <docblock>
+    <description compact="Twitter OAuth class"/>
+  </docblock>
+  <member name="http_code" type="{unknown}" visibility="public" line="20"/>
+  <member name="url" type="{unknown}" visibility="public" line="22"/>
+  <member name="host" type="string" default="&quot;https://api.twitter.com/1.1/&quot;" visibility="public" line="24"/>
+  <member name="timeout" type="integer" default="30" visibility="public" line="26"/>
+  <member name="connecttimeout" type="integer" default="30" visibility="public" line="28"/>
+  <member name="ssl_verifypeer" type="{unknown}" default="FALSE" visibility="public" line="30"/>
+  <member name="format" type="string" default="'json'" visibility="public" line="32"/>
+  <member name="decode_json" type="{unknown}" default="TRUE" visibility="public" line="34"/>
+  <member name="http_info" type="{unknown}" visibility="public" line="36"/>
+  <member name="useragent" type="string" default="'TwitterOAuth v0.2.0-beta2'" visibility="public" line="38"/>
+  <method name="accessTokenURL" start="48" end="48" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set API URLS"/>
+    </docblock>
+  </method>
+  <method name="authenticateURL" start="49" end="49" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="authorizeURL" start="50" end="50" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="requestTokenURL" start="51" end="51" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="lastStatusCode" start="56" end="56" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Debug helpers"/>
+    </docblock>
+  </method>
+  <method name="lastAPICall" start="57" end="57" abstract="false" final="false" static="false" visibility="public"/>
+  <constructor name="__construct" start="62" end="70" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="construct TwitterOAuth object"/>
+    </docblock>
+    <parameter name="consumer_key" byreference="false" type="{unknown}"/>
+    <parameter name="consumer_secret" byreference="false" type="{unknown}"/>
+    <parameter name="oauth_token" byreference="false" type="{unknown}" default="NULL"/>
+    <parameter name="oauth_token_secret" byreference="false" type="{unknown}" default="NULL"/>
+  </constructor>
+  <method name="getRequestToken" start="78" end="87" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get a request_token from Twitter"/>
+      <returns value="a key/value array containing oauth_token and oauth_token_secret"/>
+    </docblock>
+    <parameter name="oauth_callback" byreference="false" type="{unknown}" default="NULL"/>
+  </method>
+  <method name="getAuthorizeURL" start="94" end="103" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the authorize URL"/>
+      <returns value="a string"/>
+    </docblock>
+    <parameter name="token" byreference="false" type="{unknown}"/>
+    <parameter name="sign_in_with_twitter" byreference="false" type="{unknown}" default="TRUE"/>
+  </method>
+  <method name="getAccessToken" start="114" end="123" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Exchange request token and secret for an access token and secret, to sign API calls."/>
+      <returns value="array(&quot;oauth_token&quot; =&gt; &quot;the-access-token&quot;,">"oauth_token_secret" =&gt; "the-access-secret",
+               "user_id" =&gt; "9436992",
+               "screen_name" =&gt; "abraham")</returns>
+    </docblock>
+    <parameter name="oauth_verifier" byreference="false" type="{unknown}" default="FALSE"/>
+  </method>
+  <method name="getXAuthToken" start="134" end="143" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="One time exchange of username and password for access token and secret."/>
+      <returns value="array(&quot;oauth_token&quot; =&gt; &quot;the-access-token&quot;,">"oauth_token_secret" =&gt; "the-access-secret",
+               "user_id" =&gt; "9436992",
+               "screen_name" =&gt; "abraham",
+               "x_auth_expires" =&gt; "0")</returns>
+    </docblock>
+    <parameter name="username" byreference="false" type="{unknown}"/>
+    <parameter name="password" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="get" start="148" end="154" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="GET wrapper for oAuthRequest."/>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <parameter name="parameters" byreference="false" type="array"/>
+  </method>
+  <method name="post" start="159" end="165" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="POST wrapper for oAuthRequest."/>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <parameter name="parameters" byreference="false" type="array"/>
+  </method>
+  <method name="delete" start="170" end="176" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="DELETE wrapper for oAuthReqeust."/>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <parameter name="parameters" byreference="false" type="array"/>
+  </method>
+  <method name="oAuthRequest" start="181" end="193" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Format and sign an OAuth / API request"/>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <parameter name="method" byreference="false" type="{unknown}"/>
+    <parameter name="parameters" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="http" start="200" end="234" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Make an HTTP request"/>
+      <return description="results" type="object">
+        <type full="API" namespace="" name="API"/>
+      </return>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <parameter name="method" byreference="false" type="{unknown}"/>
+    <parameter name="postfields" byreference="false" type="{unknown}" default="NULL"/>
+    <inline>
+      <comment value="Curl settings" line="203"/>
+    </inline>
+  </method>
+  <method name="getHeader" start="239" end="247" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the header info to store."/>
+    </docblock>
+    <parameter name="ch" byreference="false" type="{unknown}"/>
+    <parameter name="header" byreference="false" type="{unknown}"/>
+  </method>
+</class>

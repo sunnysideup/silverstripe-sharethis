@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="SocialNetworkingModelAdmin" namespace="" name="SocialNetworkingModelAdmin" abstract="false" final="false" start="7" end="20">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../code/cms" file="SocialNetworkingModelAdmin.php" realpath="/var/www/_modules/sharethis/trunk/code/cms/SocialNetworkingModelAdmin.php" size="431" time="2015-03-14T10:23:28+13:00" unixtime="1426281808" sha1="b0678d3fd7379ea7de2cbec8014c99f3d2257b5e" relative="code/cms/SocialNetworkingModelAdmin.php"/>
+  <docblock>
+    <description compact="author: nicolaas[at]sunnysideup.co.nz description: manages social networking data objects"/>
+  </docblock>
+  <extends full="ModelAdmin" namespace="" name="ModelAdmin"/>
+  <member name="managed_models" type="array" visibility="private" line="9"/>
+  <member name="url_segment" type="string" default="'social'" visibility="private" line="16"/>
+  <member name="menu_title" type="string" default="'Social Media'" visibility="private" line="18"/>
+</class>

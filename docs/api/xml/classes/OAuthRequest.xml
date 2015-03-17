@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="OAuthRequest" namespace="" name="OAuthRequest" abstract="false" final="false" start="228" end="487">
+  <file path="/var/www/_modules/sharethis/trunk/docs/en/phpdox/../../../third_party/twitter_oauth" file="OAuth.php" realpath="/var/www/_modules/sharethis/trunk/third_party/twitter_oauth/OAuth.php" size="26556" time="2015-03-14T10:23:27+13:00" unixtime="1426281807" sha1="9dcf674ba9395f89cdc13384736b9c9f7ffcc651" relative="third_party/twitter_oauth/OAuth.php"/>
+  <member name="parameters" type="{unknown}" visibility="private" line="229"/>
+  <member name="http_method" type="{unknown}" visibility="private" line="230"/>
+  <member name="http_url" type="{unknown}" visibility="private" line="231"/>
+  <member name="base_string" type="{unknown}" visibility="public" line="233"/>
+  <member name="version" type="string" default="'1.0'" visibility="public" line="234"/>
+  <member name="POST_INPUT" type="string" default="'php://input'" visibility="public" line="235"/>
+  <constructor name="__construct" start="237" end="243" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="http_method" byreference="false" type="{unknown}"/>
+    <parameter name="http_url" byreference="false" type="{unknown}"/>
+    <parameter name="parameters" byreference="false" type="{unknown}" default="NULL"/>
+  </constructor>
+  <method name="from_request" start="249" end="295" abstract="false" final="false" static="true" visibility="public">
+    <docblock>
+      <description compact="attempt to build up a request from what was passed to the server"/>
+    </docblock>
+    <parameter name="http_method" byreference="false" type="{unknown}" default="NULL"/>
+    <parameter name="http_url" byreference="false" type="{unknown}" default="NULL"/>
+    <parameter name="parameters" byreference="false" type="{unknown}" default="NULL"/>
+    <inline>
+      <comment value="We weren't handed any parameters, so let's find the ones relevant to" line="260"/>
+      <comment value="this request." line="261"/>
+      <comment value="If you run XML-RPC or similar you should use this to provide your own" line="262"/>
+      <comment value="parsed parameter-list" line="263"/>
+      <comment value="Find request headers" line="265"/>
+      <comment value="Parse the query-string to find GET parameters" line="268"/>
+      <comment value="It's a POST request of the proper content-type, so parse POST" line="271"/>
+      <comment value="parameters and add those overriding any duplicates from GET" line="272"/>
+      <comment value="We have a Authorization-header with OAuth data. Parse the header" line="283"/>
+      <comment value="and add those overriding any duplicates from GET or POST" line="284"/>
+    </inline>
+  </method>
+  <method name="from_consumer_and_token" start="300" end="312" abstract="false" final="false" static="true" visibility="public">
+    <docblock>
+      <description compact="pretty much a helper function to set up the request"/>
+    </docblock>
+    <parameter name="consumer" byreference="false" type="{unknown}"/>
+    <parameter name="token" byreference="false" type="{unknown}"/>
+    <parameter name="http_method" byreference="false" type="{unknown}"/>
+    <parameter name="http_url" byreference="false" type="{unknown}"/>
+    <parameter name="parameters" byreference="false" type="{unknown}" default="NULL"/>
+  </method>
+  <method name="set_parameter" start="314" end="327" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+    <parameter name="value" byreference="false" type="{unknown}"/>
+    <parameter name="allow_duplicates" byreference="false" type="{unknown}" default="true"/>
+    <inline>
+      <comment value="We have already added parameter(s) with this name, so add to the list" line="316"/>
+      <comment value="This is the first duplicate, so transform scalar (string)" line="318"/>
+      <comment value="into an array so we can add the duplicates" line="319"/>
+    </inline>
+  </method>
+  <method name="get_parameter" start="329" end="331" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="get_parameters" start="333" end="335" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="unset_parameter" start="337" end="339" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="get_signable_parameters" start="345" end="356" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="The request parameters, sorted and concatenated into a normalized string."/>
+      <return type="string"/>
+    </docblock>
+    <inline>
+      <comment value="Grab all parameters" line="346"/>
+      <comment value="Remove oauth_signature if present" line="349"/>
+      <comment value="Ref: Spec: 9.1.1 (&quot;The oauth_signature parameter MUST be excluded.&quot;)" line="350"/>
+    </inline>
+  </method>
+  <method name="get_signature_base_string" start="365" end="375" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Returns the base string of this request">The base string defined as the method, the url
+and the parameters (normalized), each urlencoded
+and the concated with &amp;.</description>
+    </docblock>
+  </method>
+  <method name="get_normalized_http_method" start="380" end="382" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="just uppercases the http method"/>
+    </docblock>
+  </method>
+  <method name="get_normalized_http_url" start="388" end="403" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="parses the url and rebuilds it to be scheme://host/path"/>
+    </docblock>
+  </method>
+  <method name="to_url" start="408" end="415" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="builds a url usable for a GET request"/>
+    </docblock>
+  </method>
+  <method name="to_postdata" start="420" end="422" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="builds the data one would send in a POST request"/>
+    </docblock>
+  </method>
+  <method name="to_header" start="427" end="449" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="builds the Authorization: header"/>
+    </docblock>
+    <parameter name="realm" byreference="false" type="{unknown}" default="null"/>
+  </method>
+  <method name="__toString" start="451" end="453" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="sign_request" start="456" end="464" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="signature_method" byreference="false" type="{unknown}"/>
+    <parameter name="consumer" byreference="false" type="{unknown}"/>
+    <parameter name="token" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="build_signature" start="466" end="469" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="signature_method" byreference="false" type="{unknown}"/>
+    <parameter name="consumer" byreference="false" type="{unknown}"/>
+    <parameter name="token" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="generate_timestamp" start="474" end="476" abstract="false" final="false" static="true" visibility="private">
+    <docblock>
+      <description compact="util function: current timestamp"/>
+    </docblock>
+  </method>
+  <method name="generate_nonce" start="481" end="486" abstract="false" final="false" static="true" visibility="private">
+    <docblock>
+      <description compact="util function: current nonce"/>
+    </docblock>
+  </method>
+</class>
