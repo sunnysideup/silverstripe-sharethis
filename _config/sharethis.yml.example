@@ -1,4 +1,6 @@
-
+###################################
+# sharethis
+###################################
 
 ShareThisSTE:
   #true by default
@@ -42,3 +44,7 @@ ShareThisDataObject:
       category: "Social Media"
       help: "Edit relationships, links and data of various social media platforms"
       sort: 0
+
+
+###################################
+###################################
