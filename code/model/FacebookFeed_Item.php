@@ -101,7 +101,6 @@ class FacebookFeed_Item extends DataObject{
 						//to do - what does this do and how does it need to be written????
 						$element->innertext = preg_replace("#(www(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'http://$1$4'", $element->innertext);
 						$element->innertext = preg_replace("#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">click here</a>$4'", $element->innertext);
-						$element->innertext = str_replace('http//', 'http://', $element->innertext);
 					}
 					else {
 						$element->innertext = $this->replaceLinksWithProperOnes($element->innertext);
@@ -110,6 +109,8 @@ class FacebookFeed_Item extends DataObject{
 			}
 
 			$dom = new DOMDocument();
+			$html = str_replace('http//', 'http://', $html);
+			$this->Link = str_replace('http//', 'http://', $this->Link);
 			@$dom->loadHTML($html);
 			if($dom) {
 				$dom->preserveWhiteSpace = false;
