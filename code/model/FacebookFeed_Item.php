@@ -109,8 +109,12 @@ class FacebookFeed_Item extends DataObject{
 			}
 
 			$dom = new DOMDocument();
+			// start hack!
 			$html = str_replace('http//', 'http://', $html);
+			$html = str_replace('http://http://', 'http://', $html);
 			$this->Link = str_replace('http//', 'http://', $this->Link);
+			$this->Link = str_replace('http//http://', 'http://', $this->Link);
+			// end hack!
 			@$dom->loadHTML($html);
 			if($dom) {
 				$dom->preserveWhiteSpace = false;
