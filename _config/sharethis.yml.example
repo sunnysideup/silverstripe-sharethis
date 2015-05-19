@@ -13,7 +13,7 @@ ShareThisSTE:
   excluded_icons:
     - myspace
   always_include_in:
-    - BlogEntry
+    - BlogPost
   never_include_in:
     - HomePage
 
@@ -21,7 +21,7 @@ SocialNetworksSTE
   #true by default
   use_font_awesome: false
   always_include_in:
-    - BlogEntry
+    - BlogPost
   never_include_in:
     - HomePage
 

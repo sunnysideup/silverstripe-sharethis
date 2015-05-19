@@ -163,8 +163,10 @@ class ShareThisSTE extends SiteTreeExtension {
 	protected function makeBookmarks($field) {
 		$finalBookmarks = array();
 		$bookmarks = ShareThisOptions::get_page_specific_data($this->owner->Title, $this->owner->Link(), $this->owner->MetaDescription);
-		$objects = ShareThisDataObject::get()->filter($field, 1)->sort(array('Sort' => 'ASC', 'Title' => 'ASC'));
-		if($objects->exists()) {
+		$objects = ShareThisDataObject::get()
+			->filter($field, 1)
+			->sort(array('Sort' => 'ASC', 'Title' => 'ASC'));
+		if($objects->count()) {
 			foreach($objects as $obj) {
 				if(isset($bookmarks[$obj->Title])) {
 					$finalBookmarks[$obj->Title] = $bookmarks[$obj->Title];

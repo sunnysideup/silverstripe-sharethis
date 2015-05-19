@@ -110,6 +110,22 @@ class ShareThisDataObject extends DataObject implements PermissionProvider  {
 		//$objects->delete();
 	}
 
+	function validate(){
+		$result = parent::validate();
+		$bookmarks = ShareThisOptions::get_page_specific_data("", "", "");
+		if(!isset($bookmarks[$this->Title])) {
+			$result->error(sprintf(
+				_t(
+					'ShareThisDataObject.NON_EXISTING_TITLE',
+					'This social plaform "%s" does not exist.  Please change / delete the this entry.'
+				),
+				$this->Title
+			));
+		}
+
+		return $result;
+	}
+
 	function requireDefaultRecords() {
 		parent::requireDefaultRecords();
 		$actualArray = ShareThisOptions::get_general_data();
