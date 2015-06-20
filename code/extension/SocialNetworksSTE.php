@@ -12,7 +12,7 @@ class SocialNetworksSTE extends SiteTreeExtension {
 	 * Use the font-awesome icon collection?
 	 * @var Boolean
 	 */
-	private static $use_font_awesome = true;
+	private static $use_font_awesome = false;
 
 	/**
 	 * list of sitetree extending classnames where
