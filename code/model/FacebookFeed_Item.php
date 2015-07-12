@@ -36,6 +36,7 @@ class FacebookFeed_Item extends DataObject{
 
 
 	private static $summary_fields = array(
+		"Created.Nice" => "Created",
 		"FacebookFeed_Page.Title" => "Feed",
 		"Title" => "Title",
 		"KeepOnTopNice" => "Keep on top",
