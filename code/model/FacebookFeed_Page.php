@@ -205,8 +205,8 @@ class FacebookFeed_Page extends DataObject  {
 
 	function requireDefaultRecords(){
 		parent::requireDefaultRecords();
-		$result = mysql_query("SHOW COLUMNS FROM \"FacebookFeed_Page\" LIKE 'RSSURL'");
-		if((mysql_num_rows($result))) {
+		$result = DB::query("SHOW COLUMNS FROM \"FacebookFeed_Page\" LIKE 'RSSURL'");
+		if((count($result))) {
 			DB::query("
 				Update  FacebookFeed_Page SET FacebookPageID = SUBSTRING_INDEX(SUBSTRING_INDEX(\"RSSURL\", 'id=', 2), 'id=', -1)  WHERE FacebookPageID IS NULL or FacebookPageID = '';
 			");
