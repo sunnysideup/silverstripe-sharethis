@@ -207,6 +207,7 @@ class FacebookFeed_Page extends DataObject  {
 		parent::requireDefaultRecords();
 		$result = DB::query("SHOW COLUMNS FROM \"FacebookFeed_Page\" LIKE 'RSSURL'");
 		if((count($result))) {
+			DB::alteration_message("adding FaceBookPage ID", "created");
 			DB::query("
 				Update  FacebookFeed_Page SET FacebookPageID = SUBSTRING_INDEX(SUBSTRING_INDEX(\"RSSURL\", 'id=', 2), 'id=', -1)  WHERE FacebookPageID IS NULL or FacebookPageID = '';
 			");
