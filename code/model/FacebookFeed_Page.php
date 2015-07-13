@@ -27,7 +27,7 @@ class FacebookFeed_Page extends DataObject  {
 
 	private static $db = array(
 		"Title" => "Varchar(244)",
-		'RSSURL' => 'Varchar(255)'
+		'FacebookPageID' => 'Varchar(40)'
 	);
 
 	private static $has_many = array(
@@ -59,10 +59,9 @@ class FacebookFeed_Page extends DataObject  {
 		$fields->addFieldToTab(
 			"Root.Main",
 			new LiteralField(
-				"HowToFindRSS",
+				"HowToFindPageID",
 				"<p>
-				The facebook RSS link format is like this https://www.facebook.com/feeds/page.php?format=rss20&id=XXX
-				To find the id value, you can follow these steps :</p>
+				To find the Facebook Page ID value, you can follow these steps :</p>
 				<ol>
 					<li>Open a new tab and open <a href=\"http://www.facebook.com\" target=\"_blank\">facebook</a></li>
 					<li>Find your page (e.g. https://www.facebook.com/EOSAsia)</li>
@@ -70,8 +69,6 @@ class FacebookFeed_Page extends DataObject  {
 					<li>Go to <a href=\"http://findmyfacebookid.com\" target=\"_blank\">http://findmyfacebookid.com</a></li>
 					<li>Enter http://www.facebook.com/EOSAsia</li>
 					<li>You'll get the answer (e.g. 357864420974239)</li>
-					<li>Add this ID to the link - like this: https://www.facebook.com/feeds/page.php?format=rss20&id=357864420974239</li>
-					<li>This is the link you need to add in the field above</li>
 				</ol>"
 			)
 		);
@@ -141,10 +138,78 @@ class FacebookFeed_Page extends DataObject  {
 		return $this->getComponents('Items', 'Hide = 0', null, '', $limit);
 	}
 
-	public function Fetch($limit = 10){
-		if($this->RSSURL) {
-			$fb = new FacebookFeed_Item_Communicator();
-			$fb->fetchFBFeed($this->RSSURL, $limit, $this->ID);
+	public function Fetch($verbose = false){
+		$count = 0;
+		if($this->FacebookPageID) {
+			$items = SilverstripeFacebookConnector::get_feed($this->FacebookPageID);
+			if($items) {
+				foreach($items as $item) {
+					if(!FacebookFeed_Item::get()->filter(array("UID" => $item["id"]))->first()) {
+						$count++;
+						$message = isset($item["message"]) ? $item["message"] : "";
+						//Converts UTF-8 into ISO-8859-1 to solve special symbols issues
+						$message = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $message);
+						$message = $this->stripUnsafe($message);
+						//Get status update time
+						$pubDate = strtotime(isset($item["created_time"]) ? $item["created_time"] : "today");
+						$convertedDate = gmdate($timeFormat = 'Y-m-d', $pubDate);  //Customize this to your liking
+						//Get link to update
+						//Store values in array
+						$obj = new FacebookFeed_Item();
+						$obj->UID = $item["id"];
+						$obj->Title = (string) (isset($item["name"]) ? $item["name"] : "");
+						$obj->Date = $convertedDate;
+						$obj->Author = (string) (isset($item["from"]["name"]) ? $item["from"]["name"] : "");
+						$obj->Link = (string) (isset($item["link"]) ? $item["link"] : "");
+						$obj->PictureLink = (string) (isset($item["full_picture"]) ? $item["full_picture"] : "");
+						$obj->Description = $message;
+						$obj->FacebookFeed_PageID = $this->ID;
+						$obj->write();
+					}
+				}
+			}
+			else {
+				if($verbose) {
+					DB::alteration_message("ERROR: no data returned", "deleted");
+				}
+			}
+			if($count == 0 && $verbose) {
+				DB::alteration_message("Nothing to add.");
+			}
+		}
+		else {
+			if($verbose) {
+				DB::alteration_message("ERROR: no Facebook Page ID provided", "deleted");
+			}
+		}
+		if($count && $verbose) {
+			DB::alteration_message("Added $count items", "created");
+		}
+	}
+
+	function stripUnsafe($string) {
+    // Unsafe HTML tags that members may abuse
+		$unsafe=array(
+			'/onmouseover="(.*?)"/is',
+			'/onclick="(.*?)"/is',
+			'/style="(.*?)"/is',
+			'/target="(.*?)"/is',
+			'/onunload="(.*?)"/is',
+			'/rel="(.*?)"/is',
+			'/<a(.*?)>/is',
+			'/<\/a>/is'
+		);
+		$string= preg_replace($unsafe, " ", $string);
+		return $string;
+	}
+
+	function requireDefaultRecords(){
+		parent::requireDefaultRecords();
+		$result = mysql_query("SHOW COLUMNS FROM \"FacebookFeed_Page\" LIKE 'RSSURL'");
+		if((mysql_num_rows($result))) {
+			DB::query("
+				Update  FacebookFeed_Page SET FacebookPageID = SUBSTRING_INDEX(SUBSTRING_INDEX(\"RSSURL\", 'id=', 2), 'id=', -1)  WHERE FacebookPageID IS NULL or FacebookPageID = '';
+			");
 		}
 	}
 

@@ -20,7 +20,7 @@ Nicolaas Francken [at] sunnysideup.co.nz
 
 Requirements
 -----------------------------------------------
-see composer.json
+see composer.json: facebook SDK
 HIGHLY RECOMMENDED: dataobjectsorter:
 - https://github.com/sunnysideup/silverstripe-dataobjectsorter
 - http://sunny.svnrepository.com/svn/sunny-side-up-general/dataobjectsorter

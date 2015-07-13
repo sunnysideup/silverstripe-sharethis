@@ -11,11 +11,11 @@ class FacebookFeed_UpdateTask extends BuildTask {
 	 *
 	 */
 	function run($request) {
-		$facebookPages = DataObject::get('FacebookFeed_Page');
-		if($facebookPages && $facebookPages->Count()) {
+		$facebookPages = FacebookFeed_Page::get();
+		if($facebookPages->Count()) {
 			foreach($facebookPages as $facebookPage) {
 				DB::alteration_message("Facebook page #{$facebookPage->ID} '$facebookPage->Title' updated", 'changed');
-				$facebookPage->Fetch();
+				$facebookPage->Fetch(true);
 			}
 		}
 	}

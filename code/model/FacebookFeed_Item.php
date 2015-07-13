@@ -24,14 +24,15 @@
 class FacebookFeed_Item extends DataObject{
 
 	private static $db = array(
+		"Title" => "varchar(255)",
 		"KeepOnTop" => "Boolean",
 		"Hide" => "Boolean",
 		"UID" => "varchar(32)",
-		"Title" => "varchar(255)",
 		"Author" => "Varchar(244)",
 		"Description" => "HTMLText",
+		"DescriptionWithShortLink" => "HTMLText",
 		"Link" => "Varchar(244)",
-		"Date" => "Date"
+		"PictureLink" => "Text"
 	);
 
 
@@ -53,7 +54,6 @@ class FacebookFeed_Item extends DataObject{
 	);
 
 	private static $casting = array(
-		'DescriptionWithShortLinks' => 'HTMLText',
 		'KeepOnTopNice' => 'Varchar',
 		'HideNice' => 'Varchar'
 	);
@@ -90,44 +90,22 @@ class FacebookFeed_Item extends DataObject{
 	private static $plural_name = "Facebook Items";
 		function i18n_plural_name() { return "Facebook Items";}
 
+	public function onBeforeWrite() {
+		parent::onBeforeWrite();
+		$this->DescriptionWithShortLink = $this->Description;
+		//$this->DescriptionWithShortLink = $this->createDescriptionWithShortLinks();
+	}
 
-	function DescriptionWithShortLinks() {
+	protected function createDescriptionWithShortLinks() {
 		require_once(Director::baseFolder()."/".SS_SHARETHIS_DIR.'/code/api/thirdparty/simple_html_dom.php');
 		$html = str_get_html($this->Description);
 		if($html) {
 			foreach($html->find('text') as $element) {
 				//what exactly does it do?
 				if(! in_array($element->parent()->tag, array('a', 'img'))) {
-					if(phpversion() < 5.4) {
-						//to do - what does this do and how does it need to be written????
-						$element->innertext = preg_replace("#(www(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'http://$1$4'", $element->innertext);
-						$element->innertext = preg_replace("#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie", "'<a href=\"$1\" target=\"_blank\">click here</a>$4'", $element->innertext);
-					}
-					else {
-						$element->innertext = $this->replaceLinksWithProperOnes($element->innertext);
-					}
+					$element->innertext = $this->replaceLinksWithProperOnes($element->innertext);
 				}
 			}
-
-			$dom = new DOMDocument();
-			// start hack!
-			$html = str_replace('http//', 'http://', $html);
-			$html = str_replace('http://http://', 'http://', $html);
-			$this->Link = str_replace('http//', 'http://', $this->Link);
-			$this->Link = str_replace('http//http://', 'http://', $this->Link);
-			// end hack!
-			@$dom->loadHTML($html);
-			if($dom) {
-				$dom->preserveWhiteSpace = false;
-				$images = $dom->getElementsByTagName('img');
-				foreach ($images as $image) {
-					$link = $dom->createElement('a');
-					$link->setAttribute('href', $this->Link);
-					$image->parentNode->replaceChild($link, $image);
-					$link->appendChild($image);
-				}
-			}
-			return $dom->saveHTML();
 		}
 		else {
 			$this->Hide = true;
@@ -185,6 +163,19 @@ class FacebookFeed_Item extends DataObject{
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->removeByName("UID");
+		$fields->removeByName("PictureLink");
+		if($this->PictureLink) {
+			$fields->addFieldToTab("Root.Main", new LiteralField("PictureLinkIMG", "<img src=\"".$this->PictureLink."\" alt=\"\" />"), "Author");
+		}
+		if($this->Link) {
+			$fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
+			$fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
+			$fields->addFieldToTab("Root.RawData", new TextField("Link", "Link"));
+		}
+		if($this->Description) {
+			$fields->addFieldToTab("Root.RawData", new HtmlEditorField("Description"));
+			$fields->addFieldToTab("Root.Main", new HtmlEditorField("DescriptionWithShortLink", "Edited Link"));
+		}
 		return $fields;
 	}
 

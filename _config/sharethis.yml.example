@@ -45,6 +45,10 @@ ShareThisDataObject:
       help: "Edit relationships, links and data of various social media platforms"
       sort: 0
 
+SilverstripeFacebookConnector:
+  app_id: ""
+  app_secret: ""
+
 
 ###################################
 ###################################

@@ -17,6 +17,10 @@
 		"silverstripe/framework": "~3.1",
 		"silverstripe/cms": "~3.1"
 	},
+	"suggest": {
+		"facebook/php-sdk-v4": "Facebook SDK"
+	},
+
 	"extra": {
 		"installer-name": "sharethis"
 	}
