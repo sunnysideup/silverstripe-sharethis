@@ -55,7 +55,8 @@ class FacebookFeed_Item extends DataObject{
 
 	private static $casting = array(
 		'KeepOnTopNice' => 'Varchar',
-		'HideNice' => 'Varchar'
+		'HideNice' => 'Varchar',
+		'FacebookPostLink' => 'Varchar'
 	);
 
 	private static $searchable_fields = array(
@@ -185,6 +186,13 @@ class FacebookFeed_Item extends DataObject{
 
 	function HideNice(){
 		return $this->dbObject('Hide')->Nice();
+	}
+	
+	/** 
+	 * @return string
+	 */
+	function getFacebookPostLink(){
+		return "https://facebook.com/" . $this->UID;
 	}
 
 }
