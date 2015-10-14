@@ -116,7 +116,7 @@ class SilverstripeFacebookConnector extends Object {
 	 * @return array
 	 */
 	public static function get_feed($pageID) {
-		$response = self::run_command( $pageID . "/posts?fields=message,created_time,id,full_picture,link,from,name");
+		$response = self::run_command( $pageID . "/posts?fields=message,created_time,id,full_picture,link,from,name,description");
 		if($response) {
 			$list = $response->getDecodedBody();
 			if(isset($list["data"])) {
