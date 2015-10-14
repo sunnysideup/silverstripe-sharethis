@@ -148,16 +148,15 @@ class FacebookFeed_Page extends DataObject  {
 						$count++;
 						$message = "";
 						if(isset($item["message"])){
-							$message = isset($item["message"]);
+							$message = $item["message"];
 						}
 						else if(isset($item["description"])){
-							$message = isset($item["description"]);
+							$message = $item["description"];
 						}
 						
 						//Converts UTF-8 into ISO-8859-1 to solve special symbols issues
 						$message = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $message);
 						$message = $this->stripUnsafe($message);
-						
 						//Get status update time
 						$pubDate = strtotime(isset($item["created_time"]) ? $item["created_time"] : "today");
 						$convertedDate = gmdate($timeFormat = 'Y-m-d', $pubDate);  //Customize this to your liking
