@@ -153,7 +153,6 @@ class FacebookFeed_Page extends DataObject  {
 						else if(isset($item["description"])){
 							$message = $item["description"];
 						}
-						
 						//Converts UTF-8 into ISO-8859-1 to solve special symbols issues
 						$message = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $message);
 						$message = $this->stripUnsafe($message);

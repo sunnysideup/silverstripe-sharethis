@@ -169,13 +169,13 @@ class FacebookFeed_Item extends DataObject{
 			$fields->addFieldToTab("Root.Main", new LiteralField("PictureLinkIMG", "<img src=\"".$this->PictureLink."\" alt=\"\" />"), "Author");
 		}
 		if($this->Link) {
-			$fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
-			$fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
+			$fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link final link: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
+			$fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->getFacebookPostLink()."\" >go to face book post: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
 			$fields->addFieldToTab("Root.RawData", new TextField("Link", "Link"));
 		}
 		if($this->Description) {
 			$fields->addFieldToTab("Root.RawData", new HtmlEditorField("Description"));
-			$fields->addFieldToTab("Root.Main", new HtmlEditorField("DescriptionWithShortLink", "Edited Link"));
+			$fields->addFieldToTab("Root.Main", new HtmlEditorField("DescriptionWithShortLink", "Edited Description"));
 		}
 		return $fields;
 	}

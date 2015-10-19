@@ -18,5 +18,6 @@ class FacebookFeed_UpdateTask extends BuildTask {
 				$facebookPage->Fetch(true);
 			}
 		}
+		echo "COMPLETED";
 	}
 }
