@@ -1,23 +1,25 @@
 <?php
 
 
-class FacebookFeed_UpdateTask extends BuildTask {
+class FacebookFeed_UpdateTask extends BuildTask
+{
 
-	protected $title = "Update Facebook News";
+    protected $title = "Update Facebook News";
 
-	protected $description = "Checks for updates on Facebook";
+    protected $description = "Checks for updates on Facebook";
 
-	/**
-	 *
-	 */
-	function run($request) {
-		$facebookPages = FacebookFeed_Page::get();
-		if($facebookPages->Count()) {
-			foreach($facebookPages as $facebookPage) {
-				DB::alteration_message("Facebook page #{$facebookPage->ID} '$facebookPage->Title' updated", 'changed');
-				$facebookPage->Fetch(true);
-			}
-		}
-		echo "COMPLETED";
-	}
+    /**
+     *
+     */
+    public function run($request)
+    {
+        $facebookPages = FacebookFeed_Page::get();
+        if ($facebookPages->Count()) {
+            foreach ($facebookPages as $facebookPage) {
+                DB::alteration_message("Facebook page #{$facebookPage->ID} '$facebookPage->Title' updated", 'changed');
+                $facebookPage->Fetch(true);
+            }
+        }
+        echo "COMPLETED";
+    }
 }
