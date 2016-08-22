@@ -203,7 +203,10 @@ class FacebookFeed_Item extends DataObject{
     function IsLinkBackToSite()
     {
         $currentURL = Director::absoluteBaseURL();
-        die($currentURL);
+        if(strpos($this->Link, $currentURL) === false) {
+            return false;
+        }
+        return true;
     }
 
     /**
