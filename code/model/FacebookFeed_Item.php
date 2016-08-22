@@ -195,13 +195,25 @@ class FacebookFeed_Item extends DataObject{
         return "https://facebook.com/" . $this->UID;
     }
 
+    /**
+     * is the link attached to the FB post a link back to this site?
+     *  
+     * @return bool
+     */
     function IsLinkBackToSite()
     {
         $currentURL = Director::baseURL();
         die($currentURL);
     }
 
-    function SmartLink() {
+    /**
+     * returns a link back to the same site if that is what the FB post links to
+     * or a link to FB if it ultimately links to third-party site.
+     *
+     * @return strring
+     */
+    function SmartLink()
+    {
         if($this->IsLinkBackToSite()) {
             return $this->Link;
         } else {
