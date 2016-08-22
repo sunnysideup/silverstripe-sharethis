@@ -197,7 +197,7 @@ class FacebookFeed_Item extends DataObject{
 
     /**
      * is the link attached to the FB post a link back to this site?
-     *  
+     *
      * @return bool
      */
     function IsLinkBackToSite()
