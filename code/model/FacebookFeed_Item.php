@@ -197,7 +197,7 @@ class FacebookFeed_Item extends DataObject{
 
     function IsLinkBackToSite()
     {
-        $currentURL = Director::baseURL();
+        $currentURL = Director::absoluteBaseURL();
         die($currentURL);
     }
 
