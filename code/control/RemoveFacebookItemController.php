@@ -9,7 +9,7 @@ class RemoveFacebookItemController extends Controller
 
     private static $url_segment = 'removefacebooklink';
 
-    function Link($action) {
+    function Link($action = null) {
         $urlSegment = Config::inst()->get('RemoveFacebookItemController', 'url_segment');
         return '/'.$urlSegment.'/'.$action;
     }
