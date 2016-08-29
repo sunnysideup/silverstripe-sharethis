@@ -16,7 +16,7 @@ class RemoveFacebookItemController extends Controller
 
     function remove($request) {
         $uid = Convert::raw2sql($request->param('ID'));
-        $item = FacebookFeed_Item::get()->filter(array("UID" => $uid));
+        $item = FacebookFeed_Item::get()->filter(array("UID" => $uid))->first();
         if($item) {
             $item->Hide = true;
             $item->write();
