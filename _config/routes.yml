@@ -1,0 +1,7 @@
+---
+Name: sharethis_routes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'removefacebooklink//$Action/$ID' : 'RemoveFacebookItemController'
