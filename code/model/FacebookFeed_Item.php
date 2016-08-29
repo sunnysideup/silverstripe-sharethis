@@ -246,7 +246,7 @@ class FacebookFeed_Item extends DataObject{
 
     function canRemove()
     {
-        return Permission::check('ADMIN') ? true : false;
+        return Permission::check('CMS_ACCESS_CMSMain') ? true : false;
     }
 
     function RemoveLink()
