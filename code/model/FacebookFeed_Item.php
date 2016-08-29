@@ -127,33 +127,33 @@ class FacebookFeed_Item extends DataObject{
         $position = 0;
         while (preg_match("{\\b$rexProtocol$rexDomain$rexPort$rexPath$rexQuery$rexFragment(?=[?.!,;:\"]?(\s|$))}", $text, $match, PREG_OFFSET_CAPTURE, $position))
         {
-                list($url, $urlPosition) = $match[0];
+            list($url, $urlPosition) = $match[0];
 
-                // Print the text leading up to the URL.
-                $outcome .= (htmlspecialchars(substr($text, $position, $urlPosition - $position)));
+            // Print the text leading up to the URL.
+            $outcome .= (htmlspecialchars(substr($text, $position, $urlPosition - $position)));
 
-                $domain = $match[2][0];
-                $port   = $match[3][0];
-                $path   = $match[4][0];
+            $domain = $match[2][0];
+            $port   = $match[3][0];
+            $path   = $match[4][0];
 
-                // Check if the TLD is valid - or that $domain is an IP address.
-                $tld = strtolower(strrchr($domain, '.'));
-                if (preg_match('{\.[0-9]{1,3}}', $tld) || isset($validTlds[$tld]))
-                {
-                        // Prepend http:// if no protocol specified
-                        $completeUrl = $match[1][0] ? $url : "http://$url";
+            // Check if the TLD is valid - or that $domain is an IP address.
+            $tld = strtolower(strrchr($domain, '.'));
+            if (preg_match('{\.[0-9]{1,3}}', $tld) || isset($validTlds[$tld]))
+            {
+                    // Prepend http:// if no protocol specified
+                    $completeUrl = $match[1][0] ? $url : "http://$url";
 
-                        // Print the hyperlink.
-                        $outcome .= sprintf('<a href="%s">%s</a>', htmlspecialchars($completeUrl), htmlspecialchars("$domain$port$path"));
-                }
-                else
-                {
-                        // Not a valid URL.
-                        $outcome .= (htmlspecialchars($url));
-                }
+                    // Print the hyperlink.
+                    $outcome .= sprintf('<a href="%s">%s</a>', htmlspecialchars($completeUrl), htmlspecialchars("$domain$port$path"));
+            }
+            else
+            {
+                    // Not a valid URL.
+                    $outcome .= (htmlspecialchars($url));
+            }
 
-                // Continue text parsing from after the URL.
-                $position = $urlPosition + strlen($url);
+            // Continue text parsing from after the URL.
+            $position = $urlPosition + strlen($url);
         }
 
         // Print the remainder of the text.
@@ -235,13 +235,25 @@ class FacebookFeed_Item extends DataObject{
 
         /* Check for 404 (file not found). */
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-        if($httpCode !== 200) {
-            die('aaa');
+        if($httpCode !== 200 && $httpCode !== 301) {
             $exists = false;
         }
 
         curl_close($handle);
 
+        return $exists();
+    }
+
+    function canRemove()
+    {
+        return Permission::check('ADMIN') ? true : false;
+    }
+
+    function RemoveLink()
+    {
+        $obj = Injector::inst()->get('RemoveFacebookItemController');
+
+        return $obj->Link('remove/'.$this->UID.'/');
     }
 
 
