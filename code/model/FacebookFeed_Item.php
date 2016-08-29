@@ -170,7 +170,7 @@ class FacebookFeed_Item extends DataObject{
         }
         if($this->Link) {
             $fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link final link: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
-            $fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->getFacebookPostLink()."\" >go to face book post: ".substr($this->Link,0, 45)."...</a></h2>"), "Author");
+            $fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->getFacebookPostLink()."\" >go to face book post: ".substr($this->getFacebookPostLink(),0, 45)."...</a></h2>"), "Author");
             $fields->addFieldToTab("Root.RawData", new TextField("Link", "Link"));
         }
         if($this->Description) {
@@ -222,6 +222,26 @@ class FacebookFeed_Item extends DataObject{
         } else {
             return $this->getFacebookPostLink();
         }
+    }
+
+    function fbpostExists()
+    {
+        $exists = true;
+        $handle = curl_init($this->getFacebookPostLink());
+        curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+
+        /* Get the HTML or whatever is linked in $url. */
+        $response = curl_exec($handle);
+
+        /* Check for 404 (file not found). */
+        $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+        if($httpCode !== 200) {
+            die('aaa');
+            $exists = false;
+        }
+
+        curl_close($handle);
+
     }
 
 
