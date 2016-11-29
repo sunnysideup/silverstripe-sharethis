@@ -38,19 +38,19 @@ $session = $facebook->getSession();
 $me = null;
 // Session based API call.
 if ($session) {
-  try {
-    $uid = $facebook->getUser();
-    $me = $facebook->api('/me');
-  } catch (FacebookApiException $e) {
-    error_log($e);
-  }
+    try {
+        $uid = $facebook->getUser();
+        $me = $facebook->api('/me');
+    } catch (FacebookApiException $e) {
+        error_log($e);
+    }
 }
 
 // login or logout url will be needed depending on current user state.
 if ($me) {
-  $logoutUrl = $facebook->getLogoutUrl();
+    $logoutUrl = $facebook->getLogoutUrl();
 } else {
-  $loginUrl = $facebook->getLoginUrl();
+    $loginUrl = $facebook->getLoginUrl();
 }
 
 // This call will always work since we are fetching public data.

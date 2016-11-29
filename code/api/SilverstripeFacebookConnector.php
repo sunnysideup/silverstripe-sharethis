@@ -6,7 +6,8 @@
  *
  */
 
-class SilverstripeFacebookConnector extends Object {
+class SilverstripeFacebookConnector extends Object
+{
 
     /**
      * @var Facebook Connection
@@ -48,7 +49,8 @@ class SilverstripeFacebookConnector extends Object {
      * set additional connection details - e.g. default_access_token
      * @param array
      */
-    public static function set_connection_config($connectionConfig) {
+    public static function set_connection_config($connectionConfig)
+    {
         self::$connection_config = $connectionConfig;
     }
 
@@ -56,8 +58,9 @@ class SilverstripeFacebookConnector extends Object {
      * create FB connection...
      * @return Facebook\Facebook
      */
-    protected static function get_connection(){
-        if(!self::$connection) {
+    protected static function get_connection()
+    {
+        if (!self::$connection) {
             self::$connection_config += array(
                 'app_id' => Config::inst()->get("SilverstripeFacebookConnector", "app_id"),
                 'app_secret' => Config::inst()->get("SilverstripeFacebookConnector", "app_secret"),
@@ -68,7 +71,6 @@ class SilverstripeFacebookConnector extends Object {
             self::$connection = new Facebook\Facebook(self::$connection_config);
         }
         return self::$connection;
-
     }
 
     /**
@@ -77,24 +79,23 @@ class SilverstripeFacebookConnector extends Object {
      *
      * @return FacebookResponse | false
      */
-    public static function run_command($openGraphCommand = ""){
+    public static function run_command($openGraphCommand = "")
+    {
         $fb = self::get_connection();
         $accessToken = Config::inst()->get("SilverstripeFacebookConnector", "app_id")."|".Config::inst()->get("SilverstripeFacebookConnector", "app_secret");
         //$helper = $fb->getPageTabHelper();
         try {
             $response = $fb->get($openGraphCommand, $accessToken);
-        }
-        catch(Facebook\Exceptions\FacebookResponseException $e) {
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
             self::$error[] = 'Graph returned an error: ' . $e->getMessage();
             return false;
-        }
-        catch(Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (Facebook\Exceptions\FacebookSDKException $e) {
             // When validation fails or other local issues
             self::$error[] = 'Facebook SDK returned an error: ' . $e->getMessage();
             return false;
         }
-        if(self::$debug) {
+        if (self::$debug) {
             debug::log(implode(" | ", self::$error));
         }
         return $response;
@@ -103,9 +104,10 @@ class SilverstripeFacebookConnector extends Object {
     /**
      * @return details about logged in person
      */
-    public static function whoami(){
+    public static function whoami()
+    {
         $response = self::run_command("/me");
-        if($response) {
+        if ($response) {
             return $response->getGraphUser();
         }
     }
@@ -115,11 +117,12 @@ class SilverstripeFacebookConnector extends Object {
      * returns an array of recent posts for a page
      * @return array
      */
-    public static function get_feed($pageID) {
-        $response = self::run_command( $pageID . "/posts?fields=message,created_time,id,full_picture,link,from,name,description");
-        if($response) {
+    public static function get_feed($pageID)
+    {
+        $response = self::run_command($pageID . "/posts?fields=message,created_time,id,full_picture,link,from,name,description");
+        if ($response) {
             $list = $response->getDecodedBody();
-            if(isset($list["data"])) {
+            if (isset($list["data"])) {
                 return $list["data"];
             }
         }
@@ -129,9 +132,9 @@ class SilverstripeFacebookConnector extends Object {
      * returns an array of recent posts for a page
      * @return array
      */
-    public static function check_if_posts_exists($UID) {
-        $response = self::run_command( '/Post/'.$UID);
+    public static function check_if_posts_exists($UID)
+    {
+        $response = self::run_command('/Post/'.$UID);
         print_r($response);
     }
-
 }

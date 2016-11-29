@@ -7,4 +7,3 @@
  **/
 
 define('SS_SHARETHIS_DIR', 'sharethis');
-
