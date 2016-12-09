@@ -37,7 +37,7 @@ class SilverstripeFacebookConnector extends Object
      * debug
      * @var boolean
      */
-    protected static $debug = true;
+    protected static $debug = false;
 
     /**
      * keep track of errors
