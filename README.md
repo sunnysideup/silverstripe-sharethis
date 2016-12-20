@@ -1,98 +1,72 @@
-Share This
-================================================================================
+# Silverstripe sharethis module
+[![Build Status](https://travis-ci.org/sunnysideup/silverstripe-sharethis.svg?branch=master)](https://travis-ci.org/sunnysideup/silverstripe-sharethis)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sunnysideup/silverstripe-sharethis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sunnysideup/silverstripe-sharethis/?branch=master)
+[![codecov.io](https://codecov.io/github/sunnysideup/silverstripe-sharethis/coverage.svg?branch=master)](https://codecov.io/github/sunnysideup/silverstripe-sharethis?branch=master)
+![helpfulrobot](https://helpfulrobot.io/sunnysideup/sharethis/badge)
 
-Adds a bunch of social media tricks to your
-silverstripe website, such as
-- share this page
-- check us out (the website owner) on FB / TWITTER / etc
-- show my latest tweet on my website
-- share FB update on my website
-etc...
-
-Optional usages of Font Awesome, as recommended by https://github.com/hp7
-This still needs to be implemented on the "find us on ... "
-part.
+[![Latest Stable Version](https://poser.pugx.org/sunnysideup/sharethis/version)](https://packagist.org/packages/sunnysideup/sharethis)
+[![License](https://poser.pugx.org/sunnysideup/sharethis/license)](https://packagist.org/packages/sunnysideup/sharethis)
+[![Monthly Downloads](https://poser.pugx.org/sunnysideup/sharethis/d/monthly)](https://packagist.org/packages/sunnysideup/sharethis)
 
 
-Developer
------------------------------------------------
-Nicolaas Francken [at] sunnysideup.co.nz
-
-Requirements
------------------------------------------------
-see composer.json: facebook SDK
-HIGHLY RECOMMENDED: dataobjectsorter:
-- https://github.com/sunnysideup/silverstripe-dataobjectsorter
-- http://sunny.svnrepository.com/svn/sunny-side-up-general/dataobjectsorter
+## Documentation
 
 
-Documentation
------------------------------------------------
-Please contact author for more details.
 
-Any bug reports and/or feature requests will be
-looked at in detail.
+ * [Developer Docs](docs/en/INDEX.md)
+ * [User Guide](docs/en/userguide.md)
+ * [API](http://ssmods.com/apis/sharethis/docs/en/api/)
 
-We are also very happy to provide personalised support
-for this module in exchange for a small donation.
-
-The facebook RSS link format is like this https://www.facebook.com/feeds/page.php?format=rss20&id=
-To find the id value, you can follow those steps :
-1. Go to facebook
-2. Find your page (e.g. https://www.facebook.com/EOSAsia)
-3. Note the name (e.g. EOSAsia)
-4. Go to http://findmyfacebookid.com
-5. Enter http://www.facebook.com/EOSAsia
-6. You'll get the answer (e.g. 357864420974239)
-7. The result link is https://www.facebook.com/feeds/page.php?format=rss20&id=357864420974239
+## Requirements
 
 
-EXAMPLE OF HOW TO ADD FB FEED TO Page_Controller
 
-	public function FacebookNews() {
-		return FacebookFeed_Page::all_for_one_page($this->ID, 5);
-	}
+see [composer.json](composer.json) for details
 
-	protected function downloadFaceBookNews() {
-		$facebookPages = DataObject::get("FacebookFeed_Page");
-		if($facebookPages && $facebookPages->count()) {
-			foreach($facebookPages as $facebookPage) {
-				$facebookPage->Fetch();
-			}
-		}
-	}
-
-	function updatefb() {
-		if(Permission::check('ADMIN')) {
-			$this->downloadFaceBookNews();
-			Director::redirect($this->Link());
-			return array();
-		}
-		else {
-			return Security::permissionFailure($this, _t('Security.PERMFAILURE',' This page is secured and you need administrator rights to access it. Enter your credentials below and we will send you right along.'));
-		}
-	}
+### Suggested Modules
 
 
-Installation Instructions
------------------------------------------------
-1. Find out how to add modules to SS and add module as per usual.
+
+see [composer.json](composer.json) for details
 
 
-2. Review configs and add entries to mysite/_config/config.yml
-(or similar) as necessary.
-In the _config/ folder of this module
-you can usually find some examples of config options (if any).
-
-Add the following to your templates:
-
-    <% include ShareThis %>
-
-    <% include SocialNetworkingLinks %>
-
-You can also opt to have an additional list of expandable Share This links, using this
-line in your *.ss file:
+## Installation
 
 
-    <% include ShareAllExpandedList %>
+```
+composer require sunnysideup/sharethis
+```
 
+### Configuration
+
+
+
+In the `_config` folder you will find the `sharethis.yml.example`
+file that shows options for the configuration of this module.
+
+We recommend that you:
+
+  1. copy these `sharethis.yml.example` files into your
+`mysite/_config` folder
+  2. remove the .example extension
+  3. delete the lines you not care about, and
+  4. adjust the configurations that you would like to use.
+
+
+## Contributing
+
+
+
+We welcome any contributions. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+## Paid assistance
+
+
+
+You can pay us to create an improved / adapted version of this module for your own projects.  Please contact us if you like to find out more: [www.sunnysideup.co.nz](http://www.sunnysideup.co.nz)
+
+## Author
+
+
+
+Sunny Side Up Ltd.
