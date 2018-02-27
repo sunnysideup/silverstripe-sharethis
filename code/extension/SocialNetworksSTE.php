@@ -62,7 +62,7 @@ class SocialNetworksSTE extends SiteTreeExtension
     {
         Requirements::themedCSS('SocialNetworking', "sharethis");
         if (Config::inst()->get("SocialNetworksSTE", "use_font_awesome")) {
-            Requirements::css("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+            Requirements::css("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
         }
         return SocialNetworkingLinksDataObject::get();
     }
