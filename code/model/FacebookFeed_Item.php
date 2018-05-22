@@ -151,13 +151,13 @@ class FacebookFeed_Item extends DataObject
             $tld = strtolower(strrchr($domain, '.'));
             if (preg_match('{\.[0-9]{1,3}}', $tld) || isset($validTlds[$tld])) {
                 // Prepend http:// if no protocol specified
-                    $completeUrl = $match[1][0] ? $url : "http://$url";
+                $completeUrl = $match[1][0] ? $url : "http://$url";
 
-                    // Print the hyperlink.
-                    $outcome .= sprintf('<a href="%s">%s</a>', htmlspecialchars($completeUrl), htmlspecialchars("$domain$port$path"));
+                // Print the hyperlink.
+                $outcome .= sprintf('<a href="%s">%s</a>', htmlspecialchars($completeUrl), htmlspecialchars("$domain$port$path"));
             } else {
                 // Not a valid URL.
-                    $outcome .= (htmlspecialchars($url));
+                $outcome .= (htmlspecialchars($url));
             }
 
             // Continue text parsing from after the URL.
@@ -240,7 +240,7 @@ class FacebookFeed_Item extends DataObject
     {
         $exists = true;
         $handle = curl_init($this->getFacebookPostLink());
-        curl_setopt($handle,  CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
 
         /* Get the HTML or whatever is linked in $url. */
         $response = curl_exec($handle);
