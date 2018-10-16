@@ -1,5 +1,19 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+
+
+
+
+use SilverStripe\Core\Config\Config;
+use SunnySideUp\ShareThis\code\control\RemoveFacebookItemController;
+use SilverStripe\Core\Convert;
+use SunnySideUp\ShareThis\code\model\FacebookFeed_Item;
+use SilverStripe\Control\Controller;
+
+
+
 class RemoveFacebookItemController extends Controller
 {
     private static $allowed_actions = array(
@@ -10,7 +24,7 @@ class RemoveFacebookItemController extends Controller
 
     public function Link($action = null)
     {
-        $urlSegment = Config::inst()->get('RemoveFacebookItemController', 'url_segment');
+        $urlSegment = Config::inst()->get(RemoveFacebookItemController::class, 'url_segment');
         return '/'.$urlSegment.'/'.$action;
     }
 

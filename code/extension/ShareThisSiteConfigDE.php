@@ -1,5 +1,32 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+
+
+
+
+
+
+
+
+
+
+
+use SilverStripe\Forms\FieldList;
+use SunnySideUp\ShareThis\code\model\ShareThisDataObject;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\GridField\GridField;
+use SunnySideUp\ShareThis\code\model\SocialNetworkingLinksDataObject;
+use SilverStripe\Forms\HiddenField;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\TabSet;
+use SilverStripe\ORM\DataExtension;
+
+
+
 /**
  * @todo Check that permissions on the 2 tables in the CMS are the same than before
  * @todo Fix the CanEditShareIcons section in updateCMSFields
@@ -76,7 +103,7 @@ class ShareThisSiteConfigDE extends DataExtension
     public function CanEditShareIcons()
     {
         if (class_exists('DataObjectSorterDOD')) {
-            $obj = singleton('ShareThisDataObject');
+            $obj = singleton(ShareThisDataObject::class);
             if ($obj->hasExtension('DataObjectSorterDOD')) {
                 return true;
             } else {

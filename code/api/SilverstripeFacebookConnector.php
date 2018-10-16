@@ -1,5 +1,15 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+use Object;
+
+use debug;
+use SilverStripe\Core\Config\Config;
+use SunnySideUp\ShareThis\code\api\SilverstripeFacebookConnector;
+
+
+
 /**
  * https://developers.facebook.com/tools-and-support/
  *
@@ -62,8 +72,8 @@ class SilverstripeFacebookConnector extends Object
     {
         if (!self::$connection) {
             self::$connection_config += array(
-                'app_id' => Config::inst()->get("SilverstripeFacebookConnector", "app_id"),
-                'app_secret' => Config::inst()->get("SilverstripeFacebookConnector", "app_secret"),
+                'app_id' => Config::inst()->get(SilverstripeFacebookConnector::class, "app_id"),
+                'app_secret' => Config::inst()->get(SilverstripeFacebookConnector::class, "app_secret"),
                 'default_graph_version' => 'v2.4',
                 //'default_access_token' => '{access-token}', // optional
             );
@@ -82,7 +92,7 @@ class SilverstripeFacebookConnector extends Object
     public static function run_command($openGraphCommand = "")
     {
         $fb = self::get_connection();
-        $accessToken = Config::inst()->get("SilverstripeFacebookConnector", "app_id")."|".Config::inst()->get("SilverstripeFacebookConnector", "app_secret");
+        $accessToken = Config::inst()->get(SilverstripeFacebookConnector::class, "app_id")."|".Config::inst()->get(SilverstripeFacebookConnector::class, "app_secret");
         //$helper = $fb->getPageTabHelper();
         try {
             $response = $fb->get($openGraphCommand, $accessToken);

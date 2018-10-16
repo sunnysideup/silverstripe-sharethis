@@ -1,5 +1,12 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+
+use SilverStripe\Dev\SapphireTest;
+
+
+
 class SharethisTest extends SapphireTest
 {
     protected $usesDatabase = false;

@@ -1,5 +1,16 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+
+
+
+use SunnySideUp\ShareThis\code\model\FacebookFeed_Page;
+use SilverStripe\ORM\DB;
+use SilverStripe\Dev\BuildTask;
+
+
+
 
 class FacebookFeed_UpdateTask extends BuildTask
 {

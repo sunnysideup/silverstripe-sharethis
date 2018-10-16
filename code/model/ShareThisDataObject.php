@@ -1,5 +1,29 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+
+
+
+
+
+
+
+
+use SilverStripe\Assets\Image;
+use SilverStripe\Core\Config\Config;
+use SunnySideUp\ShareThis\code\model\ShareThisDataObject;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\Forms\LiteralField;
+use SunnySideUp\ShareThis\code\data\ShareThisOptions;
+use SunnySideUp\ShareThis\code\extension\ShareThisSTE;
+use SilverStripe\ORM\DB;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Security\PermissionProvider;
+
+
+
 /**
  * @author nicolaas[at]sunnysideup.co.nz
  * @description: list of Share This Options that can be shown
@@ -24,7 +48,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
     );
 
     private static $has_one = array(
-        'AlternativeIcon' => 'Image'
+        'AlternativeIcon' => Image::class
     );
 
     private static $casting = array(
@@ -58,7 +82,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
 
     public function providePermissions()
     {
-        return Config::inst()->get("ShareThisDataObject", "permission_framework");
+        return Config::inst()->get(ShareThisDataObject::class, "permission_framework");
     }
 
     public function canView($member = null)
@@ -150,8 +174,8 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
     {
         parent::requireDefaultRecords();
         $actualArray = ShareThisOptions::get_general_data();
-        Config::inst()->update("ShareThisSTE", "included_icons", array());
-        Config::inst()->update("ShareThisSTE", "excluded_icons", array());
+        Config::inst()->update(ShareThisSTE::class, "included_icons", array());
+        Config::inst()->update(ShareThisSTE::class, "excluded_icons", array());
         ShareThisOptions::set_general_data(null);
         $fullArray = ShareThisOptions::get_general_data();
         foreach ($fullArray as $key) {
@@ -169,7 +193,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
                 DB::alteration_message("Added Bookmark Icon for $key ($style)", 'created');
             }
         }
-        $inc = Config::inst()->get("ShareThisSTE", "included_icons");
+        $inc = Config::inst()->get(ShareThisSTE::class, "included_icons");
         foreach ($inc as $key) {
             $object = ShareThisDataObject::get()->filter(array('Title' => $key, 'IncludeThisIcon' => 0));
             if ($object->exists()) {
@@ -179,7 +203,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
                 DB::alteration_message("Updated inclusion for $key", 'created');
             }
         }
-        $exc = Config::inst()->get("ShareThisSTE", "excluded_icons");
+        $exc = Config::inst()->get(ShareThisSTE::class, "excluded_icons");
         foreach ($exc as $key) {
             $object = ShareThisDataObject::get()->filter(array('Title' => $key, 'IncludeThisIcon' => 1));
             if ($object->exists()) {

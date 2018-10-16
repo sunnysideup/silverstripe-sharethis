@@ -1,5 +1,36 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+
+
+
+
+
+
+
+
+
+
+use debug;
+
+
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\LiteralField;
+use SunnySideUp\ShareThis\code\data\ShareThisOptions;
+use SilverStripe\View\Requirements;
+use SilverStripe\Core\Config\Config;
+use SunnySideUp\ShareThis\code\extension\ShareThisSTE;
+use SilverStripe\Core\Convert;
+use SilverStripe\View\ArrayData;
+use SilverStripe\ORM\ArrayList;
+use SunnySideUp\ShareThis\code\model\ShareThisDataObject;
+use SilverStripe\CMS\Model\SiteTreeExtension;
+
+
+
 /**
  * Add a field to each SiteTree object and it's subclasses to enable Share icons.
  * @author nicolaas [at] sunnysideup.co.nz
@@ -125,14 +156,14 @@ class ShareThisSTE extends SiteTreeExtension
     {
         $icons = array();
         if ($bookmarks) {
-            $useFontAwesome = Config::inst()->get("ShareThisSTE", "use_font_awesome");
+            $useFontAwesome = Config::inst()->get(ShareThisSTE::class, "use_font_awesome");
             Requirements::themedCSS('SocialNetworking', "sharethis"); // ALSO  added in template
             if ($useFontAwesome) {
                 Requirements::css("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
             }
             Requirements::javascript(FRAMEWORK_DIR . '/thirdparty/jquery/jquery.js');
             Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/shareThis.js');
-            if (Config::inst()->get("ShareThisSTE", "use_bw_effect")) {
+            if (Config::inst()->get(ShareThisSTE::class, "use_bw_effect")) {
                 Requirements::customScript('sharethis.set_use_BW(true);', 'ShareThisBWEffect');
             }
             foreach ($bookmarks as $key => $bookmark) {
@@ -191,8 +222,8 @@ class ShareThisSTE extends SiteTreeExtension
 
     private function applyToOwnerClass()
     {
-        $always = Config::inst()->get("ShareThisSTE", "always_include_in");
-        $never = Config::inst()->get("ShareThisSTE", "never_include_in");
+        $always = Config::inst()->get(ShareThisSTE::class, "always_include_in");
+        $never = Config::inst()->get(ShareThisSTE::class, "never_include_in");
         if (count($always) == 0 && count($never) == 0) {
             return true;
         } elseif (count($never) && count($always) == 0) {

@@ -1,4 +1,23 @@
 <?php
+
+namespace SunnySideUp\ShareThis;
+
+
+
+
+use TreeMultiSelectField;
+
+
+
+use SunnySideUp\ShareThis\code\model\FacebookFeed_Item;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Security\Permission;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\ORM\DB;
+use SunnySideUp\ShareThis\code\api\SilverstripeFacebookConnector;
+use SilverStripe\ORM\DataObject;
+
+
 /**
  * FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/
  * EXAMPLE:
@@ -31,11 +50,11 @@ class FacebookFeed_Page extends DataObject
     );
 
     private static $has_many = array(
-        'Items' => 'FacebookFeed_Item'
+        'Items' => FacebookFeed_Item::class
     );
 
     private static $many_many = array(
-        'Pages' => 'SiteTree'
+        'Pages' => SiteTree::class
     );
 
     public function canCreate($member = null)
@@ -79,7 +98,7 @@ class FacebookFeed_Page extends DataObject
         );
         $fields->addFieldToTab(
             "Root.Pages",
-            new TreeMultiSelectField("Pages", "Show on", "SiteTree")
+            new TreeMultiSelectField("Pages", "Show on", SiteTree::class)
         );
         $pages = $this->Pages();
         if ($pages && $pages->count()) {

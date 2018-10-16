@@ -1,5 +1,17 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+
+
+
+use SilverStripe\Core\Config\Config;
+use SunnySideUp\ShareThis\code\model\MyTwitterData;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\DataObject;
+
+
+
 class MyTwitterData extends DataObject
 {
     private static $username = "";
@@ -35,7 +47,7 @@ class MyTwitterData extends DataObject
 
     public function Link()
     {
-        return "https://twitter.com/".Config::inst()->get("MyTwitterData", "username")."/status/".$this->TwitterID;
+        return "https://twitter.com/".Config::inst()->get(MyTwitterData::class, "username")."/status/".$this->TwitterID;
     }
 
 
