@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use stdClass;
 use PEAR;

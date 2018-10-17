@@ -1,11 +1,11 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
-use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
-use SunnySideUp\ShareThis\ShareThisDataObject;
-use SunnySideUp\ShareThis\FacebookFeed_Page;
-use SunnySideUp\ShareThis\FacebookFeed_Item;
+use SunnysideUp\ShareThis\SocialNetworkingLinksDataObject;
+use SunnysideUp\ShareThis\ShareThisDataObject;
+use SunnysideUp\ShareThis\FacebookFeed_Page;
+use SunnysideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\Admin\ModelAdmin;
 
 /**

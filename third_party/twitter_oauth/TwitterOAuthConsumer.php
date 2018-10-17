@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 /*
  * Abraham Williams (abraham@abrah.am) http://abrah.am

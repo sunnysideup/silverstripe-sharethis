@@ -1,12 +1,12 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Forms\FieldList;
-use SunnySideUp\ShareThis\ShareThisDataObject;
+use SunnysideUp\ShareThis\ShareThisDataObject;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridField;
-use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
+use SunnysideUp\ShareThis\SocialNetworkingLinksDataObject;
 use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\LiteralField;
@@ -31,38 +31,29 @@ class ShareThisSiteConfigDE extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
         $individualPageNoteWith = _t("ShareThis.INDIVIDUAL_PAGE_NOTE_WITH", " (with the ability to turn them off/on on individual pages) ");
+
         $individualPageNoteWithout  = _t("ShareThis.INDIVIDUAL_PAGE_NOTE_WITHOUT", " (without the ability to turn them off/on on individual pages) ");
+
         $shareThisExtra = '<h3 style="margin-top: 50px">Select Icons</h3>';
-        /*		if($this->CanEditShareIcons()) {
-                    $addedLinks = array();
-                    $obj = singleton('ShareThisDataObject');
-                    $addedLinksShort['edit'] = DataObjectOneFieldUpdateController::popup_link('ShareThisDataObject', 'IncludeThisIcon');
-                    $addedLinksLong['edit'] = DataObjectOneFieldUpdateController::popup_link('ShareThisDataObject', 'IncludeThisIconInExtendedList');
-                    $addedLinksShort['sort'] = $obj->dataObjectSorterPopupLink('IncludeThisIcon', 1);
-                    $addedLinksLong['sort'] = $obj->dataObjectSorterPopupLink('IncludeThisIconInExtendedList', 1);
-                    if(count($addedLinksShort)) {
-                        $shareThisExtra .= '<p>main list: ' . implode(', ', $addedLinksShort) . '.</p>';
-                    }
-                    if(count($addedLinksLong)) {
-                        $shareThisExtra .= '<p>long list: ' . implode(', ', $addedLinksLong) . '.</p>';
-                    }
-                }
-        */
+
         $shareThisTableField = new GridField('Share this options', null, ShareThisDataObject::get(), GridFieldConfig_RecordEditor::create());
-        //$shareThisTableField->setPermissions(array("edit", "add"));
+
         $socialNetworkExtra = '<h3 style="margin-top: 50px">Add / Edit / Delete Your Social Networking Home Pages (e.g. www.facebook.com/our-company-page)</h3>';
+
         $socialNetworkTableField = new GridField('Join Us', null, SocialNetworkingLinksDataObject::get(), GridFieldConfig_RecordEditor::create());
-        //$socialNetworkTableField->setPermissions(array("edit", "add", "delete", "view"));
+
         if ($this->owner->AlwaysIncludeShareThisLinks) {
             $defaultShareThisCheckbox = new HiddenField('IncludeByDefaultShareThisLinks', true);
         } else {
             $defaultShareThisCheckbox = new CheckboxField('IncludeByDefaultShareThisLinks', 'Show links on every page by default '.$individualPageNoteWith);
         }
+
         if ($this->owner->AlwaysIncludeSocialNetworkingLinks) {
             $defaultSocialNetworkingCheckbox = new HiddenField('IncludeByDefaultSocialNetworkingLinks', true);
         } else {
             $defaultSocialNetworkingCheckbox = new CheckboxField('IncludeByDefaultSocialNetworkingLinks', 'Include on every page by default '.$individualPageNoteWith);
         }
+
         $fields->addFieldToTab(
             'Root.SocialMedia',
             new TabSet(
@@ -84,6 +75,7 @@ class ShareThisSiteConfigDE extends DataExtension
                 )
             )
         );
+
         return $fields;
     }
 

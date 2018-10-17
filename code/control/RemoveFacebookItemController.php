@@ -1,10 +1,10 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Convert;
-use SunnySideUp\ShareThis\FacebookFeed_Item;
+use SunnysideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\Control\Controller;
 
 /**

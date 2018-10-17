@@ -5,20 +5,20 @@ After: 'framework/*'
 ---
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - SunnySideUp\ShareThis\ShareThisSiteConfigDE
+    - SunnysideUp\ShareThis\ShareThisSiteConfigDE
 
 SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - SunnySideUp\ShareThis\ShareThisSTE
-    - SunnySideUp\ShareThis\SocialNetworksSTE
+    - SunnysideUp\ShareThis\ShareThisSTE
+    - SunnysideUp\ShareThis\SocialNetworksSTE
 ---
 Only:
   classexists: DataObjectSorterDOD
 ---
-SunnySideUp\ShareThis\ShareThisDataObject:
+SunnysideUp\ShareThis\ShareThisDataObject:
   extensions:
     - DataObjectSorterDOD
 
-SunnySideUp\ShareThis\SocialNetworkingLinksDataObject:
+SunnysideUp\ShareThis\SocialNetworkingLinksDataObject:
   extensions:
     - DataObjectSorterDOD

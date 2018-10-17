@@ -1,14 +1,14 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Security\Permission;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\Forms\LiteralField;
-use SunnySideUp\ShareThis\ShareThisOptions;
-use SunnySideUp\ShareThis\ShareThisSTE;
+use SunnysideUp\ShareThis\ShareThisOptions;
+use SunnysideUp\ShareThis\ShareThisSTE;
 use SilverStripe\ORM\DB;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\PermissionProvider;
@@ -61,8 +61,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
     private static $summary_fields = array(
         'Icon' => 'Icon',
         'Title' => 'Name',
-        'IncludeThisIconNice' => 'IncludeThisIcon'
-        //'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList'
+        'IncludeThisIconNice' => 'Include this icon?'
     );
 
     private static $singular_name = 'Icon to share this page';
@@ -95,35 +94,41 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
+
     public function IncludeThisIconNice()
     {
         return $this->getIncludeThisIconNice();
     }
+
     public function getIncludeThisIconNice()
     {
-        return $this->IncludeThisIcon ? "YES" : "NO" ;
+        return $this->IncludeThisIcon ? "Yes" : "No" ;
     }
 
     public function IncludeThisIconInExtendedListNice()
     {
         return $this->getIncludeThisIconInExtendedListNice();
     }
+
     public function getIncludeThisIconInExtendedListNice()
     {
-        return $this->IncludeThisIconInExtendedList ? "YES" : "NO" ;
+        return $this->IncludeThisIconInExtendedList ? "Yes" : "No" ;
     }
 
     public function Icon()
     {
         return $this->getIcon();
     }
+
     public function getIcon()
     {
         $icon = $this->AlternativeIcon();
         if ($icon->exists()) {
             return $icon->ScaleHeight(16);
         }
+
         $html = '<img src="' . SS_SHARETHIS_DIR . '/images/icons/' . strtolower($this->Title) . ".png\" alt=\"{$this->Title}\"/>";
+
         return DBField::create_field("HTMLText", $html);
     }
 
@@ -133,7 +138,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
         if (class_exists("DataObjectSorterDOD")) {
             $fields->addFieldToTab("Root.Sort", new LiteralField("SortShortList", $this->dataObjectSorterPopupLink("IncludeThisIcon", 1, "<h3>Sort Main Icons</h3>")));
         }
-        //$fields->replaceField('Title', new LiteralField('Title', "<p>{$this->Icon}<span>{$this->Title}</span></p>"));
+
         return $fields;
     }
 
@@ -141,7 +146,6 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
     {
         parent::onAfterWrite();
         $objects = ShareThisDataObject::get()->filter('Title', $this->Title)->exclude('ID', $this->ID);
-        //$objects->delete();
     }
 
     public function validate()

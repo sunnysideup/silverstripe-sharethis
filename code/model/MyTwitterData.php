@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Security\Permission;

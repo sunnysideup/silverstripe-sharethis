@@ -1,5 +1,5 @@
 <% require themedCSS(SocialNetworking, sharethis) %>
-<h1>ShareThis</h1>
+
 <% if $ShowShareIcons && $ShareIcons %>
     <div class="ShareThisHolder socialNetworkingHolder">
         <div class="ShareThisHeader socialNetworkingHeader typography"><h5>Share</h5></div>

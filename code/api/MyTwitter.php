@@ -1,14 +1,14 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\Control\Session;
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\MyTwitter;
-use SunnySideUp\ShareThis\MyTwitterData;
+use SunnysideUp\ShareThis\MyTwitter;
+use SunnysideUp\ShareThis\MyTwitterData;
 use SilverStripe\Control\Director;
-use SunnySideUp\ShareThis\TwitterOAuth;
+use SunnysideUp\ShareThis\TwitterOAuth;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\View\ArrayData;

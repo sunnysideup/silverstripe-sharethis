@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HeaderField;
@@ -8,7 +8,7 @@ use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\View\Requirements;
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
+use SunnysideUp\ShareThis\SocialNetworkingLinksDataObject;
 use SilverStripe\CMS\Model\SiteTreeExtension;
 
 /**

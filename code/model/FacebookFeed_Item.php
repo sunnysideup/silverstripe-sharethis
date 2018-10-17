@@ -1,16 +1,17 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use HtmlEditorField;
-use SunnySideUp\ShareThis\FacebookFeed_Page;
+use SunnysideUp\ShareThis\FacebookFeed_Page;
 use SilverStripe\Security\Permission;
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Core\Injector\Injector;
-use SunnySideUp\ShareThis\RemoveFacebookItemController;
+use SunnysideUp\ShareThis\RemoveFacebookItemController;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\Filters\PartialMatchFilter;
 
 /**
  * FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/
@@ -75,9 +76,9 @@ class FacebookFeed_Item extends DataObject
     );
 
     private static $searchable_fields = array(
-        'Title' => 'PartialMatchFilter',
-        'Author' => 'PartialMatchFilter',
-        'Description' => 'PartialMatchFilter',
+        'Title' => PartialMatchFilter::class,
+        'Author' => PartialMatchFilter::class,
+        'Description' => PartialMatchFilter::class,
         'Hide' => true,
         'KeepOnTop' => true
     );

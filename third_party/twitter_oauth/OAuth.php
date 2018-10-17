@@ -1,9 +1,9 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use Exception;
-use SunnySideUp\ShareThis\OAuthUtil;
+use SunnysideUp\ShareThis\OAuthUtil;
 
 // vim: foldmethod=marker
 /**

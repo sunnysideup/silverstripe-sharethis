@@ -1,10 +1,12 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
+use \Page;
 use SilverStripe\Assets\Image;
 use SilverStripe\Security\Permission;
 use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\Filters\PartialMatchFilter;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TreeDropdownField;
@@ -38,15 +40,15 @@ class SocialNetworkingLinksDataObject extends DataObject
     );
 
     private static $searchable_fields = array(
-        'Title' => 'PartialMatchFilter'
+        'Title' => PartialMatchFilter::class
     );
 
     private static $field_labels = array(
         'InternalLink' => 'Internal Link',
-        'URL' => 'OR External Link (e.g. http://twitter.com/myname/) - will override internal link',
+        'URL' => 'External Link (e.g. http://twitter.com/myname/) - will override internal link',
         'Title' => 'Title',
         'Sort' => 'Sort Index (lower numbers shown first)',
-        'IconID' => 'Icon (preferably something like 32pixels by 32pixels)'
+        'IconID' => 'Icon (preferably 32px X 32px)'
     );
 
     private static $summary_fields = array(
@@ -92,6 +94,7 @@ class SocialNetworkingLinksDataObject extends DataObject
     {
         return $this->getIconHTML();
     }
+
     public function getIconHTML()
     {
         $icon = $this->Icon();
@@ -119,12 +122,12 @@ class SocialNetworkingLinksDataObject extends DataObject
     {
         $fields = parent::getCMSFields();
         if ($this->ID) {
-            $fields->addFieldToTab('Root.Main', new LiteralField('Code', "<p>Code: {$this->Code()}</p>"));
-            $fields->addFieldToTab('Root.Main', new LiteralField('Link', "<p>Link: <a href=\"{$this->Link()}\">{$this->Link()}</a></p>"));
-            $fields->addFieldToTab('Root.Main', new LiteralField('Link', "<p>{$this->IconHTML()}</p>"));
+            $fields->addFieldToTab('Root.Main', LiteralField::create('Code', "<p>Code: {$this->Code()}</p>"));
+            $fields->addFieldToTab('Root.Main', LiteralField::create('Link', "<p>Link: <a href=\"{$this->Link()}\">{$this->Link()}</a></p>"));
+            $fields->addFieldToTab('Root.Main', LiteralField::create('Link', "<p>{$this->IconHTML()}</p>"));
         }
         $fields->removeFieldFromTab('Root.Main', 'InternalLinkID');
-        $fields->addFieldToTab('Root.Main', new TreeDropdownField('InternalLinkID', 'Internal Link', SiteTree::class), 'URL');
+        $fields->addFieldToTab('Root.Main', TreeDropdownField::create('InternalLinkID', 'Internal Link', SiteTree::class), 'URL');
         return $fields;
     }
 }

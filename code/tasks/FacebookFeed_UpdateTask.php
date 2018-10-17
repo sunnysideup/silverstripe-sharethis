@@ -1,8 +1,8 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
-use SunnySideUp\ShareThis\FacebookFeed_Page;
+use SunnysideUp\ShareThis\FacebookFeed_Page;
 use SilverStripe\ORM\DB;
 use SilverStripe\Dev\BuildTask;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Forms\TreeMultiSelectField;
-use SunnySideUp\ShareThis\FacebookFeed_Item;
+use SunnysideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Security\Permission;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DB;
-use SunnySideUp\ShareThis\SilverstripeFacebookConnector;
+use SunnysideUp\ShareThis\SilverstripeFacebookConnector;
 use SilverStripe\ORM\DataObject;
 
 /**
