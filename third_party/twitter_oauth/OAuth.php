@@ -3,8 +3,7 @@
 namespace SunnySideUp\ShareThis;
 
 use Exception;
-use SunnySideUp\ShareThis\third_party\twitter_oauth\OAuthUtil;
-
+use SunnySideUp\ShareThis\OAuthUtil;
 
 // vim: foldmethod=marker
 /**

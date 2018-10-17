@@ -2,9 +2,6 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
 /*
  * Abraham Williams (abraham@abrah.am) http://abrah.am
  *
