@@ -18,6 +18,8 @@ use SilverStripe\ORM\DataObject;
  */
 class SocialNetworkingLinksDataObject extends DataObject
 {
+    private static $table_name = 'SocialNetworkingLinksDataObject';
+
     private static $db = array(
         'URL' => 'Varchar(255)',
         'Title' => 'Varchar(255)',
@@ -32,7 +34,7 @@ class SocialNetworkingLinksDataObject extends DataObject
 
     private static $has_one = array(
         'Icon' => Image::class,
-        'InternalLink' => 'Page'
+        'InternalLink' => Page::class
     );
 
     private static $searchable_fields = array(
@@ -49,7 +51,7 @@ class SocialNetworkingLinksDataObject extends DataObject
 
     private static $summary_fields = array(
         'Title' => 'Title',
-        'IconHTML' => 'HTMLText'
+        'IconHTML' => 'Icon'
     );
 
     private static $default_sort = 'Sort ASC, Title ASC';
@@ -94,7 +96,7 @@ class SocialNetworkingLinksDataObject extends DataObject
     {
         $icon = $this->Icon();
         if ($icon && $icon->exists()) {
-            $html = $icon->SetHeight(32);
+            $html = $icon->ScaleHeight(32);
         } else {
             $html = DBField::create_field("HTMLText", '<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>");
         }

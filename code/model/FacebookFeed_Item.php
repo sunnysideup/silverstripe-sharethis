@@ -36,11 +36,13 @@ use SilverStripe\ORM\DataObject;
 
 class FacebookFeed_Item extends DataObject
 {
+    private static $table_name = 'FacebookFeed_Item';
+
     private static $db = array(
-        "Title" => "varchar(255)",
+        "Title" => "Varchar(255)",
         "KeepOnTop" => "Boolean",
         "Hide" => "Boolean",
-        "UID" => "varchar(32)",
+        "UID" => "Varchar(32)",
         "Author" => "Varchar(244)",
         "Description" => "HTMLText",
         "DescriptionWithShortLink" => "HTMLText",

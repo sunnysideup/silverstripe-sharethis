@@ -34,6 +34,8 @@ use SilverStripe\ORM\DataObject;
  **/
 class FacebookFeed_Page extends DataObject
 {
+    private static $table_name = 'FacebookFeed_Page';
+
     private static $db = array(
         "Title" => "Varchar(244)",
         'FacebookPageID' => 'Varchar(40)'

@@ -11,10 +11,13 @@ use SilverStripe\ORM\DataObject;
  */
 class MyTwitterData extends DataObject
 {
+
+    private static $table_name = 'MyTwitterData';
+
     private static $username = "";
 
     private static $db = array(
-        "Date" => "SS_Datetime",
+        "Date" => "Datetime",
         "TwitterID" => "Varchar(64)",
         "Title" => "HTMLText",
         "Hide" => "Boolean"

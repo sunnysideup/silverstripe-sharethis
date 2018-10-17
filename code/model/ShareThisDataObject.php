@@ -20,6 +20,8 @@ use SilverStripe\Security\PermissionProvider;
  */
 class ShareThisDataObject extends DataObject implements PermissionProvider
 {
+    private static $table_name = 'ShareThisDataObject';
+
     private static $permission_framework = array(
         "SOCIAL_MEDIA" => array(
             'name' => "Social Media Management",
@@ -119,7 +121,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
     {
         $icon = $this->AlternativeIcon();
         if ($icon->exists()) {
-            return $icon->SetHeight(16);
+            return $icon->ScaleHeight(16);
         }
         $html = '<img src="' . SS_SHARETHIS_DIR . '/images/icons/' . strtolower($this->Title) . ".png\" alt=\"{$this->Title}\"/>";
         return DBField::create_field("HTMLText", $html);
