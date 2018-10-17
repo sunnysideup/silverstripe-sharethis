@@ -2,16 +2,13 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-use SunnySideUp\ShareThis\code\model\FacebookFeed_Page;
+use SunnySideUp\ShareThis\FacebookFeed_Page;
 use SilverStripe\ORM\DB;
 use SilverStripe\Dev\BuildTask;
 
-
-
-
+/**
+ * FacebookFeed_UpdateTask
+ */
 class FacebookFeed_UpdateTask extends BuildTask
 {
     protected $title = "Update Facebook News";

@@ -2,34 +2,19 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-
-
-
-
-
-
-
-use debug;
-
-
+use SilverStripe\Dev\Debug;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HeaderField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\LiteralField;
-use SunnySideUp\ShareThis\code\data\ShareThisOptions;
+use SunnySideUp\ShareThis\ShareThisOptions;
 use SilverStripe\View\Requirements;
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\code\extension\ShareThisSTE;
 use SilverStripe\Core\Convert;
 use SilverStripe\View\ArrayData;
 use SilverStripe\ORM\ArrayList;
-use SunnySideUp\ShareThis\code\model\ShareThisDataObject;
+use SunnySideUp\ShareThis\ShareThisDataObject;
 use SilverStripe\CMS\Model\SiteTreeExtension;
-
-
 
 /**
  * Add a field to each SiteTree object and it's subclasses to enable Share icons.
@@ -191,7 +176,7 @@ class ShareThisSTE extends SiteTreeExtension
                     }
                     $icons[] = new ArrayData($icon);
                 } else {
-                    debug::show("Title of url not defined for $key");
+                    Debug::show("Title of url not defined for $key");
                 }
             }
         }

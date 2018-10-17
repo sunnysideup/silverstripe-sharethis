@@ -2,16 +2,13 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\code\model\MyTwitterData;
 use SilverStripe\Security\Permission;
 use SilverStripe\ORM\DataObject;
 
-
-
+/**
+ * MyTwitterData
+ */
 class MyTwitterData extends DataObject
 {
     private static $username = "";
@@ -56,7 +53,7 @@ class MyTwitterData extends DataObject
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return false;
     }

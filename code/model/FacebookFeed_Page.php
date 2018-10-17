@@ -2,21 +2,14 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-use TreeMultiSelectField;
-
-
-
-use SunnySideUp\ShareThis\code\model\FacebookFeed_Item;
+use SilverStripe\Forms\TreeMultiSelectField;
+use SunnySideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Security\Permission;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DB;
-use SunnySideUp\ShareThis\code\api\SilverstripeFacebookConnector;
+use SunnySideUp\ShareThis\SilverstripeFacebookConnector;
 use SilverStripe\ORM\DataObject;
-
 
 /**
  * FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/
@@ -39,9 +32,6 @@ use SilverStripe\ORM\DataObject;
  *
  *
  **/
-
-
-
 class FacebookFeed_Page extends DataObject
 {
     private static $db = array(
@@ -57,7 +47,7 @@ class FacebookFeed_Page extends DataObject
         'Pages' => SiteTree::class
     );
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }

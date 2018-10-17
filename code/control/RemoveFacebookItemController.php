@@ -2,18 +2,14 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\code\control\RemoveFacebookItemController;
 use SilverStripe\Core\Convert;
-use SunnySideUp\ShareThis\code\model\FacebookFeed_Item;
+use SunnySideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\Control\Controller;
 
-
-
+/**
+ * RemoveFacebookItemController
+ */
 class RemoveFacebookItemController extends Controller
 {
     private static $allowed_actions = array(

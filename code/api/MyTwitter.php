@@ -2,26 +2,16 @@
 
 namespace SunnySideUp\ShareThis;
 
-use Object;
-
-
-
-
-
-
-
-
+use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\Control\Session;
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\code\api\MyTwitter;
-use SunnySideUp\ShareThis\code\model\MyTwitterData;
+use SunnySideUp\ShareThis\MyTwitter;
+use SunnySideUp\ShareThis\MyTwitterData;
 use SilverStripe\Control\Director;
-use SunnySideUp\ShareThis\third_party\twitter_oauth\TwitterOAuth;
+use SunnySideUp\ShareThis\TwitterOAuth;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\View\ArrayData;
-
-
 
 /**
  * @author romain [at] sunnys side up .co.nz + nicolaas [at] sunny side up . co .nz
@@ -29,9 +19,10 @@ use SilverStripe\View\ArrayData;
  * @funding: MSO Design (www.msodesign.com)
  *
  **/
-
-class MyTwitter extends Object
+class MyTwitter
 {
+    use Injectable;
+
     private static $debug = false;
 
     private static $singletons = array();

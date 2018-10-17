@@ -2,19 +2,16 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-use SunnySideUp\ShareThis\code\model\SocialNetworkingLinksDataObject;
-use SunnySideUp\ShareThis\code\model\ShareThisDataObject;
-use SunnySideUp\ShareThis\code\model\FacebookFeed_Page;
-use SunnySideUp\ShareThis\code\model\FacebookFeed_Item;
+use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
+use SunnySideUp\ShareThis\ShareThisDataObject;
+use SunnySideUp\ShareThis\FacebookFeed_Page;
+use SunnySideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\Admin\ModelAdmin;
-
 
 /**
  *@author: nicolaas[at]sunnysideup.co.nz
  *@description: manages social networking data objects
  **/
-
 class SocialNetworkingModelAdmin extends ModelAdmin
 {
     private static $managed_models = array(

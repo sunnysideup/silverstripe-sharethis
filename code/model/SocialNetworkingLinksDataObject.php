@@ -2,12 +2,6 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-
-
-
 use SilverStripe\Assets\Image;
 use SilverStripe\Security\Permission;
 use SilverStripe\ORM\FieldType\DBField;
@@ -15,8 +9,6 @@ use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\ORM\DataObject;
-
-
 
 /**
  *
@@ -71,7 +63,7 @@ class SocialNetworkingLinksDataObject extends DataObject
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }

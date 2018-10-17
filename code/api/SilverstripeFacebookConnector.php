@@ -2,22 +2,16 @@
 
 namespace SunnySideUp\ShareThis;
 
-use Object;
-
-use debug;
+use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\code\api\SilverstripeFacebookConnector;
-
-
+use SilverStripe\Dev\Debug;
 
 /**
  * https://developers.facebook.com/tools-and-support/
- *
- *
  */
-
-class SilverstripeFacebookConnector extends Object
+class SilverstripeFacebookConnector
 {
+    use Injectable;
 
     /**
      * @var Facebook Connection
@@ -106,7 +100,7 @@ class SilverstripeFacebookConnector extends Object
             return false;
         }
         if (self::$debug) {
-            debug::log(implode(" | ", self::$error));
+            Debug::log(implode(" | ", self::$error));
         }
         return $response;
     }

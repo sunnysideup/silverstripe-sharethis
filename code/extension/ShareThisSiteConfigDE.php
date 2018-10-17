@@ -2,30 +2,17 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-
-
-
-
-
-
-
-
 use SilverStripe\Forms\FieldList;
-use SunnySideUp\ShareThis\code\model\ShareThisDataObject;
+use SunnySideUp\ShareThis\ShareThisDataObject;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridField;
-use SunnySideUp\ShareThis\code\model\SocialNetworkingLinksDataObject;
+use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
 use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
 use SilverStripe\ORM\DataExtension;
-
-
 
 /**
  * @todo Check that permissions on the 2 tables in the CMS are the same than before

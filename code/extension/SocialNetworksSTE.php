@@ -2,25 +2,14 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-
-
-
-
-
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HeaderField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\View\Requirements;
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\code\extension\SocialNetworksSTE;
-use SunnySideUp\ShareThis\code\model\SocialNetworkingLinksDataObject;
+use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
 use SilverStripe\CMS\Model\SiteTreeExtension;
-
-
 
 /**
  * Add a field to each SiteTree object and it's subclasses to enable "follow us on ...", this can be a blog, twitter, facebook or whatever else.

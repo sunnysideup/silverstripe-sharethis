@@ -2,27 +2,16 @@
 
 namespace SunnySideUp\ShareThis;
 
-
-
-
-
-
-
-
-
 use SilverStripe\Assets\Image;
 use SilverStripe\Core\Config\Config;
-use SunnySideUp\ShareThis\code\model\ShareThisDataObject;
 use SilverStripe\Security\Permission;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\Forms\LiteralField;
-use SunnySideUp\ShareThis\code\data\ShareThisOptions;
-use SunnySideUp\ShareThis\code\extension\ShareThisSTE;
+use SunnySideUp\ShareThis\ShareThisOptions;
+use SunnySideUp\ShareThis\ShareThisSTE;
 use SilverStripe\ORM\DB;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\PermissionProvider;
-
-
 
 /**
  * @author nicolaas[at]sunnysideup.co.nz
@@ -90,7 +79,7 @@ class ShareThisDataObject extends DataObject implements PermissionProvider
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
