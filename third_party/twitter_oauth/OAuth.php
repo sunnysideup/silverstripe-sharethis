@@ -1,4 +1,10 @@
 <?php
+
+namespace SunnySideUp\ShareThis;
+
+use Exception;
+use SunnySideUp\ShareThis\OAuthUtil;
+
 // vim: foldmethod=marker
 /**
  *
@@ -796,7 +802,7 @@ class OAuthUtil
     public static function urlencode_rfc3986($input)
     {
         if (is_array($input)) {
-            return array_map(array('OAuthUtil', 'urlencode_rfc3986'), $input);
+            return array_map(array(OAuthUtil::class, 'urlencode_rfc3986'), $input);
         } elseif (is_scalar($input)) {
             return str_replace(
       '+',

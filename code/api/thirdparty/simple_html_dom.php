@@ -1,4 +1,7 @@
 <?php
+
+namespace SunnySideUp\ShareThis;
+
 /**
  * Website: http://sourceforge.net/projects/simplehtmldom/
  * Additional projects that may be used: http://sourceforge.net/projects/debugobject/

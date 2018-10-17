@@ -1,11 +1,23 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+use SilverStripe\Core\Injector\Injectable;
+use SilverStripe\Dev\Debug;
+use SilverStripe\Control\Email\Email;
+use SilverStripe\Control\Director;
+use SilverStripe\Core\Config\Config;
+use SunnySideUp\ShareThis\ShareThisSTE;
+
+
 /**
  * @author nicolaas [at] sunnysideup.co.nz
  *
  */
-class ShareThisOptions extends Object
+class ShareThisOptions
 {
+    use Injectable;
+
     private static $page_specific_data;
 
     private static $general_data;
@@ -26,7 +38,7 @@ class ShareThisOptions extends Object
 "email" => array(
     "url" => "mailto:?".htmlentities("Subject=".self::$encoded_page_title."&Body=".self::$encoded_description."%0D%0A".self::$encoded_page_url),
     "faicon" => "fa-send",
-    "title" => "Email"),
+    "title" => Email::class),
 "print" => array(
     "url" => "#",
     "faicon" => "fa-print",
@@ -85,14 +97,14 @@ class ShareThisOptions extends Object
     {
         $originalArray = self::$page_specific_data ? self::$page_specific_data : self::get_all_options($title, $link, $description);
         $finalArray = array();
-        $inc = Config::inst()->get("ShareThisSTE", "included_icons");
-        $exc = Config::inst()->get("ShareThisSTE", "excluded_icons");
+        $inc = Config::inst()->get(ShareThisSTE::class, "included_icons");
+        $exc = Config::inst()->get(ShareThisSTE::class, "excluded_icons");
         if (count($inc)) {
             $new_array_of_icons_to_include = array();
             foreach ($inc as $key => $value) {
                 $new_array_of_icons_to_include[$value] = $value;
                 if (! isset($originalArray[$value])) {
-                    debug::show("Error in ShareIcons::set_icons_to_include, $key does not exist in bookmark list");
+                    Debug::show("Error in ShareIcons::set_icons_to_include, $key does not exist in bookmark list");
                 }
             }
             foreach ($originalArray as $key => $array) {
@@ -105,7 +117,7 @@ class ShareThisOptions extends Object
         if (count($exc)) {
             foreach ($exc as $key) {
                 if (! isset($originalArray[$key])) {
-                    debug::show("Error in ShareIcons::set_icons_to_exclude, $key does not exist in bookmark list");
+                    Debug::show("Error in ShareIcons::set_icons_to_exclude, $key does not exist in bookmark list");
                 } else {
                     unset($originalArray[$key]);
                 }

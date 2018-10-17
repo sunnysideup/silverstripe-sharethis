@@ -1,5 +1,7 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
 /*
  * Abraham Williams (abraham@abrah.am) http://abrah.am
  *
@@ -39,9 +41,6 @@ class TwitterOAuth
     public $useragent = 'TwitterOAuth v0.2.0-beta2';
     /* Immediately retry the API call if the response was not successful. */
     //public $retry = TRUE;
-
-
-
 
     /**
      * Set API URLS

@@ -1,5 +1,15 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+use SilverStripe\Assets\Image;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\TreeDropdownField;
+use SilverStripe\ORM\DataObject;
+
 /**
  *
  *@author nicolaas[at]sunnysideup.co.nz
@@ -21,7 +31,7 @@ class SocialNetworkingLinksDataObject extends DataObject
     );
 
     private static $has_one = array(
-        'Icon' => 'Image',
+        'Icon' => Image::class,
         'InternalLink' => 'Page'
     );
 
@@ -53,7 +63,7 @@ class SocialNetworkingLinksDataObject extends DataObject
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
@@ -112,7 +122,7 @@ class SocialNetworkingLinksDataObject extends DataObject
             $fields->addFieldToTab('Root.Main', new LiteralField('Link', "<p>{$this->IconHTML()}</p>"));
         }
         $fields->removeFieldFromTab('Root.Main', 'InternalLinkID');
-        $fields->addFieldToTab('Root.Main', new TreeDropdownField('InternalLinkID', 'Internal Link', 'SiteTree'), 'URL');
+        $fields->addFieldToTab('Root.Main', new TreeDropdownField('InternalLinkID', 'Internal Link', SiteTree::class), 'URL');
         return $fields;
     }
 }

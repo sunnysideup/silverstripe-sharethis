@@ -1,4 +1,17 @@
 <?php
+
+namespace SunnySideUp\ShareThis;
+
+use HtmlEditorField;
+use SunnySideUp\ShareThis\FacebookFeed_Page;
+use SilverStripe\Security\Permission;
+use SilverStripe\Control\Director;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Core\Injector\Injector;
+use SunnySideUp\ShareThis\RemoveFacebookItemController;
+use SilverStripe\ORM\DataObject;
+
 /**
  * FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/
  * EXAMPLE:
@@ -46,7 +59,7 @@ class FacebookFeed_Item extends DataObject
 
 
     private static $has_one = array(
-        "FacebookFeed_Page" => "FacebookFeed_Page"
+        "FacebookFeed_Page" => FacebookFeed_Page::class
     );
 
     private static $indexes = array(
@@ -69,7 +82,7 @@ class FacebookFeed_Item extends DataObject
 
     private static $default_sort = "\"Created\" DESC";
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return false;
     }
@@ -263,7 +276,7 @@ class FacebookFeed_Item extends DataObject
 
     public function RemoveLink()
     {
-        $obj = Injector::inst()->get('RemoveFacebookItemController');
+        $obj = Injector::inst()->get(RemoveFacebookItemController::class);
 
         return $obj->Link('remove/'.$this->UID.'/');
     }

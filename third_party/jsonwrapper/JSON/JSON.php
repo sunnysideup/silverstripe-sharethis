@@ -1,4 +1,11 @@
 <?php
+
+namespace SunnySideUp\ShareThis;
+
+use stdClass;
+use PEAR;
+use PEAR_Error;
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**

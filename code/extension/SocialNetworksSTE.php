@@ -1,5 +1,16 @@
 <?php
 
+namespace SunnySideUp\ShareThis;
+
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\View\Requirements;
+use SilverStripe\Core\Config\Config;
+use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
+use SilverStripe\CMS\Model\SiteTreeExtension;
+
 /**
  * Add a field to each SiteTree object and it's subclasses to enable "follow us on ...", this can be a blog, twitter, facebook or whatever else.
  * it uses the SocialNetworkingLinksDataObject to get a list of icons.
@@ -61,7 +72,7 @@ class SocialNetworksSTE extends SiteTreeExtension
     public function SocialNetworks()
     {
         Requirements::themedCSS('SocialNetworking', "sharethis");
-        if (Config::inst()->get("SocialNetworksSTE", "use_font_awesome")) {
+        if (Config::inst()->get(SocialNetworksSTE::class, "use_font_awesome")) {
             Requirements::css("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
         }
         return SocialNetworkingLinksDataObject::get();
@@ -69,8 +80,8 @@ class SocialNetworksSTE extends SiteTreeExtension
 
     private function applyToOwnerClass()
     {
-        $always = Config::inst()->get("SocialNetworksSTE", "always_include_in");
-        $never = Config::inst()->get("SocialNetworksSTE", "never_include_in");
+        $always = Config::inst()->get(SocialNetworksSTE::class, "always_include_in");
+        $never = Config::inst()->get(SocialNetworksSTE::class, "never_include_in");
         if (count($always) == 0 && count($never) == 0) {
             return true;
         }
