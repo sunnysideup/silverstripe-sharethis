@@ -12,99 +12,153 @@ use SunnysideUp\ShareThis\ShareThisSTE;
 
 /**
  * @author nicolaas [at] sunnysideup.co.nz
- *
  */
 class ShareThisOptions
 {
     use Injectable;
 
+    /**
+     * @var array
+     */
     private static $page_specific_data;
 
+    /**
+     * @var general_data
+     */
     private static $general_data;
 
+    /**
+     * @var share_all_data
+     */
     private static $share_all_data;
 
+    /**
+     * @var non_encoded_page_url
+     */
     private static $non_encoded_page_url;
 
+    /**
+     * @var encoded_page_url
+     */
     private static $encoded_page_url;
 
+    /**
+     * @var encoded_page_title
+     */
     private static $encoded_page_title;
 
+    /**
+     * @var encoded_page_title_space_encoded
+     */
     private static $encoded_page_title_space_encoded;
 
+    /**
+     * @var encoded_description
+     */
     private static $encoded_description;
 
+    /**
+     * @var icon
+     */
     private static $icon;
 
+    /**
+     * Get's all options
+     *
+     * @return array
+     */
     public static function get_all_options($title, $link, $description)
     {
         self::set_variables($title, $link, $description);
-        self::$page_specific_data = array(
-        "Email" => array(
-            "url" => "mailto:?".htmlentities("Subject=".self::$encoded_page_title."&Body=".self::$encoded_description."%0D%0A".self::$encoded_page_url),
-            "faicon" => "fa-send",
-            "title" => 'Email'),
-        "Print" => array(
-            "url" => "#",
-            "faicon" => "fa-print",
-            "click" => "window.print(); return false;",
-            "title" => "Print"),
-        "Favourites" => array(
-            "url" => "#",
-            "faicon" => "fa-bookmark",
-            "click" => "sharethis.bookmark('".self::$encoded_page_url."', '".self::$encoded_page_title."'); return false;",
-            "title" => "Add to favourites (Internet Explorer Only)"),
-        "Delicious" => array(
-            "url" => "http://del.icio.us/post?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
-            "faicon" => "fa-delicious",
-            "title" => "Delicious"),
-        "Facebook" => array(
-            "url" => "http://www.facebook.com/share.php?".htmlentities("u=".self::$encoded_page_url."&title=".self::$encoded_page_title),
-            "faicon" => "fa-facebook-square",
-            "title" => "Facebook"),
-        "GooglePlus" => array(
-            "url" =>  "https://plus.google.com/share?url=".self::$encoded_page_url,
-            "faicon" => "fa-google-plus",
-            "title" => "Google Plus One"),
-        "LinkedIn" => array(
-            "url" =>  "http://www.linkedin.com/shareArticle?".htmlentities("mini=true&url=".self::$encoded_page_url."&title=".self::$encoded_page_title."&source=".Director::absoluteBaseURL()),
-            "faicon" => "fa-linkedin-square",
-            "title" => "LinkedIn"),
-        "Pinterest" => array(
-            "url" => "http://pinterest.com/pin/create/bookmarklet/?".htmlentities("media=html&url=".self::$encoded_page_url."&is_video=false&description=".self::$encoded_page_title),
-            "faicon" => "fa-pinterest",
-            "title" => "Pinterest"),
-        "Reddit" => array(
-            "url" => "http://reddit.com/submit?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
-            "faicon" => "fa-reddit",
-            "title" => "Reddit"),
-        "Twitter" => array(
-            "url" => "http://twitter.com/home?status=".htmlentities(urlencode("currently reading: ").self::$encoded_page_url),
-            "faicon" => "fa-twitter-square",
-            "title" => "Twitter"),
-        "Tumblr" => array(
-            "url" => "http://www.tumblr.com/share/link?url=".htmlentities(self::$encoded_page_url."&name=".self::$encoded_page_title),
-            "faicon" => "fa-tumblr-square",
-            "title" => "Tumblr")
-        );
+        self::$page_specific_data = [
+            "email" => [
+                "url" => "mailto:?".htmlentities("Subject=".self::$encoded_page_title."&Body=".self::$encoded_description."%0D%0A".self::$encoded_page_url),
+                "faicon" => "fa-send",
+                "title" => 'Email'
+            ],
+            "print" => [
+                "url" => "#",
+                "faicon" => "fa-print",
+                "click" => "window.print(); return false;",
+                "title" => "Print"
+            ],
+            "favourites" => [
+                "url" => "#",
+                "faicon" => "fa-bookmark",
+                "click" => "sharethis.bookmark('".self::$encoded_page_url."', '".self::$encoded_page_title."'); return false;",
+                "title" => "Add to favourites (Internet Explorer Only)"
+            ],
+            "delicious" => [
+                "url" => "http://del.icio.us/post?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+                "faicon" => "fa-delicious",
+                "title" => "Delicious"
+            ],
+            "facebook" => [
+                "url" => "http://www.facebook.com/share.php?".htmlentities("u=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+                "faicon" => "fa-facebook-square",
+                "title" => "Facebook"
+            ],
+            "googleplus" => [
+                "url" =>  "https://plus.google.com/share?url=".self::$encoded_page_url,
+                "faicon" => "fa-google-plus",
+                "title" => "Google Plus One"
+            ],
+            "linkedin" => [
+                "url" =>  "http://www.linkedin.com/shareArticle?".htmlentities("mini=true&url=".self::$encoded_page_url."&title=".self::$encoded_page_title."&source=".Director::absoluteBaseURL()),
+                "faicon" => "fa-linkedin-square",
+                "title" => "LinkedIn"
+            ],
+            "pinterest" => [
+                "url" => "http://pinterest.com/pin/create/bookmarklet/?".htmlentities("media=html&url=".self::$encoded_page_url."&is_video=false&description=".self::$encoded_page_title),
+                "faicon" => "fa-pinterest",
+                "title" => "Pinterest"
+            ],
+            "reddit" => [
+                "url" => "http://reddit.com/submit?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
+                "faicon" => "fa-reddit",
+                "title" => "Reddit"
+            ],
+            "twitter" => [
+                "url" => "http://twitter.com/home?status=".htmlentities(urlencode("currently reading: ").self::$encoded_page_url),
+                "faicon" => "fa-twitter-square",
+                "title" => "Twitter"
+            ],
+            "tumblr" => [
+                "url" => "http://www.tumblr.com/share/link?url=".htmlentities(self::$encoded_page_url."&name=".self::$encoded_page_title),
+                "faicon" => "fa-tumblr-square",
+                "title" => "Tumblr"
+            ]
+        ];
 
         return self::$page_specific_data;
     }
 
+    /**
+     * @param  string $title
+     * @param  string $link
+     * @param  string $description
+     *
+     * @return array
+     */
     public static function get_page_specific_data($title, $link, $description = '')
     {
         $originalArray = self::$page_specific_data ? self::$page_specific_data : self::get_all_options($title, $link, $description);
-        $finalArray = array();
+        $finalArray = [];
         $inc = Config::inst()->get(ShareThisSTE::class, "included_icons");
         $exc = Config::inst()->get(ShareThisSTE::class, "excluded_icons");
+
         if (count($inc)) {
-            $new_array_of_icons_to_include = array();
+            $new_array_of_icons_to_include = [];
+
             foreach ($inc as $key => $value) {
                 $new_array_of_icons_to_include[$value] = $value;
+
                 if (! isset($originalArray[$value])) {
                     Debug::show("Error in ShareIcons::set_icons_to_include, $key does not exist in bookmark list");
                 }
+
             }
+
             foreach ($originalArray as $key => $array) {
                 if (! isset($new_array_of_icons_to_include[$key])) {
                     unset($originalArray[$key]);
@@ -140,35 +194,42 @@ class ShareThisOptions
     */
     public static function get_share_all()
     {
-        //self::set_variables($title, $link, $description);
         self::$share_all_data = '
             <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#&amp;type=website"></script>
             <script type="text/javascript">
-            SHARETHIS.addEntry(
-            	{
-            		title:"' . urldecode(self::$encoded_page_title) . '",
-            		summary:"' . urldecode(self::$encoded_page_title) . '",
-            		url:"' . urldecode(self::$encoded_page_url) . '",
-            		icon:"' . urldecode(self::$icon) . '"
-            	},
-            	{button:true}
-            );
+                SHARETHIS.addEntry(
+                    {
+                        title:"' . urldecode(self::$encoded_page_title) . '",
+                        summary:"' . urldecode(self::$encoded_page_title) . '",
+                        url:"' . urldecode(self::$encoded_page_url) . '",
+                        icon:"' . urldecode(self::$icon) . '"
+                    },
+                    {button:true}
+                );
             </script>
         ';
 
         return self::$share_all_data;
     }
 
+    /**
+     * Sets general data
+     *
+     * @return void
+     */
     public static function set_general_data()
     {
         self::$general_data = null;
     }
 
+    /**
+     * Get's generic data
+     */
     public static function get_general_data()
     {
         if (! self::$general_data) {
             $array = self::get_page_specific_data('', '', '');
-            $newArray = array();
+            $newArray = [];
             if (count($array)) {
                 foreach ($array as $key => $subArray) {
                     $newArray[$key] = $key;
@@ -180,6 +241,14 @@ class ShareThisOptions
         return self::$general_data;
     }
 
+    /**
+     * Set's variables
+     * @param string
+     * @param string
+     * @param string
+     *
+     * @return  void
+     */
     private static function set_variables($title, $link, $description)
     {
         self::$icon = urlencode(Director::absoluteBaseURL() . 'favicon.ico');
@@ -194,6 +263,9 @@ class ShareThisOptions
         }
     }
 
+    /**
+     * @return string
+     */
     private function facebookLike()
     {
         //see http://developers.facebook.com/docs/reference/plugins/like/

@@ -20,63 +20,105 @@ use SilverStripe\ORM\DataObject;
  */
 class SocialNetworkingLinksDataObject extends DataObject
 {
+    /**
+     * @var string
+     */
     private static $table_name = 'SocialNetworkingLinksDataObject';
 
-    private static $db = array(
+    /**
+     * @var array
+     */
+    private static $db = [
         'URL' => 'Varchar(255)',
         'Title' => 'Varchar(255)',
         'Sort' => 'Int'
-    );
+    ];
 
-    private static $casting = array(
+    /**
+     * @var array
+     */
+    private static $casting = [
         'Code' => 'Varchar(255)',
         'Link' => 'Varchar(255)',
         'IconHTML' => 'HTMLText'
-    );
+    ];
 
-    private static $has_one = array(
+    /**
+     * @var array
+     */
+    private static $has_one = [
         'Icon' => Image::class,
         'InternalLink' => Page::class
-    );
+    ];
 
-    private static $searchable_fields = array(
+    /**
+     * @var array
+     */
+    private static $searchable_fields = [
         'Title' => PartialMatchFilter::class
-    );
+    ];
 
-    private static $field_labels = array(
+    /**
+     * @return array
+     */
+    private static $field_labels = [
         'InternalLink' => 'Internal Link',
         'URL' => 'External Link (e.g. http://twitter.com/myname/) - will override internal link',
         'Title' => 'Title',
         'Sort' => 'Sort Index (lower numbers shown first)',
         'IconID' => 'Icon (preferably 32px X 32px)'
-    );
+    ];
 
-    private static $summary_fields = array(
+    /**
+     * @var array
+     */
+    private static $summary_fields = [
         'Title' => 'Title',
         'IconHTML' => 'Icon'
-    );
+    ];
 
+    /**
+     * @var string
+     */
     private static $default_sort = 'Sort ASC, Title ASC';
 
+    /**
+     * @var string
+     */
     private static $singular_name = 'Join Us link';
 
+    /**
+     * @var string
+     */
     private static $plural_name = 'Join Us links';
 
+    /**
+     * @return boolean
+     */
     public function canView($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canCreate($member = null, $context = [])
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canEdit($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canDelete($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
@@ -90,11 +132,17 @@ class SocialNetworkingLinksDataObject extends DataObject
         return strtolower(preg_replace("/[^a-zA-Z0-9]/", '', $this->Title));
     }
 
+    /**
+     * @return DBField
+     */
     public function IconHTML()
     {
         return $this->getIconHTML();
     }
 
+    /**
+     * @return DBField / icon
+     */
     public function getIconHTML()
     {
         $icon = $this->Icon();
@@ -106,6 +154,11 @@ class SocialNetworkingLinksDataObject extends DataObject
         return  $html;
     }
 
+    /**
+     * Link
+     *
+     * @return string
+     */
     public function Link()
     {
         if ($this->URL) {
@@ -118,16 +171,22 @@ class SocialNetworkingLinksDataObject extends DataObject
         }
     }
 
+    /**
+     * @return FieldList $fields
+     */
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+
         if ($this->ID) {
             $fields->addFieldToTab('Root.Main', LiteralField::create('Code', "<p>Code: {$this->Code()}</p>"));
             $fields->addFieldToTab('Root.Main', LiteralField::create('Link', "<p>Link: <a href=\"{$this->Link()}\">{$this->Link()}</a></p>"));
             $fields->addFieldToTab('Root.Main', LiteralField::create('Link', "<p>{$this->IconHTML()}</p>"));
         }
+
         $fields->removeFieldFromTab('Root.Main', 'InternalLinkID');
         $fields->addFieldToTab('Root.Main', TreeDropdownField::create('InternalLinkID', 'Internal Link', SiteTree::class), 'URL');
+
         return $fields;
     }
 }

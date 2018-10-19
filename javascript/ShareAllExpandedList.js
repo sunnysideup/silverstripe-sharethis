@@ -1,4 +1,3 @@
-
 /*
  *@author: nicolaas[at] sunnysideup.co.nz
  *@description: share this expanded list toggle functions
@@ -9,8 +8,6 @@
 		ShareAllExpandedList.init();
 	});
 })(jQuery);
-
-
 
 var ShareAllExpandedList = {
 
@@ -37,9 +34,7 @@ var ShareAllExpandedList = {
 			}
 		)
 	}
-
 }
-
 
 //immediately
 jQuery(ShareAllExpandedList.shareAllExpandedListULSelector)

@@ -14,14 +14,23 @@ use SilverStripe\Admin\ModelAdmin;
  **/
 class SocialNetworkingModelAdmin extends ModelAdmin
 {
-    private static $managed_models = array(
+	/**
+	 * @var array
+	 */
+    private static $managed_models = [
         SocialNetworkingLinksDataObject::class,
         ShareThisDataObject::class,
         FacebookFeed_Page::class,
         FacebookFeed_Item::class
-    );
+    ];
 
+    /**
+     * @var string
+     */
     private static $url_segment = 'social';
 
+    /**
+     * @var string
+     */
     private static $menu_title = 'Social Media';
 }

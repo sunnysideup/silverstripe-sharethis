@@ -17,13 +17,18 @@
         }
     ],
     "require": {
-        "silverstripe/framework": "~3.6",
-        "silverstripe/cms": "~3.6"
+        "silverstripe/framework": "^4.0",
+        "silverstripe/cms": "^4.0"
     },
     "suggest": {
         "facebook/php-sdk-v4": "Facebook SDK"
     },
     "extra": {
-        "installer-name": "sharethis"
+        "installer-name": "sharethis",
+        "expose": [
+          "css",
+          "images",
+          "javascript"
+        ]
     }
 }

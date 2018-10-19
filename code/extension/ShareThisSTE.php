@@ -36,14 +36,14 @@ class ShareThisSTE extends SiteTreeExtension
      * the ShareThis functionality should be included
      * @var Array
      */
-    private static $always_include_in = array();
+    private static $always_include_in = [];
 
     /**
      * list of sitetree extending classnames where
      * the ShareThis functionality should NEVER be included
      * @var Array
      */
-    private static $never_include_in = array();
+    private static $never_include_in = [];
 
     /**
     * use BW icons
@@ -56,14 +56,14 @@ class ShareThisSTE extends SiteTreeExtension
     * We have this variable so that you can setup a bunch of default icons
     * @var array
     */
-    private static $included_icons = array();
+    private static $included_icons = [];
 
     /**
     * specify icons to be excluded, if left empty, this variable will be ignored
     * We have this variable so that you can setup a bunch of default icons
     * @var array
     */
-    private static $excluded_icons = array();
+    private static $excluded_icons = [];
 
     /**
      * standard SS method
@@ -73,6 +73,11 @@ class ShareThisSTE extends SiteTreeExtension
         'ShareIcons' => 'Boolean'
     );
 
+    /**
+     * @param  FieldList $fields
+     *
+     * @return FieldList $fields
+     */
     public function updateCMSFields(FieldList $fields)
     {
         if ($this->applyToOwnerClass()) {
@@ -93,7 +98,7 @@ class ShareThisSTE extends SiteTreeExtension
             $html = "<div><p>Click on any of the icons below to share the '<i>{$this->owner->Title}</i>' page. Any click will open a new tab/window where you will need to enter your login details.</p>";
 
             foreach ($list as $key => $innerArray) {
-                if (!isset($innerArray['click'])) {
+                if (! isset($innerArray['click'])) {
                     $html .= "<span><a href=\"{$innerArray['url']}\" target=\"_blank\" style=\"whitespace: nowrap; display: inline-block;\"><img src=\"" . SS_SHARETHIS_DIR . "/images/icons/$key.png\" alt=\"$key\"/>{$innerArray['title']}</a></span>&nbsp;&nbsp;";
                 }
             }
@@ -105,6 +110,9 @@ class ShareThisSTE extends SiteTreeExtension
         return $fields;
     }
 
+    /**
+     * Show the sharing icons
+     */
     public function getShowShareIcons()
     {
         if ($this->applyToOwnerClass()) {
@@ -116,12 +124,19 @@ class ShareThisSTE extends SiteTreeExtension
         }
     }
 
+    /**
+     * Get the sharing icons
+     */
     public function getShareIcons()
     {
         $bookmarks = $this->makeBookmarks('IncludeThisIcon');
         return $this->makeShareIcons($bookmarks);
     }
 
+    /**
+     * Grabbing front end dependencies for the expanded sharing list with some extra
+     * functionality
+     */
     public function ShareAllExpandedList()
     {
         Requirements::javascript('/vendor/silverstripe/admin/thirdparty/jquery/jquery.js');
@@ -130,13 +145,19 @@ class ShareThisSTE extends SiteTreeExtension
         return $this->makeShareIcons($bookmarks);
     }
 
+    /**
+     * Include share all
+     */
     public function IncludeShareAll()
     {
         $config = $this->owner->getSiteConfig();
         return $config->ShareThisAllInOne;
     }
 
-    public function ShareAll()
+    /**
+     * @return boolean
+     */
+    public function getShareAll()
     {
         if ($this->IncludeShareAll()) {
             return ShareThisOptions::get_share_all();
@@ -144,22 +165,26 @@ class ShareThisSTE extends SiteTreeExtension
     }
 
     /**
-     * eturns array
+     * @return array
      */
     protected function makeShareIcons($bookmarks)
     {
-        $icons = array();
+        $icons = [];
         if ($bookmarks) {
             $useFontAwesome = Config::inst()->get(ShareThisSTE::class, "use_font_awesome");
             Requirements::themedCSS('SocialNetworking', "sharethis"); // ALSO  added in template
+
             if ($useFontAwesome) {
                 Requirements::css("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
             }
+
             Requirements::javascript('/vendor/silverstripe/admin/thirdparty/jquery/jquery.js');
             Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/shareThis.js');
+
             if (Config::inst()->get(ShareThisSTE::class, "use_bw_effect")) {
                 Requirements::customScript('sharethis.set_use_BW(true);', 'ShareThisBWEffect');
             }
+
             foreach ($bookmarks as $key => $bookmark) {
                 if (isset($bookmark['title']) && isset($bookmark['url'])) {
                     $icon = array(
@@ -197,9 +222,12 @@ class ShareThisSTE extends SiteTreeExtension
         return new ArrayList($icons);
     }
 
+    /**
+     * Creating the bookmarks
+     */
     protected function makeBookmarks($field)
     {
-        $finalBookmarks = array();
+        $finalBookmarks = [];
 
         $bookmarks = ShareThisOptions::get_page_specific_data($this->owner->Title, $this->owner->Link(), $this->owner->MetaDescription);
 
@@ -223,6 +251,9 @@ class ShareThisSTE extends SiteTreeExtension
         return $finalBookmarks;
     }
 
+    /**
+     * @return boolean
+     */
     private function applyToOwnerClass()
     {
         $always = Config::inst()->get(ShareThisSTE::class, "always_include_in");

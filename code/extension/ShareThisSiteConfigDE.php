@@ -20,14 +20,22 @@ use SilverStripe\ORM\DataExtension;
  */
 class ShareThisSiteConfigDE extends DataExtension
 {
-    private static $db = array(
+    /**
+     * @var array
+     */
+    private static $db = [
         'AlwaysIncludeShareThisLinks' => 'Boolean',
         'AlwaysIncludeSocialNetworkingLinks' => 'Boolean',
         'IncludeByDefaultShareThisLinks' => 'Boolean',
         'IncludeByDefaultSocialNetworkingLinks' => 'Boolean',
         'ShareThisAllInOne' => 'Boolean'
-    );
+    ];
 
+    /**
+     * @param  FieldList $fields
+     *
+     * @return FieldList $fields
+     */
     public function updateCMSFields(FieldList $fields)
     {
         $individualPageNoteWith = _t("ShareThis.INDIVIDUAL_PAGE_NOTE_WITH", " (with the ability to turn them off/on on individual pages) ");
@@ -36,41 +44,41 @@ class ShareThisSiteConfigDE extends DataExtension
 
         $shareThisExtra = '<h3 style="margin-top: 50px">Select Icons</h3>';
 
-        $shareThisTableField = new GridField('Share this options', null, ShareThisDataObject::get(), GridFieldConfig_RecordEditor::create());
+        $shareThisTableField = GridField::create('ShareThisOptions', null, ShareThisDataObject::get(), GridFieldConfig_RecordEditor::create());
 
         $socialNetworkExtra = '<h3 style="margin-top: 50px">Add / Edit / Delete Your Social Networking Home Pages (e.g. www.facebook.com/our-company-page)</h3>';
 
-        $socialNetworkTableField = new GridField('Join Us', null, SocialNetworkingLinksDataObject::get(), GridFieldConfig_RecordEditor::create());
+        $socialNetworkTableField = GridField::create('JoinUs', null, SocialNetworkingLinksDataObject::get(), GridFieldConfig_RecordEditor::create());
 
         if ($this->owner->AlwaysIncludeShareThisLinks) {
-            $defaultShareThisCheckbox = new HiddenField('IncludeByDefaultShareThisLinks', true);
+            $defaultShareThisCheckbox = HiddenField::create('IncludeByDefaultShareThisLinks', true);
         } else {
-            $defaultShareThisCheckbox = new CheckboxField('IncludeByDefaultShareThisLinks', 'Show links on every page by default '.$individualPageNoteWith);
+            $defaultShareThisCheckbox = CheckboxField::create('IncludeByDefaultShareThisLinks', 'Show links on every page by default '.$individualPageNoteWith);
         }
 
         if ($this->owner->AlwaysIncludeSocialNetworkingLinks) {
-            $defaultSocialNetworkingCheckbox = new HiddenField('IncludeByDefaultSocialNetworkingLinks', true);
+            $defaultSocialNetworkingCheckbox = HiddenField::create('IncludeByDefaultSocialNetworkingLinks', true);
         } else {
-            $defaultSocialNetworkingCheckbox = new CheckboxField('IncludeByDefaultSocialNetworkingLinks', 'Include on every page by default '.$individualPageNoteWith);
+            $defaultSocialNetworkingCheckbox = CheckboxField::create('IncludeByDefaultSocialNetworkingLinks', 'Include on every page by default '.$individualPageNoteWith);
         }
 
         $fields->addFieldToTab(
             'Root.SocialMedia',
-            new TabSet(
+            TabSet::create(
                 'SocialNetworkingOptions',
-                new Tab(
+                Tab::create(
                     'ShareThis',
-                    new CheckboxField('AlwaysIncludeShareThisLinks', 'Show links on every page '.$individualPageNoteWithout),
+                    CheckboxField::create('AlwaysIncludeShareThisLinks', 'Show links on every page '.$individualPageNoteWithout),
                     $defaultShareThisCheckbox,
-                    new CheckboxField('ShareThisAllInOne', 'Add a \'share\' all-in-one button'),
-                    new LiteralField('shareThisExtra', $shareThisExtra),
+                    CheckboxField::create('ShareThisAllInOne', 'Add a \'share\' all-in-one button'),
+                    LiteralField::create('shareThisExtra', $shareThisExtra),
                     $shareThisTableField
                 ),
-                new Tab(
+                Tab::create(
                     'JoinUs',
-                    new CheckboxField('AlwaysIncludeSocialNetworkingLinks', 'Show links on every page '.$individualPageNoteWithout),
+                    CheckboxField::create('AlwaysIncludeSocialNetworkingLinks', 'Show links on every page '.$individualPageNoteWithout),
                     $defaultSocialNetworkingCheckbox,
-                    new LiteralField('socialNetworkExtra', $socialNetworkExtra),
+                    LiteralField::create('socialNetworkExtra', $socialNetworkExtra),
                     $socialNetworkTableField
                 )
             )
@@ -79,6 +87,11 @@ class ShareThisSiteConfigDE extends DataExtension
         return $fields;
     }
 
+    /**
+     * CanEditShareIcons
+     *
+     * @return void
+     */
     public function CanEditShareIcons()
     {
         if (class_exists('DataObjectSorterDOD')) {
