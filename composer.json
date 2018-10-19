@@ -1,6 +1,6 @@
 {
     "name": "sunnysideup/sharethis",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "description": "adds a bunch of social media tools to your Silverstripe website",
     "keywords": [
         "Silverstripe-CMS",
