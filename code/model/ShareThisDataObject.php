@@ -83,8 +83,6 @@ class ShareThisDataObject extends DataObject
      */
     private static $summary_fields = [
         'Title' => 'Name',
-        'Icon' => 'Icon',
-        'IncludeThisIconNice' => 'IncludeThisIcon'
     ];
 
     /**

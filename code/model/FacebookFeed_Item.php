@@ -96,9 +96,7 @@ class FacebookFeed_Item extends DataObject
     private static $searchable_fields = [
         'Title' => PartialMatchFilter::class,
         'Author' => PartialMatchFilter::class,
-        'Description' => PartialMatchFilter::class,
-        'Hide' => true,
-        'KeepOnTop' => true
+        'Description' => PartialMatchFilter::class
     ];
 
     /**

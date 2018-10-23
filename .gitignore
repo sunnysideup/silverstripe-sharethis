@@ -1,5 +1,6 @@
 .sass-cache
 .DS_Store
+.upgrade.yml
 npm-debug.log
 /.buildpath
 /.project
