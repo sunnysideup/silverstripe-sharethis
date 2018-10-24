@@ -28,8 +28,7 @@
         "expose": [
           "css",
           "images",
-          "javascript",
-          "node_modules/jquery/dist/"
+          "javascript"
         ]
     }
 }

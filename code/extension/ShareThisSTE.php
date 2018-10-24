@@ -139,7 +139,7 @@ class ShareThisSTE extends SiteTreeExtension
      */
     public function ShareAllExpandedList()
     {
-        Requirements::javascript(SS_SHARETHIS_DIR . '/node_modules/jquery/dist/jquery.min.js');
+        Requirements::javascript('/resources/vendor/silverstripe/admin/thirdparty/jquery/jquery.min.js');
         Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/ShareAllExpandedList.js');
         $bookmarks = $this->makeBookmarks('IncludeThisIconInExtendedList');
         return $this->makeShareIcons($bookmarks);
@@ -178,7 +178,7 @@ class ShareThisSTE extends SiteTreeExtension
                 Requirements::css("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
             }
 
-            Requirements::javascript(SS_SHARETHIS_DIR . '/node_modules/jquery/dist/jquery.min.js');
+            Requirements::javascript('/resources/vendor/silverstripe/admin/thirdparty/jquery/jquery.min.js');
             Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/shareThis.js');
 
             if (Config::inst()->get(ShareThisSTE::class, "use_bw_effect")) {
