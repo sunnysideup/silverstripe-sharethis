@@ -7,7 +7,7 @@
  *
  **/
 
-class MyTwitter extends Object
+class MyTwitter extends SS_Object
 {
     private static $debug = false;
 

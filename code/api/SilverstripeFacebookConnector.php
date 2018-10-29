@@ -6,7 +6,7 @@
  *
  */
 
-class SilverstripeFacebookConnector extends Object
+class SilverstripeFacebookConnector extends SS_Object
 {
 
     /**
