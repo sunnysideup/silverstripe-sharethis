@@ -139,8 +139,8 @@ class ShareThisSTE extends SiteTreeExtension
      */
     public function ShareAllExpandedList()
     {
-        Requirements::javascript('/resources/vendor/silverstripe/admin/thirdparty/jquery/jquery.min.js');
-        Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/ShareAllExpandedList.js');
+        Requirements::javascript('silverstripe/admin: thirdparty/jquery/jquery.min.js');
+        Requirements::javascript('silverstripe-sharethis: /javascript/ShareAllExpandedList.js');
         $bookmarks = $this->makeBookmarks('IncludeThisIconInExtendedList');
         return $this->makeShareIcons($bookmarks);
     }
@@ -179,7 +179,7 @@ class ShareThisSTE extends SiteTreeExtension
             }
 
             Requirements::javascript('/resources/vendor/silverstripe/admin/thirdparty/jquery/jquery.min.js');
-            Requirements::javascript(SS_SHARETHIS_DIR . '/javascript/shareThis.js');
+            Requirements::javascript('silverstripe-sharethis: /javascript/shareThis.js');
 
             if (Config::inst()->get(ShareThisSTE::class, "use_bw_effect")) {
                 Requirements::customScript('sharethis.set_use_BW(true);', 'ShareThisBWEffect');
