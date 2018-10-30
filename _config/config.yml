@@ -11,9 +11,6 @@ SilverStripe\CMS\Model\SiteTree:
   extensions:
     - SunnysideUp\ShareThis\ShareThisSTE
     - SunnysideUp\ShareThis\SocialNetworksSTE
-
-SilverStripe\Core\Manifest\ModuleManifest:
-  project: silverstripe-sharethis
 ---
 Only:
   classexists: DataObjectSorterDOD
