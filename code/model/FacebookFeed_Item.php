@@ -1,4 +1,18 @@
 <?php
+
+namespace SunnysideUp\ShareThis;
+
+use HtmlEditorField;
+use SunnysideUp\ShareThis\FacebookFeed_Page;
+use SilverStripe\Security\Permission;
+use SilverStripe\Control\Director;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Core\Injector\Injector;
+use SunnysideUp\ShareThis\RemoveFacebookItemController;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\Filters\PartialMatchFilter;
+
 /**
  * FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/
  * EXAMPLE:
@@ -20,94 +34,146 @@
  *
  *
  **/
-
 class FacebookFeed_Item extends DataObject
 {
-    private static $db = array(
-        "Title" => "varchar(255)",
+    /**
+     * @var string
+     */
+    private static $table_name = 'FacebookFeed_Item';
+
+    /**
+     * @var array
+     */
+    private static $db = [
+        "Title" => "Varchar(255)",
         "KeepOnTop" => "Boolean",
         "Hide" => "Boolean",
-        "UID" => "varchar(32)",
+        "UID" => "Varchar(32)",
         "Author" => "Varchar(244)",
         "Description" => "HTMLText",
         "DescriptionWithShortLink" => "HTMLText",
         "Link" => "Varchar(244)",
         "PictureLink" => "Text"
-    );
+    ];
 
-
-    private static $summary_fields = array(
+    /**
+     * @var array
+     */
+    private static $summary_fields = [
         "Created.Nice" => "Created",
         "FacebookFeed_Page.Title" => "Feed",
         "Title" => "Title",
         "KeepOnTopNice" => "Keep on top",
         "HideNice" => "Hide",
-    );
+    ];
 
+    /**
+     * @var array
+     */
+    private static $has_one = [
+        "FacebookFeed_Page" => FacebookFeed_Page::class
+    ];
 
-    private static $has_one = array(
-        "FacebookFeed_Page" => "FacebookFeed_Page"
-    );
-
-    private static $indexes = array(
+    /**
+     * @var array
+     */
+    private static $indexes = [
         "UID" => true
-    );
+    ];
 
-    private static $casting = array(
+    /**
+     * @var array
+     */
+    private static $casting = [
         'KeepOnTopNice' => 'Varchar',
         'HideNice' => 'Varchar',
         'FacebookPostLink' => 'Varchar'
-    );
+    ];
 
-    private static $searchable_fields = array(
-        'Title' => 'PartialMatchFilter',
-        'Author' => 'PartialMatchFilter',
-        'Description' => 'PartialMatchFilter',
-        'Hide' => true,
-        'KeepOnTop' => true
-    );
+    /**
+     * @var array
+     */
+    private static $searchable_fields = [
+        'Title' => PartialMatchFilter::class,
+        'Author' => PartialMatchFilter::class,
+        'Description' => PartialMatchFilter::class
+    ];
 
+    /**
+     * @var string
+     */
+    private static $singular_name = "Facebook Item";
+
+    /**
+     * @var string
+     */
+    private static $plural_name = "Facebook Items";
+
+    /**
+     * @var string
+     */
     private static $default_sort = "\"Created\" DESC";
 
-    public function canCreate($member = null)
+    /**
+     * @return boolean
+     */
+    public function canCreate($member = null, $context = [])
     {
         return false;
     }
 
+    /**
+     * @return boolean
+     */
     public function canView($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canEdit($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canDelete($member = null)
     {
         return false;
     }
 
-    private static $singular_name = "Facebook Item";
+    /**
+     * @return string
+     */
     public function i18n_singular_name()
     {
         return "Facebook Item";
     }
 
-    private static $plural_name = "Facebook Items";
+    /**
+     * @return string
+     */
     public function i18n_plural_name()
     {
         return "Facebook Items";
     }
 
+    /**
+     * @return void
+     */
     public function onBeforeWrite()
     {
         parent::onBeforeWrite();
         $this->DescriptionWithShortLink = $this->Description;
-        //$this->DescriptionWithShortLink = $this->createDescriptionWithShortLinks();
     }
 
+    /**
+     * @return void
+     */
     protected function createDescriptionWithShortLinks()
     {
         require_once(Director::baseFolder()."/".SS_SHARETHIS_DIR.'/code/api/thirdparty/simple_html_dom.php');
@@ -125,6 +191,11 @@ class FacebookFeed_Item extends DataObject
         }
     }
 
+    /**
+     * @param  string
+     *
+     * @return string
+     */
     protected function replaceLinksWithProperOnes($text)
     {
         $rexProtocol = '(https?://)?';
@@ -169,31 +240,45 @@ class FacebookFeed_Item extends DataObject
         return $outcome;
     }
 
+    /**
+     * @return FieldList $fields
+     */
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+
         $fields->removeByName("UID");
         $fields->removeByName("PictureLink");
+
         if ($this->PictureLink) {
-            $fields->addFieldToTab("Root.Main", new LiteralField("PictureLinkIMG", "<img src=\"".$this->PictureLink."\" alt=\"\" />"), "Author");
+            $fields->addFieldToTab("Root.Main", LiteralField::create("PictureLinkIMG", "<img src=\"".$this->PictureLink."\" alt=\"\" />"), "Author");
         }
+
         if ($this->Link) {
-            $fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link final link: ".substr($this->Link, 0, 45)."...</a></h2>"), "Author");
-            $fields->addFieldToTab("Root.Main", new LiteralField("LinkLink", "<h2><a href=\"".$this->getFacebookPostLink()."\" >go to face book post: ".substr($this->getFacebookPostLink(), 0, 45)."...</a></h2>"), "Author");
-            $fields->addFieldToTab("Root.RawData", new TextField("Link", "Link"));
+            $fields->addFieldToTab("Root.Main", LiteralField::create("LinkLink", "<h2><a href=\"".$this->Link."\" >go to link final link: ".substr($this->Link, 0, 45)."...</a></h2>"), "Author");
+            $fields->addFieldToTab("Root.Main", LiteralField::create("LinkLink", "<h2><a href=\"".$this->getFacebookPostLink()."\" >go to face book post: ".substr($this->getFacebookPostLink(), 0, 45)."...</a></h2>"), "Author");
+            $fields->addFieldToTab("Root.RawData", TextField::create("Link", "Link"));
         }
+
         if ($this->Description) {
-            $fields->addFieldToTab("Root.RawData", new HtmlEditorField("Description"));
-            $fields->addFieldToTab("Root.Main", new HtmlEditorField("DescriptionWithShortLink", "Edited Description"));
+            $fields->addFieldToTab("Root.RawData", HtmlEditorField::create("Description"));
+            $fields->addFieldToTab("Root.Main", HtmlEditorField::create("DescriptionWithShortLink", "Edited Description"));
         }
+
         return $fields;
     }
 
+    /**
+     * KeepOnTopNice
+     */
     public function KeepOnTopNice()
     {
         return $this->dbObject('KeepOnTop')->Nice();
     }
 
+    /**
+     * HideNice
+     */
     public function HideNice()
     {
         return $this->dbObject('Hide')->Nice();
@@ -236,6 +321,9 @@ class FacebookFeed_Item extends DataObject
         }
     }
 
+    /**
+     * Check whether Facebook post exists
+     */
     public function fbpostExists()
     {
         $exists = true;
@@ -256,14 +344,22 @@ class FacebookFeed_Item extends DataObject
         return $exists();
     }
 
+    /**
+     * @return boolean
+     */
     public function canRemove()
     {
         return Permission::check('CMS_ACCESS_CMSMain') ? true : false;
     }
 
+    /**
+     * Remove the link
+     *
+     * @return string
+     */
     public function RemoveLink()
     {
-        $obj = Injector::inst()->get('RemoveFacebookItemController');
+        $obj = Injector::inst()->get(RemoveFacebookItemController::class);
 
         return $obj->Link('remove/'.$this->UID.'/');
     }

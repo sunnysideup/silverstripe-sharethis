@@ -1,4 +1,10 @@
 <?php
+
+namespace SunnysideUp\ShareThis;
+
+use Exception;
+use SunnysideUp\ShareThis\OAuthUtil;
+
 // vim: foldmethod=marker
 /**
  *
@@ -257,7 +263,7 @@ class OAuthRequest
 
     public function __construct($http_method, $http_url, $parameters=null)
     {
-        @$parameters or $parameters = array();
+        @$parameters or $parameters = [];
         $parameters = array_merge(OAuthUtil::parse_parameters(parse_url($http_url, PHP_URL_QUERY)), $parameters);
         $this->parameters = $parameters;
         $this->http_method = $http_method;
@@ -323,7 +329,7 @@ class OAuthRequest
      */
     public static function from_consumer_and_token($consumer, $token, $http_method, $http_url, $parameters=null)
     {
-        @$parameters or $parameters = array();
+        @$parameters or $parameters = [];
         $defaults = array("oauth_version" => OAuthRequest::$version,
                       "oauth_nonce" => OAuthRequest::generate_nonce(),
                       "oauth_timestamp" => OAuthRequest::generate_timestamp(),
@@ -470,7 +476,7 @@ class OAuthRequest
             $out = 'Authorization: OAuth';
         }
 
-        $total = array();
+        $total = [];
         foreach ($this->parameters as $k => $v) {
             if (substr($k, 0, 5) != "oauth") {
                 continue;
@@ -535,7 +541,7 @@ class OAuthServer
 {
     protected $timestamp_threshold = 300; // in seconds, five minutes
   protected $version = '1.0';             // hi blaine
-  protected $signature_methods = array();
+  protected $signature_methods = [];
 
     protected $data_store;
 
@@ -796,7 +802,7 @@ class OAuthUtil
     public static function urlencode_rfc3986($input)
     {
         if (is_array($input)) {
-            return array_map(array('OAuthUtil', 'urlencode_rfc3986'), $input);
+            return array_map(array(OAuthUtil::class, 'urlencode_rfc3986'), $input);
         } elseif (is_scalar($input)) {
             return str_replace(
       '+',
@@ -824,7 +830,7 @@ class OAuthUtil
     {
         $pattern = '/(([-_a-z]*)=("([^"]*)"|([^,]*)),?)/';
         $offset = 0;
-        $params = array();
+        $params = [];
         while (preg_match($pattern, $header, $matches, PREG_OFFSET_CAPTURE, $offset) > 0) {
             $match = $matches[0];
             $header_name = $matches[2][0];
@@ -854,7 +860,7 @@ class OAuthUtil
             // we always want the keys to be Cased-Like-This and arh()
             // returns the headers in the same case as they are in the
             // request
-            $out = array();
+            $out = [];
             foreach ($headers as $key => $value) {
                 $key = str_replace(
             " ",
@@ -866,7 +872,7 @@ class OAuthUtil
         } else {
             // otherwise we don't have apache and are just going to have to hope
             // that $_SERVER actually contains what we need
-            $out = array();
+            $out = [];
             if (isset($_SERVER['CONTENT_TYPE'])) {
                 $out['Content-Type'] = $_SERVER['CONTENT_TYPE'];
             }
@@ -897,12 +903,12 @@ class OAuthUtil
     public static function parse_parameters($input)
     {
         if (!isset($input) || !$input) {
-            return array();
+            return [];
         }
 
         $pairs = explode('&', $input);
 
-        $parsed_parameters = array();
+        $parsed_parameters = [];
         foreach ($pairs as $pair) {
             $split = explode('=', $pair, 2);
             $parameter = OAuthUtil::urldecode_rfc3986($split[0]);
@@ -941,7 +947,7 @@ class OAuthUtil
         // Ref: Spec: 9.1.1 (1)
         uksort($params, 'strcmp');
 
-        $pairs = array();
+        $pairs = [];
         foreach ($params as $parameter => $value) {
             if (is_array($value)) {
                 // If two or more parameters share the same name, they are sorted by their value

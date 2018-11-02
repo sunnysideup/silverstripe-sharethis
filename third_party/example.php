@@ -1,4 +1,10 @@
 <?php
+
+namespace SunnysideUp\ShareThis;
+
+use Facebook;
+use FacebookApiException;
+
 /**
  *
  * Copyright 2011 Facebook, Inc.

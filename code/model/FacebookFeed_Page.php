@@ -1,4 +1,16 @@
 <?php
+
+namespace SunnysideUp\ShareThis;
+
+use SilverStripe\Forms\TreeMultiSelectField;
+use SunnysideUp\ShareThis\FacebookFeed_Item;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Security\Permission;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\ORM\DB;
+use SunnysideUp\ShareThis\SilverstripeFacebookConnector;
+use SilverStripe\ORM\DataObject;
+
 /**
  * FROM: http://www.acornartwork.com/blog/2010/04/19/tutorial-facebook-rss-feed-parser-in-pure-php/
  * EXAMPLE:
@@ -20,50 +32,77 @@
  *
  *
  **/
-
-
-
 class FacebookFeed_Page extends DataObject
 {
-    private static $db = array(
+    /**
+     * @var string
+     */
+    private static $table_name = 'FacebookFeed_Page';
+
+    /**
+     * @var array
+     */
+    private static $db = [
         "Title" => "Varchar(244)",
         'FacebookPageID' => 'Varchar(40)'
-    );
+    ];
 
-    private static $has_many = array(
-        'Items' => 'FacebookFeed_Item'
-    );
+    /**
+     * @var array
+     */
+    private static $has_many = [
+        'Items' => FacebookFeed_Item::class
+    ];
 
-    private static $many_many = array(
-        'Pages' => 'SiteTree'
-    );
+    /**
+     * @var array
+     */
+    private static $many_many = [
+        'Pages' => SiteTree::class
+    ];
 
-    public function canCreate($member = null)
+    /**
+     * @return boolean
+     */
+    public function canCreate($member = null, $context = [])
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canView($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canEdit($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canDelete($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return FieldList $fields
+     */
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+
         $fields->addFieldToTab(
             "Root.Main",
-            new LiteralField(
+            LiteralField::create(
                 "HowToFindPageID",
                 "<p>
                 To find the Facebook Page ID value, you can follow these steps :</p>
@@ -77,20 +116,25 @@ class FacebookFeed_Page extends DataObject
                 </ol>"
             )
         );
+
         $fields->addFieldToTab(
             "Root.Pages",
-            new TreeMultiSelectField("Pages", "Show on", "SiteTree")
+            TreeMultiSelectField::create("Pages", "Show on", SiteTree::class)
         );
+
         $pages = $this->Pages();
+
         if ($pages && $pages->count()) {
-            $links = array();
+            $links = [];
+
             foreach ($pages as $page) {
                 $links[] = "<li><a href=\"".$page->Link("updatefb")."\">".$page->Title."</a></li>";
             }
+
             if (count($links)) {
                 $fields->addFieldToTab(
                     "Root.Pages",
-                    new LiteralField(
+                    LiteralField::create(
                         "LinksToCheck",
                         "<p>
                             Choose the links below to view your facebook feed:
@@ -101,6 +145,7 @@ class FacebookFeed_Page extends DataObject
                 );
             }
         }
+
         return $fields;
     }
 
@@ -117,56 +162,78 @@ class FacebookFeed_Page extends DataObject
         } else {
             $pageID = $page;
         }
-        $feedIDs = array();
+
+        $feedIDs = [];
+
         $sql = "
             SELECT \"FacebookFeed_Page_Pages\".\"FacebookFeed_PageID\"
             FROM \"FacebookFeed_Page_Pages\"
             WHERE \"FacebookFeed_Page_Pages\".\"SiteTreeID\" = $pageID";
+
         $rows = DB::query($sql);
+
         if ($rows) {
             foreach ($rows as $row) {
                 $feedIDs[$row["FacebookFeed_PageID"]] = $row["FacebookFeed_PageID"];
             }
         }
+
         if (count($feedIDs)) {
             return FacebookFeed_Item::get()->filter(
-                array(
+                [
                     "FacebookFeed_PageID" => $feedIDs,
                     "Hide" => 0
-                )
+                ]
             )
             ->limit($limit);
         }
     }
 
+    /**
+     * ShowableItems
+     * @param integer $limit
+     */
     public function ShowableItems($limit = 10)
     {
         return $this->getComponents('Items', 'Hide = 0', null, '', $limit);
     }
 
+    /**
+     * Fetch
+     * @param boolean $verbose
+     */
     public function Fetch($verbose = false)
     {
         $count = 0;
         if ($this->FacebookPageID) {
             $items = SilverstripeFacebookConnector::get_feed($this->FacebookPageID);
+
             if ($items) {
                 foreach ($items as $item) {
-                    $filter = array("UID" => $item["id"]);
+                    $filter = [
+                        "UID" => $item["id"]
+                    ];
+
                     if (! FacebookFeed_Item::get()->filter($filter)->first()) {
                         $count++;
                         $message = "";
+
                         if (isset($item["message"])) {
                             $message = $item["message"];
                         } elseif (isset($item["description"])) {
                             $message = $item["description"];
                         }
+
                         //Converts UTF-8 into ISO-8859-1 to solve special symbols issues
                         $message = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $message);
                         $message = $this->stripUnsafe($message);
+
                         //Get status update time
                         $pubDate = strtotime(isset($item["created_time"]) ? $item["created_time"] : "today");
-                        $convertedDate = gmdate($timeFormat = 'Y-m-d', $pubDate);  //Customize this to your liking
-                        //Get link to update
+
+                        //Customize this to your liking
+                        $convertedDate = gmdate($timeFormat = 'Y-m-d', $pubDate);
+
                         //Store values in array
                         $obj = FacebookFeed_Item::create($filter);
                         $obj->Title = (string) (isset($item["name"]) ? $item["name"] : "");
@@ -184,23 +251,32 @@ class FacebookFeed_Page extends DataObject
                     DB::alteration_message("ERROR: no data returned", "deleted");
                 }
             }
+
             if ($count == 0 && $verbose) {
                 DB::alteration_message("Nothing to add.");
             }
+
         } else {
             if ($verbose) {
                 DB::alteration_message("ERROR: no Facebook Page ID provided", "deleted");
             }
         }
+
         if ($count && $verbose) {
             DB::alteration_message("Added $count items", "created");
         }
     }
 
+    /**
+     * stripUnsafe
+     * @param  string $string
+     *
+     * @return string $string
+     */
     public function stripUnsafe($string)
     {
         // Unsafe HTML tags that members may abuse
-        $unsafe=array(
+        $unsafe = [
             '/onmouseover="(.*?)"/is',
             '/onclick="(.*?)"/is',
             '/style="(.*?)"/is',
@@ -209,7 +285,8 @@ class FacebookFeed_Page extends DataObject
             '/rel="(.*?)"/is',
             '/<a(.*?)>/is',
             '/<\/a>/is'
-        );
+        ];
+
         $string= preg_replace($unsafe, " ", $string);
         return $string;
     }

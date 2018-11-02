@@ -1,13 +1,17 @@
 <?php
 
+namespace SunnysideUp\ShareThis;
+
+use SilverStripe\Core\Injector\Injectable;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Dev\Debug;
+
 /**
  * https://developers.facebook.com/tools-and-support/
- *
- *
  */
-
-class SilverstripeFacebookConnector extends Object
+class SilverstripeFacebookConnector
 {
+    use Injectable;
 
     /**
      * @var Facebook Connection
@@ -16,18 +20,21 @@ class SilverstripeFacebookConnector extends Object
 
     /**
      * settings for connection
+     *
      * @var array
      */
-    private static $connection_config = array();
+    private static $connection_config = [];
 
     /**
      * application ID - get from FB
+     *
      * @var string
      */
     private static $app_id = "";
 
     /**
      * application secret - get from FB
+     *
      * @var string
      */
     private static $app_secret = "";
@@ -35,6 +42,7 @@ class SilverstripeFacebookConnector extends Object
 
     /**
      * debug
+     *
      * @var boolean
      */
     protected static $debug = false;
@@ -43,10 +51,11 @@ class SilverstripeFacebookConnector extends Object
      * keep track of errors
      * @var array
      */
-    protected static $error = array();
+    protected static $error = [];
 
     /**
      * set additional connection details - e.g. default_access_token
+     *
      * @param array
      */
     public static function set_connection_config($connectionConfig)
@@ -61,12 +70,12 @@ class SilverstripeFacebookConnector extends Object
     protected static function get_connection()
     {
         if (!self::$connection) {
-            self::$connection_config += array(
-                'app_id' => Config::inst()->get("SilverstripeFacebookConnector", "app_id"),
-                'app_secret' => Config::inst()->get("SilverstripeFacebookConnector", "app_secret"),
+            self::$connection_config += [
+                'app_id' => Config::inst()->get(SilverstripeFacebookConnector::class, "app_id"),
+                'app_secret' => Config::inst()->get(SilverstripeFacebookConnector::class, "app_secret"),
                 'default_graph_version' => 'v2.4',
                 //'default_access_token' => '{access-token}', // optional
-            );
+            ];
 
             self::$connection = new Facebook\Facebook(self::$connection_config);
         }
@@ -82,7 +91,7 @@ class SilverstripeFacebookConnector extends Object
     public static function run_command($openGraphCommand = "")
     {
         $fb = self::get_connection();
-        $accessToken = Config::inst()->get("SilverstripeFacebookConnector", "app_id")."|".Config::inst()->get("SilverstripeFacebookConnector", "app_secret");
+        $accessToken = Config::inst()->get(SilverstripeFacebookConnector::class, "app_id")."|".Config::inst()->get(SilverstripeFacebookConnector::class, "app_secret");
         //$helper = $fb->getPageTabHelper();
         try {
             $response = $fb->get($openGraphCommand, $accessToken);
@@ -96,7 +105,7 @@ class SilverstripeFacebookConnector extends Object
             return false;
         }
         if (self::$debug) {
-            debug::log(implode(" | ", self::$error));
+            Debug::log(implode(" | ", self::$error));
         }
         return $response;
     }
@@ -115,6 +124,7 @@ class SilverstripeFacebookConnector extends Object
 
     /**
      * returns an array of recent posts for a page
+     *
      * @return array
      */
     public static function get_feed($pageID)

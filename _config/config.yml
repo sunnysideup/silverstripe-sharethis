@@ -1,29 +1,24 @@
 ---
 Name: sharethis
 Before: 'mysite/*'
-After: 'framework/*','cms/*'
+After: 'framework/*'
 ---
-
-SiteConfig:
+SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - ShareThisSiteConfigDE
+    - SunnysideUp\ShareThis\ShareThisSiteConfigDE
 
-SiteTree:
+SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - ShareThisSTE
-    - SocialNetworksSTE
-
+    - SunnysideUp\ShareThis\ShareThisSTE
+    - SunnysideUp\ShareThis\SocialNetworksSTE
 ---
 Only:
   classexists: DataObjectSorterDOD
 ---
-
-ShareThisDataObject:
+SunnysideUp\ShareThis\ShareThisDataObject:
   extensions:
     - DataObjectSorterDOD
 
-SocialNetworkingLinksDataObject:
+SunnysideUp\ShareThis\SocialNetworkingLinksDataObject:
   extensions:
     - DataObjectSorterDOD
-
-

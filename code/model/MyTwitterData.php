@@ -1,64 +1,116 @@
 <?php
 
+namespace SunnysideUp\ShareThis;
+
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\DataObject;
+
+/**
+ * MyTwitterData
+ */
 class MyTwitterData extends DataObject
 {
+    /**
+     * @var string
+     */
+    private static $table_name = 'MyTwitterData';
+
+    /**
+     * @var string
+     */
     private static $username = "";
 
-    private static $db = array(
-        "Date" => "SS_Datetime",
+    /**
+     * @var array
+     */
+    private static $db = [
+        "Date" => "Datetime",
         "TwitterID" => "Varchar(64)",
         "Title" => "HTMLText",
         "Hide" => "Boolean"
-    );
+    ];
 
-    private static $summary_fields = array(
+    /**
+     * @var array
+     */
+    private static $summary_fields = [
         "Date" => "Date",
         "Title" => "Title",
         "HideNice" => "Hide"
-    );
+    ];
 
-    private static $indexes = array(
+    /**
+     * @var array
+     */
+    private static $indexes = [
         "TwitterID" => true
-    );
+    ];
 
-    private static $casting = array(
+    /**
+     * @var array
+     */
+    private static $casting = [
         "Link" => "Varchar",
         "HideNice" => "Varchar"
-    );
+    ];
 
+    /**
+     * @var string
+     */
     private static $default_sort = "\"Date\" DESC";
 
+    /**
+     * @return string
+     */
     public function forTemplate()
     {
         return $this->Title;
     }
 
+    /**
+     * @return string
+     */
     public function Link()
     {
-        return "https://twitter.com/".Config::inst()->get("MyTwitterData", "username")."/status/".$this->TwitterID;
+        return "https://twitter.com/".Config::inst()->get(MyTwitterData::class, "username")."/status/".$this->TwitterID;
     }
 
-
+    /**
+     * @return boolean
+     */
     public function canView($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
-    public function canCreate($member = null)
+    /**
+     * @return boolean
+     */
+    public function canCreate($member = null, $context = [])
     {
         return false;
     }
 
+    /**
+     * @return boolean
+     */
     public function canEdit($member = null)
     {
         return Permission::checkMember($member, 'SOCIAL_MEDIA');
     }
 
+    /**
+     * @return boolean
+     */
     public function canDelete($member = null)
     {
         return false;
     }
 
+    /**
+     * @return boolean
+     */
     public function HideNice()
     {
         return $this->dbObject('Hide')->Nice();
