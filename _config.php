@@ -8,4 +8,4 @@ namespace SunnysideUp\ShareThis;
  *
  **/
 
-define('SS_SHARETHIS_DIR', 'resources/silverstripe-sharethis');
+define('SS_SHARETHIS_DIR', 'resources/vendor/sunnysideup/sharethis');

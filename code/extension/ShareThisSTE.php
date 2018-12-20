@@ -178,7 +178,6 @@ class ShareThisSTE extends SiteTreeExtension
                 Requirements::css("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
             }
 
-            Requirements::javascript('silverstripe/admin: thirdparty/jquery/jquery.min.js');
             Requirements::javascript('sunnysideup/sharethis: javascript/shareThis.js');
 
             if (Config::inst()->get(ShareThisSTE::class, "use_bw_effect")) {
