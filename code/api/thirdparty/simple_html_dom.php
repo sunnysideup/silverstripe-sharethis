@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 /**
  * Website: http://sourceforge.net/projects/simplehtmldom/
@@ -117,12 +117,12 @@ class simple_html_dom_node
 {
     public $nodetype = HDOM_TYPE_TEXT;
     public $tag = 'text';
-    public $attr = array();
-    public $children = array();
-    public $nodes = array();
+    public $attr = [];
+    public $children = [];
+    public $nodes = [];
     public $parent = null;
     // The "info" array - see HDOM_INFO_... for what each element contains.
-    public $_ = array();
+    public $_ = [];
     public $tag_start = 0;
     private $dom = null;
 
@@ -495,26 +495,26 @@ class simple_html_dom_node
     {
         $selectors = $this->parse_selector($selector);
         if (($count=count($selectors))===0) {
-            return array();
+            return [];
         }
-        $found_keys = array();
+        $found_keys = [];
 
         // find each selector
         for ($c=0; $c<$count; ++$c) {
             // The change on the below line was documented on the sourceforge code tracker id 2788009
-            // used to be: if (($levle=count($selectors[0]))===0) return array();
+            // used to be: if (($levle=count($selectors[0]))===0) return [];
             if (($levle=count($selectors[$c]))===0) {
-                return array();
+                return [];
             }
             if (!isset($this->_[HDOM_INFO_BEGIN])) {
-                return array();
+                return [];
             }
 
             $head = array($this->_[HDOM_INFO_BEGIN]=>1);
 
             // handle descendant selectors, no recursive!
             for ($l=0; $l<$levle; ++$l) {
-                $ret = array();
+                $ret = [];
                 foreach ($head as $k=>$v) {
                     $n = ($k===-1) ? $this->dom->root : $this->dom->nodes[$k];
                     //PaperG - Pass this optional parameter on to the seek function.
@@ -533,7 +533,7 @@ class simple_html_dom_node
         // sort keys
         ksort($found_keys);
 
-        $found = array();
+        $found = [];
         foreach ($found_keys as $k=>$v) {
             $found[] = $this->dom->nodes[$k];
         }
@@ -710,8 +710,8 @@ class simple_html_dom_node
             $debug_object->debugLog(2, "Matches Array: ", $matches);
         }
 
-        $selectors = array();
-        $result = array();
+        $selectors = [];
+        $result = [];
         //print_r($matches);
 
         foreach ($matches as $m) {
@@ -757,7 +757,7 @@ class simple_html_dom_node
             $result[] = array($tag, $key, $val, $exp, $no_key);
             if (trim($m[7])===',') {
                 $selectors[] = $result;
-                $result = array();
+                $result = [];
             }
         }
         if (count($result)>0) {
@@ -942,7 +942,7 @@ class simple_html_dom_node
         // Now look for an inline style.
         if (isset($this->attr['style'])) {
             // Thanks to user gnarf from stackoverflow for this regular expression.
-            $attributes = array();
+            $attributes = [];
             preg_match_all("/([\w-]+)\s*:\s*([^;]+)\s*;?/", $this->attr['style'], $matches, PREG_SET_ORDER);
             foreach ($matches as $match) {
                 $attributes[$match[1]] = $match[2];
@@ -1075,7 +1075,7 @@ class simple_html_dom_node
 class simple_html_dom
 {
     public $root = null;
-    public $nodes = array();
+    public $nodes = [];
     public $callback = null;
     public $lowercase = false;
     // Used to keep track of how large the text was when we started.
@@ -1086,7 +1086,7 @@ class simple_html_dom
     protected $char;
     protected $cursor;
     protected $parent;
-    protected $noise = array();
+    protected $noise = [];
     protected $token_blank = " \t\r\n";
     protected $token_equal = ' =/>';
     protected $token_slash = " />\r\n\t";
@@ -1127,7 +1127,7 @@ class simple_html_dom
         }
         // Forcing tags to be closed implies that we don't trust the html, but it can lead to parsing errors if we SHOULD trust the html.
         if (!$forceTagsClosed) {
-            $this->optional_closing_array=array();
+            $this->optional_closing_array=[];
         }
         $this->_target_charset = $target_charset;
     }
@@ -1267,8 +1267,8 @@ class simple_html_dom
         $this->doc = $str;
         $this->pos = 0;
         $this->cursor = 1;
-        $this->noise = array();
-        $this->nodes = array();
+        $this->noise = [];
+        $this->nodes = [];
         $this->lowercase = $lowercase;
         $this->default_br_text = $defaultBRText;
         $this->default_span_text = $defaultSpanText;
@@ -1537,7 +1537,7 @@ class simple_html_dom
             if ($this->doc[$this->pos-1]=='<') {
                 $node->nodetype = HDOM_TYPE_TEXT;
                 $node->tag = 'text';
-                $node->attr = array();
+                $node->attr = [];
                 $node->_[HDOM_INFO_END] = 0;
                 $node->_[HDOM_INFO_TEXT] = substr($this->doc, $begin_tag_pos, $this->pos-$begin_tag_pos-1);
                 $this->pos -= 2;

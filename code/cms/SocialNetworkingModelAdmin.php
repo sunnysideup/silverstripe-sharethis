@@ -1,11 +1,11 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
-use SunnySideUp\ShareThis\SocialNetworkingLinksDataObject;
-use SunnySideUp\ShareThis\ShareThisDataObject;
-use SunnySideUp\ShareThis\FacebookFeed_Page;
-use SunnySideUp\ShareThis\FacebookFeed_Item;
+use SunnysideUp\ShareThis\SocialNetworkingLinksDataObject;
+use SunnysideUp\ShareThis\ShareThisDataObject;
+use SunnysideUp\ShareThis\FacebookFeed_Page;
+use SunnysideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\Admin\ModelAdmin;
 
 /**
@@ -14,14 +14,23 @@ use SilverStripe\Admin\ModelAdmin;
  **/
 class SocialNetworkingModelAdmin extends ModelAdmin
 {
-    private static $managed_models = array(
+	/**
+	 * @var array
+	 */
+    private static $managed_models = [
         SocialNetworkingLinksDataObject::class,
         ShareThisDataObject::class,
         FacebookFeed_Page::class,
         FacebookFeed_Item::class
-    );
+    ];
 
+    /**
+     * @var string
+     */
     private static $url_segment = 'social';
 
+    /**
+     * @var string
+     */
     private static $menu_title = 'Social Media';
 }

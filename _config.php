@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 /**
  * developed by www.sunnysideup.co.nz
@@ -8,4 +8,4 @@ namespace SunnySideUp\ShareThis;
  *
  **/
 
-define('SS_SHARETHIS_DIR', 'sharethis');
+define('SS_SHARETHIS_DIR', 'resources/vendor/sunnysideup/sharethis');

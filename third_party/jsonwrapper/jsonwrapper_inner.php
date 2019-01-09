@@ -1,7 +1,7 @@
 <?php
 
 use SilverStripe\Control\Director;
-use SunnySideUp\ShareThis\third_party\jsonwrapper\JSON\Services_JSON;
+use SunnysideUp\ShareThis\third_party\jsonwrapper\JSON\Services_JSON;
 
 require_once(Director::baseFolder() . '/sapphire/thirdparty/json/JSON.php');
 

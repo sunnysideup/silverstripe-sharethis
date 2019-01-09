@@ -1,10 +1,10 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Convert;
-use SunnySideUp\ShareThis\FacebookFeed_Item;
+use SunnysideUp\ShareThis\FacebookFeed_Item;
 use SilverStripe\Control\Controller;
 
 /**
@@ -12,18 +12,34 @@ use SilverStripe\Control\Controller;
  */
 class RemoveFacebookItemController extends Controller
 {
-    private static $allowed_actions = array(
+    /**
+     * @var array
+     */
+    private static $allowed_actions = [
         'remove' => 'ADMIN'
-    );
+    ];
 
+    /**
+     * @var string
+     */
     private static $url_segment = 'removefacebooklink';
 
+    /**
+     * Link
+     *
+     * @return  string
+     */
     public function Link($action = null)
     {
         $urlSegment = Config::inst()->get(RemoveFacebookItemController::class, 'url_segment');
         return '/'.$urlSegment.'/'.$action;
     }
 
+    /**
+     * remove
+     *
+     * @return void
+     */
     public function remove($request)
     {
         $uid = Convert::raw2sql($request->param('ID'));

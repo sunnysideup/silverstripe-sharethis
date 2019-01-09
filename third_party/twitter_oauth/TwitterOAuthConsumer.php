@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnySideUp\ShareThis;
+namespace SunnysideUp\ShareThis;
 
 /*
  * Abraham Williams (abraham@abrah.am) http://abrah.am
@@ -96,7 +96,7 @@ class TwitterOAuth
      */
     public function getRequestToken($oauth_callback = null)
     {
-        $parameters = array();
+        $parameters = [];
         if (!empty($oauth_callback)) {
             $parameters['oauth_callback'] = $oauth_callback;
         }
@@ -134,7 +134,7 @@ class TwitterOAuth
      */
     public function getAccessToken($oauth_verifier = false)
     {
-        $parameters = array();
+        $parameters = [];
         if (!empty($oauth_verifier)) {
             $parameters['oauth_verifier'] = $oauth_verifier;
         }
@@ -155,7 +155,7 @@ class TwitterOAuth
      */
     public function getXAuthToken($username, $password)
     {
-        $parameters = array();
+        $parameters = [];
         $parameters['x_auth_username'] = $username;
         $parameters['x_auth_password'] = $password;
         $parameters['x_auth_mode'] = 'client_auth';
@@ -168,7 +168,7 @@ class TwitterOAuth
     /**
      * GET wrapper for oAuthRequest.
      */
-    public function get($url, $parameters = array())
+    public function get($url, $parameters = [])
     {
         $response = $this->oAuthRequest($url, 'GET', $parameters);
         if ($this->format === 'json' && $this->decode_json) {
@@ -180,7 +180,7 @@ class TwitterOAuth
     /**
      * POST wrapper for oAuthRequest.
      */
-    public function post($url, $parameters = array())
+    public function post($url, $parameters = [])
     {
         $response = $this->oAuthRequest($url, 'POST', $parameters);
         if ($this->format === 'json' && $this->decode_json) {
@@ -192,7 +192,7 @@ class TwitterOAuth
     /**
      * DELETE wrapper for oAuthReqeust.
      */
-    public function delete($url, $parameters = array())
+    public function delete($url, $parameters = [])
     {
         $response = $this->oAuthRequest($url, 'DELETE', $parameters);
         if ($this->format === 'json' && $this->decode_json) {
@@ -226,7 +226,7 @@ class TwitterOAuth
      */
     public function http($url, $method, $postfields = null)
     {
-        $this->http_info = array();
+        $this->http_info = [];
         $ci = curl_init();
         /* Curl settings */
         curl_setopt($ci, CURLOPT_USERAGENT, $this->useragent);
