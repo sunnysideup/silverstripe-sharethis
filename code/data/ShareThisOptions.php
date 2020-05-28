@@ -4,7 +4,7 @@
  * @author nicolaas [at] sunnysideup.co.nz
  *
  */
-class ShareThisOptions extends Object
+class ShareThisOptions extends SS_Object
 {
     private static $page_specific_data;
 
