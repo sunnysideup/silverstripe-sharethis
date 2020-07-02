@@ -3,8 +3,8 @@
 namespace SunnysideUp\ShareThis;
 
 use SilverStripe\Core\Config\Config;
-use SilverStripe\Security\Permission;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Security\Permission;
 
 /**
  * MyTwitterData
@@ -19,46 +19,46 @@ class MyTwitterData extends DataObject
     /**
      * @var string
      */
-    private static $username = "";
+    private static $username = '';
 
     /**
      * @var array
      */
     private static $db = [
-        "Date" => "Datetime",
-        "TwitterID" => "Varchar(64)",
-        "Title" => "HTMLText",
-        "Hide" => "Boolean"
+        'Date' => 'Datetime',
+        'TwitterID' => 'Varchar(64)',
+        'Title' => 'HTMLText',
+        'Hide' => 'Boolean',
     ];
 
     /**
      * @var array
      */
     private static $summary_fields = [
-        "Date" => "Date",
-        "Title" => "Title",
-        "HideNice" => "Hide"
+        'Date' => 'Date',
+        'Title' => 'Title',
+        'HideNice' => 'Hide',
     ];
 
     /**
      * @var array
      */
     private static $indexes = [
-        "TwitterID" => true
+        'TwitterID' => true,
     ];
 
     /**
      * @var array
      */
     private static $casting = [
-        "Link" => "Varchar",
-        "HideNice" => "Varchar"
+        'Link' => 'Varchar',
+        'HideNice' => 'Varchar',
     ];
 
     /**
      * @var string
      */
-    private static $default_sort = "\"Date\" DESC";
+    private static $default_sort = '"Date" DESC';
 
     /**
      * @return string
@@ -73,7 +73,7 @@ class MyTwitterData extends DataObject
      */
     public function Link()
     {
-        return "https://twitter.com/".Config::inst()->get(MyTwitterData::class, "username")."/status/".$this->TwitterID;
+        return 'https://twitter.com/' . Config::inst()->get(MyTwitterData::class, 'username') . '/status/' . $this->TwitterID;
     }
 
     /**

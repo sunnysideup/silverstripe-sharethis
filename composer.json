@@ -17,18 +17,14 @@
         }
     ],
     "require": {
-        "silverstripe/framework": "4.*",
-        "silverstripe/cms": "4.*"
+        "silverstripe/recipe-cms": "~4.0@stable"
     },
     "suggest": {
         "facebook/php-sdk-v4": "Facebook SDK"
     },
-    "extra": {
-        "installer-name": "sharethis",
-        "expose": [
-          "css",
-          "images",
-          "javascript"
-        ]
+    "autoload": {
+        "psr-4": {
+            "SunnysideUp\\ShareThis\\": "src/"
+        }
     }
 }

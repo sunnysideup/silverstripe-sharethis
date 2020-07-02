@@ -13,12 +13,12 @@ SilverStripe\CMS\Model\SiteTree:
     - SunnysideUp\ShareThis\SocialNetworksSTE
 ---
 Only:
-  classexists: DataObjectSorterDOD
+  classexists: Sunnysideup\DataobjectSorter\DataObjectSorterDOD
 ---
 SunnysideUp\ShareThis\ShareThisDataObject:
   extensions:
-    - DataObjectSorterDOD
+    - Sunnysideup\DataobjectSorter\DataObjectSorterDOD
 
 SunnysideUp\ShareThis\SocialNetworkingLinksDataObject:
   extensions:
-    - DataObjectSorterDOD
+    - Sunnysideup\DataobjectSorter\DataObjectSorterDOD

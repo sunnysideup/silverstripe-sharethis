@@ -1,0 +1,15 @@
+mappings:
+  SilverstripeFacebookConnector: SunnysideUp\ShareThis\Api\SilverstripeFacebookConnector
+  MyTwitter: SunnysideUp\ShareThis\Api\MyTwitter
+  RemoveFacebookItemController: SunnysideUp\ShareThis\Control\RemoveFacebookItemController
+  ShareThisOptions: SunnysideUp\ShareThis\Data\ShareThisOptions
+  ShareThisSiteConfigDE: SunnysideUp\ShareThis\Extension\ShareThisSiteConfigDE
+  ShareThisSTE: SunnysideUp\ShareThis\Extension\ShareThisSTE
+  SocialNetworksSTE: SunnysideUp\ShareThis\Extension\SocialNetworksSTE
+  MyTwitterData: SunnysideUp\ShareThis\Model\MyTwitterData
+  FacebookFeed_Page: SunnysideUp\ShareThis\Model\FacebookFeedPage
+  SocialNetworkingLinksDataObject: SunnysideUp\ShareThis\Model\SocialNetworkingLinksDataObject
+  FacebookFeed_Item: SunnysideUp\ShareThis\Model\FacebookFeedItem
+  ShareThisDataObject: SunnysideUp\ShareThis\Model\ShareThisDataObject
+  SocialNetworkingModelAdmin: SunnysideUp\ShareThis\Cms\SocialNetworkingModelAdmin
+  FacebookFeed_UpdateTask: SunnysideUp\ShareThis\Tasks\FacebookFeedUpdateTask

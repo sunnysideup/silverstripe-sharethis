@@ -4,19 +4,17 @@ namespace SunnysideUp\ShareThis;
 
 use \Page;
 use SilverStripe\Assets\Image;
-use SilverStripe\Security\Permission;
-use SilverStripe\ORM\FieldType\DBField;
-use SilverStripe\ORM\Filters\PartialMatchFilter;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\Filters\PartialMatchFilter;
+use SilverStripe\Security\Permission;
 
 /**
- *
  *@author nicolaas[at]sunnysideup.co.nz
  *@description: creates a list of places where people can follow you (e.g. twitter, your blog, etc...)
- *
  */
 class SocialNetworkingLinksDataObject extends DataObject
 {
@@ -31,7 +29,7 @@ class SocialNetworkingLinksDataObject extends DataObject
     private static $db = [
         'URL' => 'Varchar(255)',
         'Title' => 'Varchar(255)',
-        'Sort' => 'Int'
+        'Sort' => 'Int',
     ];
 
     /**
@@ -40,7 +38,7 @@ class SocialNetworkingLinksDataObject extends DataObject
     private static $casting = [
         'Code' => 'Varchar(255)',
         'Link' => 'Varchar(255)',
-        'IconHTML' => 'HTMLText'
+        'IconHTML' => 'HTMLText',
     ];
 
     /**
@@ -48,14 +46,14 @@ class SocialNetworkingLinksDataObject extends DataObject
      */
     private static $has_one = [
         'Icon' => Image::class,
-        'InternalLink' => Page::class
+        'InternalLink' => Page::class,
     ];
 
     /**
      * @var array
      */
     private static $searchable_fields = [
-        'Title' => PartialMatchFilter::class
+        'Title' => PartialMatchFilter::class,
     ];
 
     /**
@@ -66,7 +64,7 @@ class SocialNetworkingLinksDataObject extends DataObject
         'URL' => 'External Link (e.g. http://twitter.com/myname/) - will override internal link',
         'Title' => 'Title',
         'Sort' => 'Sort Index (lower numbers shown first)',
-        'IconID' => 'Icon (preferably 32px X 32px)'
+        'IconID' => 'Icon (preferably 32px X 32px)',
     ];
 
     /**
@@ -74,7 +72,7 @@ class SocialNetworkingLinksDataObject extends DataObject
      */
     private static $summary_fields = [
         'Title' => 'Title',
-        'IconHTML' => 'Icon'
+        'IconHTML' => 'Icon',
     ];
 
     /**
@@ -125,11 +123,11 @@ class SocialNetworkingLinksDataObject extends DataObject
     }
 
     /**
-     * @return String - returns the title with all non-alphanumeric + spaces removed.
+     * @return string - returns the title with all non-alphanumeric + spaces removed.
      */
     public function Code()
     {
-        return strtolower(preg_replace("/[^a-zA-Z0-9]/", '', $this->Title));
+        return strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $this->Title));
     }
 
     /**
@@ -149,9 +147,9 @@ class SocialNetworkingLinksDataObject extends DataObject
         if ($icon && $icon->exists()) {
             $html = $icon->ScaleHeight(32);
         } else {
-            $html = DBField::create_field("HTMLText", '<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>");
+            $html = DBField::create_field('HTMLText', '<img src="/' . SS_SHARETHIS_DIR . "/images/icons/{$this->Code}.png\" alt=\"{$this->Code}\"/>");
         }
-        return  $html;
+        return $html;
     }
 
     /**
@@ -172,7 +170,7 @@ class SocialNetworkingLinksDataObject extends DataObject
     }
 
     /**
-     * @return FieldList $fields
+     * @return FieldList
      */
     public function getCMSFields()
     {

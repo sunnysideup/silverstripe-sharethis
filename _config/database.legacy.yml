@@ -1,0 +1,7 @@
+SilverStripe\ORM\DatabaseAdmin:
+  classname_value_remapping:
+    MyTwitterData: SunnysideUp\ShareThis\Model\MyTwitterData
+    FacebookFeed_Page: SunnysideUp\ShareThis\Model\FacebookFeedPage
+    SocialNetworkingLinksDataObject: SunnysideUp\ShareThis\Model\SocialNetworkingLinksDataObject
+    FacebookFeed_Item: SunnysideUp\ShareThis\Model\FacebookFeedItem
+    ShareThisDataObject: SunnysideUp\ShareThis\Model\ShareThisDataObject

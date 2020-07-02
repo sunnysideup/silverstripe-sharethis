@@ -2,19 +2,17 @@
 
 namespace SunnysideUp\ShareThis;
 
-use SilverStripe\Dev\Debug;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\HeaderField;
-use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\LiteralField;
-use SunnysideUp\ShareThis\ShareThisOptions;
-use SilverStripe\View\Requirements;
+use SilverStripe\CMS\Model\SiteTreeExtension;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Convert;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Dev\Debug;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\ArrayList;
-use SunnysideUp\ShareThis\ShareThisDataObject;
-use SilverStripe\CMS\Model\SiteTreeExtension;
+use SilverStripe\View\ArrayData;
+use SilverStripe\View\Requirements;
 
 /**
  * Add a field to each SiteTree object and it's subclasses to enable Share icons.
@@ -24,59 +22,58 @@ use SilverStripe\CMS\Model\SiteTreeExtension;
  */
 class ShareThisSTE extends SiteTreeExtension
 {
-
     /**
      * Use the font-awesome icon collection?
-     * @var Boolean
+     * @var boolean
      */
     private static $use_font_awesome = true;
 
     /**
      * list of sitetree extending classnames where
      * the ShareThis functionality should be included
-     * @var Array
+     * @var array
      */
     private static $always_include_in = [];
 
     /**
      * list of sitetree extending classnames where
      * the ShareThis functionality should NEVER be included
-     * @var Array
+     * @var array
      */
     private static $never_include_in = [];
 
     /**
-    * use BW icons
-    * @var boolean
-    */
+     * use BW icons
+     * @var boolean
+     */
     private static $use_bw_effect = false;
 
     /**
-    * specify icons to be included, if left empty, this variable will be ignored
-    * We have this variable so that you can setup a bunch of default icons
-    * @var array
-    */
+     * specify icons to be included, if left empty, this variable will be ignored
+     * We have this variable so that you can setup a bunch of default icons
+     * @var array
+     */
     private static $included_icons = [];
 
     /**
-    * specify icons to be excluded, if left empty, this variable will be ignored
-    * We have this variable so that you can setup a bunch of default icons
-    * @var array
-    */
+     * specify icons to be excluded, if left empty, this variable will be ignored
+     * We have this variable so that you can setup a bunch of default icons
+     * @var array
+     */
     private static $excluded_icons = [];
 
     /**
      * standard SS method
-     * @var Array
+     * @var array
      **/
-    private static $db = array(
-        'ShareIcons' => 'Boolean'
-    );
+    private static $db = [
+        'ShareIcons' => 'Boolean',
+    ];
 
     /**
      * @param  FieldList $fields
      *
-     * @return FieldList $fields
+     * @return FieldList
      */
     public function updateCMSFields(FieldList $fields)
     {
@@ -99,7 +96,7 @@ class ShareThisSTE extends SiteTreeExtension
 
             foreach ($list as $key => $innerArray) {
                 if (! isset($innerArray['click'])) {
-                    $html .= "<span><a href=\"{$innerArray['url']}\" target=\"_blank\" style=\"whitespace: nowrap; display: inline-block;\"><img src=\"" . SS_SHARETHIS_DIR . "/images/icons/$key.png\" alt=\"$key\"/>{$innerArray['title']}</a></span>&nbsp;&nbsp;";
+                    $html .= "<span><a href=\"{$innerArray['url']}\" target=\"_blank\" style=\"whitespace: nowrap; display: inline-block;\"><img src=\"" . SS_SHARETHIS_DIR . "/images/icons/${key}.png\" alt=\"${key}\"/>{$innerArray['title']}</a></span>&nbsp;&nbsp;";
                 }
             }
 
@@ -171,29 +168,29 @@ class ShareThisSTE extends SiteTreeExtension
     {
         $icons = [];
         if ($bookmarks) {
-            $useFontAwesome = Config::inst()->get(ShareThisSTE::class, "use_font_awesome");
-            Requirements::themedCSS('SocialNetworking', "sharethis"); // ALSO  added in template
+            $useFontAwesome = Config::inst()->get(ShareThisSTE::class, 'use_font_awesome');
+            Requirements::themedCSS('SocialNetworking', 'sharethis'); // ALSO  added in template
 
             if ($useFontAwesome) {
-                Requirements::css("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+                Requirements::css('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
             }
 
             Requirements::javascript('sunnysideup/sharethis: javascript/shareThis.js');
 
-            if (Config::inst()->get(ShareThisSTE::class, "use_bw_effect")) {
+            if (Config::inst()->get(ShareThisSTE::class, 'use_bw_effect')) {
                 Requirements::customScript('sharethis.set_use_BW(true);', 'ShareThisBWEffect');
             }
 
             foreach ($bookmarks as $key => $bookmark) {
                 if (isset($bookmark['title']) && isset($bookmark['url'])) {
-                    $icon = array(
+                    $icon = [
                         'Title' => Convert::raw2att($bookmark['title']),
                         'URL' => $bookmark['url'],
                         'Key' => $key,
-                        'ImageSource' => "sharethis/images/icons/$key.png",
-                        'FAIcon' => $bookmark["faicon"],
-                        'UseStandardImage' => true
-                    );
+                        'ImageSource' => "sharethis/images/icons/${key}.png",
+                        'FAIcon' => $bookmark['faicon'],
+                        'UseStandardImage' => true,
+                    ];
 
                     if (isset($bookmark['click'])) {
                         $icon['OnClick'] = $bookmark['click'];
@@ -202,7 +199,7 @@ class ShareThisSTE extends SiteTreeExtension
                     if ($useFontAwesome) {
                         $icon['ImageSource'] = null;
                         $icon['UseStandardImage'] = false;
-                        $icon['FAIcon'] = $bookmark["faicon"];
+                        $icon['FAIcon'] = $bookmark['faicon'];
                     }
 
                     if (isset($bookmark['icon'])) {
@@ -213,7 +210,7 @@ class ShareThisSTE extends SiteTreeExtension
 
                     $icons[] = new ArrayData($icon);
                 } else {
-                    Debug::show("Title of url not defined for $key");
+                    Debug::show("Title of url not defined for ${key}");
                 }
             }
         }
@@ -232,7 +229,7 @@ class ShareThisSTE extends SiteTreeExtension
 
         $objects = ShareThisDataObject::get()
             ->filter($field, 1)
-            ->sort(array('Sort' => 'ASC', 'Title' => 'ASC'));
+            ->sort(['Sort' => 'ASC', 'Title' => 'ASC']);
         if ($objects->count()) {
             foreach ($objects as $obj) {
                 if (isset($bookmarks[$obj->Title])) {
@@ -255,36 +252,35 @@ class ShareThisSTE extends SiteTreeExtension
      */
     private function applyToOwnerClass()
     {
-        $always = Config::inst()->get(ShareThisSTE::class, "always_include_in");
-        $never = Config::inst()->get(ShareThisSTE::class, "never_include_in");
-        if (count($always) == 0 && count($never) == 0) {
+        $always = Config::inst()->get(ShareThisSTE::class, 'always_include_in');
+        $never = Config::inst()->get(ShareThisSTE::class, 'never_include_in');
+        if (count($always) === 0 && count($never) === 0) {
             return true;
-        } elseif (count($never) && count($always) == 0) {
-            if (in_array($this->owner->ClassName, $never)) {
+        } elseif (count($never) && count($always) === 0) {
+            if (in_array($this->owner->ClassName, $never, true)) {
                 return false;
             }
 
             return true;
-        } elseif (count($always) && count($never) == 0) {
-            if (in_array($this->owner->ClassName, $always)) {
+        } elseif (count($always) && count($never) === 0) {
+            if (in_array($this->owner->ClassName, $always, true)) {
                 return true;
             }
 
             return false;
         } elseif (count($never) && count($always)) {
-            if (in_array($this->owner->ClassName, $never)) {
+            if (in_array($this->owner->ClassName, $never, true)) {
                 return false;
             }
 
-            if (in_array($this->owner->ClassName, $always)) {
+            if (in_array($this->owner->ClassName, $always, true)) {
                 return true;
             }
 
             //exception... if dev sets both always and never
             //then the ones not set will be included by default.
             return true;
-        } else {
-            user_error("Strange condition!", E_USER_NOTICE);
         }
+        user_error('Strange condition!', E_USER_NOTICE);
     }
 }

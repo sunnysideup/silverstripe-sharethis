@@ -11,8 +11,6 @@ use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\ValidationResult;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\PermissionProvider;
-use SunnysideUp\ShareThis\ShareThisOptions;
-use SunnysideUp\ShareThis\ShareThisSTE;
 
 /**
  * @author nicolaas[at]sunnysideup.co.nz
@@ -31,12 +29,12 @@ class ShareThisDataObject extends DataObject
      * @var array
      */
     private static $permission_framework = [
-        "SOCIAL_MEDIA" => [
-            'name' => "Social Media Management",
-            'category' => "Social Media",
+        'SOCIAL_MEDIA' => [
+            'name' => 'Social Media Management',
+            'category' => 'Social Media',
             'help' => 'Edit relationships, links and data of various social media platforms.',
-            'sort' => 0
-        ]
+            'sort' => 0,
+        ],
     ];
 
     /**
@@ -46,14 +44,14 @@ class ShareThisDataObject extends DataObject
         'Title' => 'Varchar(20)',
         'IncludeThisIcon' => 'Boolean',
         'IncludeThisIconInExtendedList' => 'Boolean',
-        'Sort' => 'Int'
+        'Sort' => 'Int',
     ];
 
     /**
      * @var array
      */
     private static $has_one = [
-        'AlternativeIcon' => Image::class
+        'AlternativeIcon' => Image::class,
     ];
 
     /**
@@ -62,7 +60,7 @@ class ShareThisDataObject extends DataObject
     private static $casting = [
         'Icon' => 'HTMLText',
         'IncludeThisIconNice' => 'Varchar',
-        'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList'
+        'IncludeThisIconInExtendedListNice' => 'IncludeThisIconInExtendedList',
     ];
 
     /**
@@ -75,7 +73,7 @@ class ShareThisDataObject extends DataObject
         'IncludeThisIconInExtendedList' => 'Include in secondary list',
         'IncludeThisIconInExtendedListNice' => 'Include in secondary list',
         'Sort' => 'Sort Index (lower numbers shown first)',
-        'AlternativeIcon' => 'Optional Alternative Icon (can be any size, a 32px by 32px square is recommended)'
+        'AlternativeIcon' => 'Optional Alternative Icon (can be any size, a 32px by 32px square is recommended)',
     ];
 
     /**
@@ -105,7 +103,7 @@ class ShareThisDataObject extends DataObject
      */
     public function providePermissions()
     {
-        return Config::inst()->get(ShareThisDataObject::class, "permission_framework");
+        return Config::inst()->get(ShareThisDataObject::class, 'permission_framework');
     }
 
     /**
@@ -153,7 +151,7 @@ class ShareThisDataObject extends DataObject
      */
     public function getIncludeThisIconNice()
     {
-        return $this->IncludeThisIcon ? "Yes" : "No" ;
+        return $this->IncludeThisIcon ? 'Yes' : 'No';
     }
 
     /**
@@ -169,7 +167,7 @@ class ShareThisDataObject extends DataObject
      */
     public function getIncludeThisIconInExtendedListNice()
     {
-        return $this->IncludeThisIconInExtendedList ? "Yes" : "No" ;
+        return $this->IncludeThisIconInExtendedList ? 'Yes' : 'No';
     }
 
     /**
@@ -194,39 +192,30 @@ class ShareThisDataObject extends DataObject
 
         $html = '<img src="' . SS_SHARETHIS_DIR . '/images/icons/' . strtolower($this->Title) . ".png\" alt=\"{$this->Title}\"/>";
 
-        return DBField::create_field("HTMLText", $html);
+        return DBField::create_field('HTMLText', $html);
     }
 
     /**
-     * @return FieldList $fields
+     * @return FieldList
      */
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        if (class_exists("DataObjectSorterDOD")) {
-            $fields->addFieldToTab("Root.Sort", LiteralField::create("SortShortList", $this->dataObjectSorterPopupLink("IncludeThisIcon", 1, "<h3>Sort Main Icons</h3>")));
+        if (class_exists('DataObjectSorterDOD')) {
+            $fields->addFieldToTab('Root.Sort', LiteralField::create('SortShortList', $this->dataObjectSorterPopupLink('IncludeThisIcon', 1, '<h3>Sort Main Icons</h3>')));
         }
 
         return $fields;
     }
 
     /**
-     * @return void
-     */
-    public function onAfterWrite()
-    {
-        parent::onAfterWrite();
-        $objects = ShareThisDataObject::get()->filter('Title', $this->Title)->exclude('ID', $this->ID);
-    }
-
-    /**
-     * @return ValidationResult $result
+     * @return ValidationResult
      */
     public function validate()
     {
         $result = parent::validate();
-        $bookmarks = ShareThisOptions::get_page_specific_data("", "", "");
-        if (!isset($bookmarks[$this->Title])) {
+        $bookmarks = ShareThisOptions::get_page_specific_data('', '', '');
+        if (! isset($bookmarks[$this->Title])) {
             $result->addError(sprintf(
                 _t(
                     'ShareThisDataObject.NON_EXISTING_TITLE',
@@ -241,38 +230,36 @@ class ShareThisDataObject extends DataObject
 
     /**
      * Setting default records
-     *
-     * @return void
      */
     public function requireDefaultRecords()
     {
         parent::requireDefaultRecords();
         $actualArray = ShareThisOptions::get_general_data();
-        Config::inst()->update(ShareThisSTE::class, "included_icons", []);
-        Config::inst()->update(ShareThisSTE::class, "excluded_icons", []);
+        Config::inst()->update(ShareThisSTE::class, 'included_icons', []);
+        Config::inst()->update(ShareThisSTE::class, 'excluded_icons', []);
         ShareThisOptions::set_general_data(null);
         $fullArray = ShareThisOptions::get_general_data();
 
         foreach ($fullArray as $key) {
             $object = ShareThisDataObject::get()->filter('Title', $key);
 
-            if (!$object->exists()) {
+            if (! $object->exists()) {
                 $object = new ShareThisDataObject();
                 $object->Title = $key;
                 $style = 'excluded';
                 $object->IncludeThisIcon = false;
 
-                if (in_array($key, $actualArray)) {
+                if (in_array($key, $actualArray, true)) {
                     $object->IncludeThisIcon = true;
                     $style = 'included';
                 }
 
                 $object->write();
-                DB::alteration_message("Added Bookmark Icon for $key ($style)", 'created');
+                DB::alteration_message("Added Bookmark Icon for ${key} (${style})", 'created');
             }
         }
 
-        $inc = Config::inst()->get(ShareThisSTE::class, "included_icons");
+        $inc = Config::inst()->get(ShareThisSTE::class, 'included_icons');
 
         foreach ($inc as $key) {
             $object = ShareThisDataObject::get()->filter(['Title' => $key, 'IncludeThisIcon' => 0]);
@@ -281,11 +268,11 @@ class ShareThisDataObject extends DataObject
                 $object = $object->first();
                 $object->IncludeThisIcon = true;
                 $object->write();
-                DB::alteration_message("Updated inclusion for $key", 'created');
+                DB::alteration_message("Updated inclusion for ${key}", 'created');
             }
         }
 
-        $exc = Config::inst()->get(ShareThisSTE::class, "excluded_icons");
+        $exc = Config::inst()->get(ShareThisSTE::class, 'excluded_icons');
 
         foreach ($exc as $key) {
             $object = ShareThisDataObject::get()->filter(['Title' => $key, 'IncludeThisIcon' => 1]);
@@ -294,7 +281,7 @@ class ShareThisDataObject extends DataObject
                 $object = $object->first();
                 $object->IncludeThisIcon = false;
                 $object->write();
-                DB::alteration_message("Updated inclusion for $key", 'created');
+                DB::alteration_message("Updated inclusion for ${key}", 'created');
             }
         }
     }

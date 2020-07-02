@@ -2,13 +2,10 @@
 
 namespace SunnysideUp\ShareThis;
 
-use SilverStripe\Core\Injector\Injectable;
-use SilverStripe\Dev\Debug;
-use SilverStripe\Control\Email\Email;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
-use SunnysideUp\ShareThis\ShareThisSTE;
-
+use SilverStripe\Core\Injector\Injectable;
+use SilverStripe\Dev\Debug;
 
 /**
  * @author nicolaas [at] sunnysideup.co.nz
@@ -71,63 +68,63 @@ class ShareThisOptions
     {
         self::set_variables($title, $link, $description);
         self::$page_specific_data = [
-            "email" => [
-                "url" => "mailto:?".htmlentities("Subject=".self::$encoded_page_title."&Body=".self::$encoded_description."%0D%0A".self::$encoded_page_url),
-                "faicon" => "fa-send",
-                "title" => 'Email'
+            'email' => [
+                'url' => 'mailto:?' . htmlentities('Subject=' . self::$encoded_page_title . '&Body=' . self::$encoded_description . '%0D%0A' . self::$encoded_page_url),
+                'faicon' => 'fa-send',
+                'title' => 'Email',
             ],
-            "print" => [
-                "url" => "#",
-                "faicon" => "fa-print",
-                "click" => "window.print(); return false;",
-                "title" => "Print"
+            'print' => [
+                'url' => '#',
+                'faicon' => 'fa-print',
+                'click' => 'window.print(); return false;',
+                'title' => 'Print',
             ],
-            "favourites" => [
-                "url" => "#",
-                "faicon" => "fa-bookmark",
-                "click" => "sharethis.bookmark('".self::$encoded_page_url."', '".self::$encoded_page_title."'); return false;",
-                "title" => "Add to favourites (Internet Explorer Only)"
+            'favourites' => [
+                'url' => '#',
+                'faicon' => 'fa-bookmark',
+                'click' => "sharethis.bookmark('" . self::$encoded_page_url . "', '" . self::$encoded_page_title . "'); return false;",
+                'title' => 'Add to favourites (Internet Explorer Only)',
             ],
-            "delicious" => [
-                "url" => "http://del.icio.us/post?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
-                "faicon" => "fa-delicious",
-                "title" => "Delicious"
+            'delicious' => [
+                'url' => 'http://del.icio.us/post?' . htmlentities('url=' . self::$encoded_page_url . '&title=' . self::$encoded_page_title),
+                'faicon' => 'fa-delicious',
+                'title' => 'Delicious',
             ],
-            "facebook" => [
-                "url" => "http://www.facebook.com/share.php?".htmlentities("u=".self::$encoded_page_url."&title=".self::$encoded_page_title),
-                "faicon" => "fa-facebook-square",
-                "title" => "Facebook"
+            'facebook' => [
+                'url' => 'http://www.facebook.com/share.php?' . htmlentities('u=' . self::$encoded_page_url . '&title=' . self::$encoded_page_title),
+                'faicon' => 'fa-facebook-square',
+                'title' => 'Facebook',
             ],
-            "googleplus" => [
-                "url" =>  "https://plus.google.com/share?url=".self::$encoded_page_url,
-                "faicon" => "fa-google-plus",
-                "title" => "Google Plus One"
+            'googleplus' => [
+                'url' => 'https://plus.google.com/share?url=' . self::$encoded_page_url,
+                'faicon' => 'fa-google-plus',
+                'title' => 'Google Plus One',
             ],
-            "linkedin" => [
-                "url" =>  "http://www.linkedin.com/shareArticle?".htmlentities("mini=true&url=".self::$encoded_page_url."&title=".self::$encoded_page_title."&source=".Director::absoluteBaseURL()),
-                "faicon" => "fa-linkedin-square",
-                "title" => "LinkedIn"
+            'linkedin' => [
+                'url' => 'http://www.linkedin.com/shareArticle?' . htmlentities('mini=true&url=' . self::$encoded_page_url . '&title=' . self::$encoded_page_title . '&source=' . Director::absoluteBaseURL()),
+                'faicon' => 'fa-linkedin-square',
+                'title' => 'LinkedIn',
             ],
-            "pinterest" => [
-                "url" => "http://pinterest.com/pin/create/bookmarklet/?".htmlentities("media=html&url=".self::$encoded_page_url."&is_video=false&description=".self::$encoded_page_title),
-                "faicon" => "fa-pinterest",
-                "title" => "Pinterest"
+            'pinterest' => [
+                'url' => 'http://pinterest.com/pin/create/bookmarklet/?' . htmlentities('media=html&url=' . self::$encoded_page_url . '&is_video=false&description=' . self::$encoded_page_title),
+                'faicon' => 'fa-pinterest',
+                'title' => 'Pinterest',
             ],
-            "reddit" => [
-                "url" => "http://reddit.com/submit?".htmlentities("url=".self::$encoded_page_url."&title=".self::$encoded_page_title),
-                "faicon" => "fa-reddit",
-                "title" => "Reddit"
+            'reddit' => [
+                'url' => 'http://reddit.com/submit?' . htmlentities('url=' . self::$encoded_page_url . '&title=' . self::$encoded_page_title),
+                'faicon' => 'fa-reddit',
+                'title' => 'Reddit',
             ],
-            "twitter" => [
-                "url" => "http://twitter.com/home?status=".htmlentities(urlencode("currently reading: ").self::$encoded_page_url),
-                "faicon" => "fa-twitter-square",
-                "title" => "Twitter"
+            'twitter' => [
+                'url' => 'http://twitter.com/home?status=' . htmlentities(urlencode('currently reading: ') . self::$encoded_page_url),
+                'faicon' => 'fa-twitter-square',
+                'title' => 'Twitter',
             ],
-            "tumblr" => [
-                "url" => "http://www.tumblr.com/share/link?url=".htmlentities(self::$encoded_page_url."&name=".self::$encoded_page_title),
-                "faicon" => "fa-tumblr-square",
-                "title" => "Tumblr"
-            ]
+            'tumblr' => [
+                'url' => 'http://www.tumblr.com/share/link?url=' . htmlentities(self::$encoded_page_url . '&name=' . self::$encoded_page_title),
+                'faicon' => 'fa-tumblr-square',
+                'title' => 'Tumblr',
+            ],
         ];
 
         return self::$page_specific_data;
@@ -142,10 +139,9 @@ class ShareThisOptions
      */
     public static function get_page_specific_data($title, $link, $description = '')
     {
-        $originalArray = self::$page_specific_data ? self::$page_specific_data : self::get_all_options($title, $link, $description);
-        $finalArray = [];
-        $inc = Config::inst()->get(ShareThisSTE::class, "included_icons");
-        $exc = Config::inst()->get(ShareThisSTE::class, "excluded_icons");
+        $originalArray = self::$page_specific_data ?: self::get_all_options($title, $link, $description);
+        $inc = Config::inst()->get(ShareThisSTE::class, 'included_icons');
+        $exc = Config::inst()->get(ShareThisSTE::class, 'excluded_icons');
 
         if (count($inc)) {
             $new_array_of_icons_to_include = [];
@@ -154,12 +150,11 @@ class ShareThisOptions
                 $new_array_of_icons_to_include[$value] = $value;
 
                 if (! isset($originalArray[$value])) {
-                    Debug::show("Error in ShareIcons::set_icons_to_include, $key does not exist in bookmark list");
+                    Debug::show("Error in ShareIcons::set_icons_to_include, ${key} does not exist in bookmark list");
                 }
-
             }
 
-            foreach ($originalArray as $key => $array) {
+            foreach (array_keys($originalArray) as $key) {
                 if (! isset($new_array_of_icons_to_include[$key])) {
                     unset($originalArray[$key]);
                 }
@@ -170,7 +165,7 @@ class ShareThisOptions
         if (count($exc)) {
             foreach ($exc as $key) {
                 if (! isset($originalArray[$key])) {
-                    Debug::show("Error in ShareIcons::set_icons_to_exclude, $key does not exist in bookmark list");
+                    Debug::show("Error in ShareIcons::set_icons_to_exclude, ${key} does not exist in bookmark list");
                 } else {
                     unset($originalArray[$key]);
                 }
@@ -206,16 +201,13 @@ class ShareThisOptions
                     },
                     {button:true}
                 );
-            </script>
-        ';
+            </script>';
 
         return self::$share_all_data;
     }
 
     /**
      * Sets general data
-     *
-     * @return void
      */
     public static function set_general_data()
     {
@@ -231,7 +223,7 @@ class ShareThisOptions
             $array = self::get_page_specific_data('', '', '');
             $newArray = [];
             if (count($array)) {
-                foreach ($array as $key => $subArray) {
+                foreach (array_keys($array) as $key) {
                     $newArray[$key] = $key;
                 }
             }
@@ -242,12 +234,19 @@ class ShareThisOptions
     }
 
     /**
+     * @return string
+     */
+    protected function facebookLike()
+    {
+        //see http://developers.facebook.com/docs/reference/plugins/like/
+        return '<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=231498950207168&amp;xfbml=1"></script><fb:like href="www.test.com" send="false" width="450" show_faces="true" font="lucida grande"></fb:like>';
+    }
+
+    /**
      * Set's variables
-     * @param string
-     * @param string
-     * @param string
-     *
-     * @return  void
+     * @param string $title
+     * @param string $link
+     * @param string $description
      */
     private static function set_variables($title, $link, $description)
     {
@@ -261,14 +260,5 @@ class ShareThisOptions
         } else {
             self::$encoded_description = self::$encoded_page_title;
         }
-    }
-
-    /**
-     * @return string
-     */
-    private function facebookLike()
-    {
-        //see http://developers.facebook.com/docs/reference/plugins/like/
-        return '<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=231498950207168&amp;xfbml=1"></script><fb:like href="www.test.com" send="false" width="450" show_faces="true" font="lucida grande"></fb:like>';
     }
 }
