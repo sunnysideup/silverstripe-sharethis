@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Model;
 
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\LiteralField;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Api;
 
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Injector\Injectable;

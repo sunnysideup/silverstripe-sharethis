@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Control;
 
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;

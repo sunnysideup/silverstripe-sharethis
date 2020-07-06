@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Model;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\Core\Config\Config;

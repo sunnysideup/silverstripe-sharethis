@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Model;
 
 use HtmlEditorField;
 use SilverStripe\Control\Director;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Model;
 
 use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataObject;

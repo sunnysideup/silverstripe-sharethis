@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Extension;
 
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\FieldList;

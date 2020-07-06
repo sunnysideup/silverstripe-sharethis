@@ -1,6 +1,6 @@
 <?php
 
-namespace SunnysideUp\ShareThis;
+namespace SunnysideUp\ShareThis\Api;
 
 use SilverStripe\Control\Director;
 use SilverStripe\Control\Session;
@@ -74,7 +74,7 @@ class MyTwitter
      *
      * @param string $username (e.g. mytwitterhandle)
      * @param int $count - number of tweets to retrieve at any one time
-     * @return DataObjectSet | Null
+     * @return \SilverStripe\ORM\SS_List | Null
      */
     public static function last_statuses($username, $count = 1, $useHourlyCache = true)
     {
@@ -117,7 +117,7 @@ class MyTwitter
      *
      * @param string $username (e.g. mytwitterhandle)
      * @param int $count - number of tweets to retrieve at any one time
-     * @return DataObjectSet | Null
+     * @return \SilverStripe\ORM\SS_List | Null
      */
     public function TwitterFeed($username, $count = 5)
     {
