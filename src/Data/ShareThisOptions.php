@@ -143,7 +143,7 @@ class ShareThisOptions
         $inc = Config::inst()->get(ShareThisSTE::class, 'included_icons');
         $exc = Config::inst()->get(ShareThisSTE::class, 'excluded_icons');
 
-        if (count($inc)) {
+        if (is_array($inc) && count($inc)) {
             $new_array_of_icons_to_include = [];
 
             foreach ($inc as $key => $value) {
@@ -162,7 +162,7 @@ class ShareThisOptions
         }
 
         //which ones do we exclude
-        if (count($exc)) {
+        if (is_array($exc) && count($exc)) {
             foreach ($exc as $key) {
                 if (! isset($originalArray[$key])) {
                     Debug::show("Error in ShareIcons::set_icons_to_exclude, ${key} does not exist in bookmark list");
