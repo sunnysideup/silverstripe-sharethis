@@ -7,15 +7,15 @@ After:
 ---
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - SunnysideUp\ShareThis\ShareThisSiteConfigDE
+    - SunnysideUp\ShareThis\Extension\ShareThisSiteConfigDE
 
 SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - SunnysideUp\ShareThis\ShareThisSTE
-    - SunnysideUp\ShareThis\SocialNetworksSTE
+    - SunnysideUp\ShareThis\Extension\ShareThisSTE
+    - SunnysideUp\ShareThis\Extension\SocialNetworksSTE
 ---
 Only:
-  classexists: Sunnysideup\DataobjectSorter\DataObjectSorterDOD
+  classexists: Sunnysideup\DataobjectSorter\Control\DataObjectSorterDOD
 ---
 SunnysideUp\ShareThis\ShareThisDataObject:
   extensions:
