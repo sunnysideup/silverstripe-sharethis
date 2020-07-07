@@ -11,6 +11,7 @@ use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\ValidationResult;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\PermissionProvider;
+use SunnysideUp\ShareThis\Data\ShareThisOptions;
 
 /**
  * @author nicolaas[at]sunnysideup.co.nz
