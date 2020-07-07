@@ -1,7 +1,9 @@
 ---
 Name: sharethis
-Before: 'mysite/*'
-After: 'framework/*'
+Before:
+  - '#app'
+After:
+  - '#coreconfig'
 ---
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
