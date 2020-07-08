@@ -13,6 +13,8 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
+use SunnysideUp\ShareThis\Data\ShareThisOptions;
+use SunnysideUp\ShareThis\Model\ShareThisDataObject;
 
 /**
  * Add a field to each SiteTree object and it's subclasses to enable Share icons.

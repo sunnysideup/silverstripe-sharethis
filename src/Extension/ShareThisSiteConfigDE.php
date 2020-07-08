@@ -11,6 +11,8 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
 use SilverStripe\ORM\DataExtension;
+use SunnysideUp\ShareThis\Model\ShareThisDataObject;
+use SunnysideUp\ShareThis\Model\SocialNetworkingLinksDataObject;
 
 /**
  * @todo Check that permissions on the 2 tables in the CMS are the same than before
