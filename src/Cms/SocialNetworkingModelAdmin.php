@@ -3,6 +3,10 @@
 namespace SunnysideUp\ShareThis\Cms;
 
 use SilverStripe\Admin\ModelAdmin;
+use SunnysideUp\ShareThis\Model\FacebookFeedItem;
+use SunnysideUp\ShareThis\Model\FacebookFeedPage;
+use SunnysideUp\ShareThis\Model\ShareThisDataObject;
+use SunnysideUp\ShareThis\Model\SocialNetworkingLinksDataObject;
 
 /**
  *@author: nicolaas[at]sunnysideup.co.nz
