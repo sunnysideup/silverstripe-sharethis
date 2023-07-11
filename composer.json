@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "silverstripe/recipe-cms": "^4.0 || ^ 5.0"
+        "silverstripe/recipe-cms": "^4.0 || ^5.0"
     },
     "suggest": {
         "facebook/php-sdk-v4": "Facebook SDK"
