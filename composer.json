@@ -1,30 +1,30 @@
 {
-    "name": "sunnysideup/sharethis",
-    "type": "silverstripe-vendormodule",
-    "description": "adds a bunch of social media tools to your Silverstripe website",
-    "keywords": [
-        "Silverstripe-CMS",
-        "CMS",
-        "Silverstripe",
-        "sharethis"
-    ],
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Nicolaas Francken",
-            "email": "modules@sunnysideup.co.nz",
-            "role": "lead developer"
-        }
-    ],
-    "require": {
-        "silverstripe/recipe-cms": "^4.0 || ^5.0"
-    },
-    "suggest": {
-        "facebook/php-sdk-v4": "Facebook SDK"
-    },
-    "autoload": {
-        "psr-4": {
-            "SunnysideUp\\ShareThis\\": "src/"
-        }
+  "name": "sunnysideup/sharethis",
+  "type": "silverstripe-vendormodule",
+  "description": "adds a bunch of social media tools to your Silverstripe website",
+  "keywords": [
+    "Silverstripe-CMS",
+    "CMS",
+    "Silverstripe",
+    "sharethis"
+  ],
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Nicolaas Francken",
+      "email": "modules@sunnysideup.co.nz",
+      "role": "lead developer"
     }
+  ],
+  "require": {
+    "silverstripe/recipe-cms": "^4.0 || ^5.0"
+  },
+  "suggest": {
+    "facebook/php-sdk-v4": "Facebook SDK"
+  },
+  "autoload": {
+    "psr-4": {
+      "SunnysideUp\\ShareThis\\": "src/"
+    }
+  }
 }
